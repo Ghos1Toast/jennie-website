@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Utkast: ta bort noindex vid lansering (se launch-checklistan) -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Kontakt – Jennies Färgsättning &amp; Måleri</title>
+  <meta name="description" content="Skicka en förfrågan om färgsättning eller måleri, eller ring 070-000 00 00.">
+  <link rel="icon" href="images/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="preload" href="fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Hoppa till innehållet</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <picture>
+          <source type="image/webp" srcset="images/brand/logo-64.webp 1x, images/brand/logo-128.webp 2x">
+          <img src="images/brand/logo-64.png" srcset="images/brand/logo-128.png 2x" alt="" width="72" height="64">
+        </picture>
+        <span class="brand-text">
+          <span class="brand-name">Jennies</span>
+          <span class="brand-sub">Färgsättning &amp; Måleri</span>
+        </span>
+      </a>
+      <a class="header-phone" href="tel:+46700000000" aria-label="Ring 070-000 00 00">
+        <span class="label">Ring</span><span class="num">070-000 00 00</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-toggle-icon" aria-hidden="true"></span>Meny
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Huvudmeny">
+        <ul>
+          <li><a href="index.html">Startsida</a></li>
+          <li><a href="om-oss.html">Om oss</a></li>
+          <li><a href="inspiration.html">Inspiration</a></li>
+          <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
+          <li class="nav-cta"><a class="btn" href="kontakt.html">Skicka en förfrågan</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Kontakt</span>
+          <h1>Berätta om ditt projekt</h1>
+          <p>Fyll i formuläret så hörs vi. Det är en förfrågan, inte en bokning.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Formulärtjänst bestäms i fas 4. Nuvarande endpoint: Formspree (USA). -->
+          <form id="contact-form" class="form" action="https://formspree.io/f/mgobnqen" method="POST">
+            <input type="hidden" name="_subject" value="Ny förfrågan från hemsidan">
+
+            <div class="form-row">
+              <div class="field">
+                <label for="namn">Namn</label>
+                <input type="text" id="namn" name="namn" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="epost">E-post</label>
+                <input type="email" id="epost" name="epost" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="telefon">Telefon</label>
+                <input type="tel" id="telefon" name="telefon" autocomplete="tel" required>
+              </div>
+              <div class="field">
+                <label for="adress">Adress <span class="opt">(valfritt)</span></label>
+                <input type="text" id="adress" name="adress" autocomplete="street-address" aria-describedby="adress-hint">
+                <p class="hint" id="adress-hint">Där jobbet ska göras.</p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="meddelande">Meddelande</label>
+              <textarea id="meddelande" name="meddelande" required aria-describedby="meddelande-hint"></textarea>
+              <p class="hint" id="meddelande-hint">Vad gäller det? Till exempel rum eller fasad, ungefärlig storlek och när du vill att det görs.</p>
+            </div>
+
+            <!-- Honungsfälla: människor ser inte fältet, spamrobotar fyller i det och Formspree kastar meddelandet -->
+            <div class="hp" aria-hidden="true">
+              <label for="_gotcha">Lämna tomt</label>
+              <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+            </div>
+
+            <p class="form-note">Alla fält utom adress måste fyllas i. Uppgifterna används bara för att svara på din förfrågan. Läs mer i vår <a href="integritetspolicy.html">integritetspolicy</a>.</p>
+
+            <div>
+              <button type="submit" class="btn">Skicka förfrågan</button>
+            </div>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <aside aria-labelledby="direkt-rubrik">
+            <h2 id="direkt-rubrik" class="visually-hidden">Kontaktuppgifter</h2>
+            <dl class="contact-list">
+              <div>
+                <dt>Telefon</dt>
+                <dd><a href="tel:+46700000000">070-000 00 00</a></dd>
+              </div>
+              <div>
+                <dt>E-post</dt>
+                <dd><a href="mailto:info@jennies-maleri.se">info@jennies-maleri.se</a></dd>
+              </div>
+              <div>
+                <dt>Område</dt>
+                <dd><span class="ph">[PLATSHÅLLARE: verksamhetsområde]</span></dd>
+              </div>
+              <div>
+                <dt>Sociala medier</dt>
+                <dd><span class="ph">[PLATSHÅLLARE: Instagram/Facebook-länkar]</span></dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <picture>
+            <source type="image/webp" srcset="images/brand/logo-128.webp 1x, images/brand/logo-192.webp 2x">
+            <img src="images/brand/logo-128.png" alt="Jennies Färgsättning &amp; Måleri" width="144" height="128" loading="lazy">
+          </picture>
+        </div>
+        <div>
+          <p class="footer-heading">Kontakt</p>
+          <ul class="footer-list">
+            <li><a href="tel:+46700000000">070-000 00 00</a></li>
+            <li><a href="mailto:info@jennies-maleri.se">info@jennies-maleri.se</a></li>
+            <li><span class="ph">[PLATSHÅLLARE: verksamhetsområde]</span></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Sidor</p>
+          <ul class="footer-list">
+            <li><a href="om-oss.html">Om oss</a></li>
+            <li><a href="inspiration.html">Inspiration</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Följ</p>
+          <ul class="footer-list">
+            <li><span class="ph">[PLATSHÅLLARE: länkar till Instagram/Facebook – vilka konton finns?]</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> <span class="ph">[PLATSHÅLLARE: registrerat företagsnamn]</span> · Org.nr <span class="ph">[PLATSHÅLLARE]</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

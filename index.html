@@ -1,275 +1,202 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jennies Färgsättning & Måleri AB</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Utkast: ta bort noindex vid lansering (se launch-checklistan) -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Färgsättning och måleri – Jennies Färgsättning &amp; Måleri</title>
+  <meta name="description" content="Färgsättning och måleri, inomhus och utomhus. [PLATSHÅLLARE: område]. Se tidigare projekt och skicka en förfrågan.">
+  <link rel="icon" href="images/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="preload" href="fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/main.js" defer></script>
 </head>
-
 <body>
+  <a class="skip-link" href="#main">Hoppa till innehållet</a>
 
-  <header>
-    <div class="nav-wrap">
-      <a href="#hem" class="brand">
-        Jennies <span class="sub">Färgsättning &amp; Måleri</span>
-        <!-- <img src="Jennie_Logga.png" alt="Jennies Färgsättning & Måleri" class="brand img"> -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <picture>
+          <source type="image/webp" srcset="images/brand/logo-64.webp 1x, images/brand/logo-128.webp 2x">
+          <img src="images/brand/logo-64.png" srcset="images/brand/logo-128.png 2x" alt="" width="72" height="64">
+        </picture>
+        <span class="brand-text">
+          <span class="brand-name">Jennies</span>
+          <span class="brand-sub">Färgsättning &amp; Måleri</span>
+        </span>
       </a>
-
-      <button class="menu-toggle" aria-label="Öppna meny"
-        onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
-      <nav>
+      <a class="header-phone" href="tel:+46700000000" aria-label="Ring 070-000 00 00">
+        <span class="label">Ring</span><span class="num">070-000 00 00</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-toggle-icon" aria-hidden="true"></span>Meny
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Huvudmeny">
         <ul>
-          <li><a href="#hem">Hem</a></li>
-          <li><a href="#om-oss">Om oss</a></li>
-          <li><a href="#inspiration">Inspiration</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="index.html" aria-current="page">Startsida</a></li>
+          <li><a href="om-oss.html">Om oss</a></li>
+          <li><a href="inspiration.html">Inspiration</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li class="nav-cta"><a class="btn" href="kontakt.html">Skicka en förfrågan</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-<!-- test test test test -->
-
-
-  <!-- ================= HERO / HEM ================= -->
-  <section id="hem" class="hero">
-    <div>
-      <span class="eyebrow">Måleri & färgsättning</span>
-      <h1>Färg och form som håller, hela vägen.</h1>
-      <p>Letar du efter ett måleriföretag som verkligen lyssnar på dina behov och levererar ett resultat du kan vara
-        stolt över i många år framöver? Hos oss står du som kund alltid i centrum.</p>
-      <div style="display:flex; gap:16px; flex-wrap:wrap;">
-        <a href="#kontakt" class="btn">Skicka en förfrågan</a>
-        <a href="#inspiration" class="btn outline">Se tidigare projekt</a>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <img src="Profilbild.jpeg" alt="Jennie utomhus i en grå hoodie med Jennies Färgsättning & Måleris logotyp">
-    </div>
-    <!-- <img src="Jennie_Logga.png" alt="Jennies Färgsättning & Måleri"> -->
-
-  </section>
-
-  <!-- ================= OM OSS ================= -->
-  <section id="om-oss" class="alt">
-    <div class="inner">
-      <div class="section-head">
-        <span class="eyebrow">Om oss</span>
-        <h2>Vi guidar dig genom hela processen</h2>
-        <p>Med lång erfarenhet och ett genuint intresse för färg, form och helhet hjälper vi dig att hitta rätt lösning
-          för just ditt projekt – oavsett om du vill fräscha upp ett rum, bevara känslan i ett äldre hus eller skapa
-          något helt nytt.</p>
-      </div>
-
-      <div class="om-grid">
-        <div class="copy">
-          <p>Vår viktigaste uppgift är att göra din idé till verklighet – på ett tryggt, smidigt och professionellt sätt
-            inom tidsramarna. Vi utför alla typer av invändigt och utvändigt måleri, tapetsering och övriga
-            måleriarbeten, alltid med fokus på kvalitet, estetik och långsiktig hållbarhet.</p>
-          <p>Vår kunskap inom linoljefärg och naturliga ytbehandlingar gör att vi kan erbjuda tidlösa och miljöanpassade
-            lösningar – anpassade för både klassiska och moderna miljöer. Ytbehandling med Osmo är ett av våra
-            specialområden.</p>
-          <p>Alla arbeten utförs av kunniga målare med stor yrkesstolthet och känsla för detaljer, och vi följer alltid
-            branschens riktlinjer för teknik, miljö och säkerhet.</p>
-          <div class="swatches" aria-hidden="true">
-            <div class="swatch" style="background:#B5562C;"></div>
-            <div class="swatch" style="background:#2D5A4A;"></div>
-            <div class="swatch" style="background:#D9C3A0;"></div>
-            <div class="swatch" style="background:#7A8C68;"></div>
-            <div class="swatch" style="background:#3F4A3D;"></div>
+  <main id="main">
+    <!-- ========== Hero ========== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Färgsättning &amp; måleri · <span class="ph">[PLATSHÅLLARE: område]</span></span>
+          <!-- Förslag på rubrik, kräver Jennies godkännande -->
+          <h1>Först rätt färg. Sedan måleriet.</h1>
+          <p class="hero-lead">Hjälp att välja kulörer – och målning av det som ska målas, inomhus och utomhus.</p>
+          <div class="btn-row">
+            <a class="btn" href="kontakt.html">Skicka en förfrågan</a>
+            <a class="btn btn--ghost" href="inspiration.html">Se tidigare projekt</a>
           </div>
         </div>
+        <!-- Ersätt med Jennies bästa projektbild (liggande eller stående, minst 1600 px bred) -->
+        <div class="img-ph img-ph--hero">[PLATSHÅLLARE: bästa projektbilden]</div>
+      </div>
+    </section>
 
+    <!-- ========== Tjänster ========== -->
+    <section class="section section--alt" aria-labelledby="tjanster-rubrik">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Tjänster</span>
+          <h2 id="tjanster-rubrik">Färgsättning och måleri</h2>
+        </div>
+        <div class="services">
+          <article class="service">
+            <h3>Färgsättning</h3>
+            <p>Hjälp att välja kulörer som fungerar ihop – för ett rum, hela hemmet eller fasaden.</p>
+            <p><span class="ph">[PLATSHÅLLARE: hur går det till? T.ex. hembesök, provmålning, färgkarta – bara det Jennie faktiskt gör]</span></p>
+          </article>
+          <article class="service">
+            <h3>Måleri inomhus och utomhus</h3>
+            <p>Målning invändigt och utvändigt.</p>
+            <p><span class="ph">[PLATSHÅLLARE: vad ingår? T.ex. väggar, tak, snickerier, fasad, fönster – bara det Jennie faktiskt utför]</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Urval ur galleriet ========== -->
+    <section class="section" aria-labelledby="projekt-rubrik">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Inspiration</span>
+          <h2 id="projekt-rubrik">Tidigare projekt</h2>
+        </div>
+        <!-- Byt platshållarna mot de 6 starkaste bilderna. Mall finns i inspiration.html -->
+        <ul class="gallery">
+          <li class="gallery-item"><div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div></li>
+          <li class="gallery-item"><div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div></li>
+          <li class="gallery-item"><div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div></li>
+          <li class="gallery-item"><div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div></li>
+          <li class="gallery-item"><div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div></li>
+          <li class="gallery-item"><div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div></li>
+        </ul>
+        <p class="section-foot"><a class="link-arrow" href="inspiration.html">Se alla projekt</a></p>
+      </div>
+    </section>
+
+    <!-- ========== Kort om Jennie ========== -->
+    <section class="section section--alt" aria-labelledby="om-rubrik">
+      <div class="container split">
+        <div class="portrait">
+          <picture>
+            <source type="image/avif" srcset="images/om/jennie-480.avif 480w, images/om/jennie-800.avif 800w, images/om/jennie-1200.avif 1200w" sizes="(min-width: 800px) min(40vw, 460px), calc(100vw - 2rem)">
+            <source type="image/webp" srcset="images/om/jennie-480.webp 480w, images/om/jennie-800.webp 800w, images/om/jennie-1200.webp 1200w" sizes="(min-width: 800px) min(40vw, 460px), calc(100vw - 2rem)">
+            <img src="images/om/jennie-800.jpg" srcset="images/om/jennie-480.jpg 480w, images/om/jennie-800.jpg 800w, images/om/jennie-1200.jpg 1200w" sizes="(min-width: 800px) min(40vw, 460px), calc(100vw - 2rem)" width="800" height="1028" loading="lazy" decoding="async" alt="Jennie Peterzén utomhus bland granar, i en ljusgrå huvtröja med företagets logga.">
+          </picture>
+        </div>
         <div>
-          <h3 style="color:var(--pine-dark); font-size:20px; margin-bottom:16px;">Det här får du som kund</h3>
-          <ul class="feature-list">
-            <li><span class="num">01</span><span>Personlig service och tydlig kommunikation genom hela projektet</span>
-            </li>
-            <li><span class="num">02</span><span>Rådgivning inom färgsättning som lyfter ditt hem</span></li>
-            <li><span class="num">03</span><span>Hantverk utfört med noggrannhet och hög finish</span></li>
-            <li><span class="num">04</span><span>Hållbara lösningar som håller över tid</span></li>
+          <span class="eyebrow">Om oss</span>
+          <h2 id="om-rubrik">Jennie Peterzén</h2>
+          <div class="stack lead-gap">
+            <p><span class="ph">[PLATSHÅLLARE: 2–3 meningar om Jennie – bakgrund och varför färgsättning. Skrivs med Jennie.]</span></p>
+          </div>
+          <p class="section-foot"><a class="link-arrow" href="om-oss.html">Mer om oss</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="section cta-band" aria-labelledby="cta-rubrik">
+      <div class="container">
+        <h2 id="cta-rubrik">Funderar du på färg eller måleri?</h2>
+        <p>Berätta kort om ditt projekt så får du svar.</p>
+        <div class="btn-row">
+          <a class="btn" href="kontakt.html">Skicka en förfrågan</a>
+          <a class="btn btn--ghost" href="tel:+46700000000">Ring 070-000 00 00</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <picture>
+            <source type="image/webp" srcset="images/brand/logo-128.webp 1x, images/brand/logo-192.webp 2x">
+            <img src="images/brand/logo-128.png" alt="Jennies Färgsättning &amp; Måleri" width="144" height="128" loading="lazy">
+          </picture>
+        </div>
+        <div>
+          <p class="footer-heading">Kontakt</p>
+          <ul class="footer-list">
+            <li><a href="tel:+46700000000">070-000 00 00</a></li>
+            <li><a href="mailto:info@jennies-maleri.se">info@jennies-maleri.se</a></li>
+            <li><span class="ph">[PLATSHÅLLARE: verksamhetsområde]</span></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Sidor</p>
+          <ul class="footer-list">
+            <li><a href="om-oss.html">Om oss</a></li>
+            <li><a href="inspiration.html">Inspiration</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Följ</p>
+          <ul class="footer-list">
+            <li><span class="ph">[PLATSHÅLLARE: länkar till Instagram/Facebook – vilka konton finns?]</span></li>
           </ul>
         </div>
       </div>
-
-      <div class="why-grid">
-        <div class="why-card">
-          <div class="mark">1</div>
-          <h3>Trygghet genom hela projektet</h3>
-          <p>Vi är med dig från start till mål – från första tanke till färdigt resultat, så att du kan känna dig säker
-            i varje steg.</p>
-        </div>
-        <div class="why-card">
-          <div class="mark">2</div>
-          <h3>Specialister på färgsättning</h3>
-          <p>Vi ser helheten, inte bara ytan, och hjälper dig att hitta en färgsättning som passar både hus och hem.</p>
-        </div>
-        <div class="why-card">
-          <div class="mark">3</div>
-          <h3>Expertis inom linoljefärg</h3>
-          <p>Perfekt för både äldre hus och varsamma renoveringar – en naturlig, andningsbar och tidlös ytbehandling.
-          </p>
-        </div>
-        <div class="why-card">
-          <div class="mark">4</div>
-          <h3>Yrkesstolthet i varje detalj</h3>
-          <p>Vi lämnar inget åt slumpen. Noggrannhet och kvalitet genomsyrar varje moment av arbetet.</p>
-        </div>
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> <span class="ph">[PLATSHÅLLARE: registrerat företagsnamn]</span> · Org.nr <span class="ph">[PLATSHÅLLARE]</span></p>
       </div>
     </div>
-  </section>
-
-  <!-- ================= INSPIRATION ================= -->
-  <section id="inspiration">
-    <div class="inner">
-      <div class="section-head">
-        <span class="eyebrow">Inspiration</span>
-        <h2>Tidigare projekt</h2>
-        <p>Ett urval av arbeten – från fasader och fönster i linoljefärg till inredningsmåleri och tapetsering. Hör av
-          dig om du vill se fler exempel eller diskutera idéer för ditt eget hem.</p>
-      </div>
-      <div class="gallery">
-        <div class="card placeholder">Bild kommer</div>
-        <div class="card placeholder">Bild kommer</div>
-        <div class="card placeholder">Bild kommer</div>
-        <div class="card placeholder">Bild kommer</div>
-        <div class="card placeholder">Bild kommer</div>
-        <div class="card placeholder">Bild kommer</div>
-
-        <!-- <div class="card placeholder">Bild kommer<br>Exteriör – linoljefärg</div>
-        <div class="card placeholder">Bild kommer<br>Vardagsrum – färgsättning</div>
-        <div class="card placeholder">Bild kommer<br>Fönster & snickerier</div>
-        <div class="card placeholder">Bild kommer<br>Kök – väggar & skåp</div>
-        <div class="card placeholder">Bild kommer<br>Tapetsering – sovrum</div>
-        <div class="card placeholder">Bild kommer<br>Trapphus – Osmo-behandling</div> -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= KONTAKT ================= -->
-  <section id="kontakt" class="alt">
-    <div class="inner">
-      <div class="section-head">
-        <span class="eyebrow">Kontakt</span>
-        <h2>Berätta om ditt projekt</h2>
-        <p>Fyll i formuläret nedan så återkommer vi så snart vi kan med information om nästa steg.</p>
-      </div>
-
-      <div class="kontakt-grid">
-        <form id="contact-form" action="https://formspree.io/f/mgobnqen" method="POST">
-          <div>
-            <label for="namn">Namn</label>
-            <input type="text" id="namn" name="namn" required>
-          </div>
-          <div>
-            <label for="epost">E-post</label>
-            <input type="email" id="epost" name="epost" required>
-          </div>
-          <div>
-            <label for="mobil">Mobilnummer</label>
-            <input type="tel" id="mobil" name="mobil" required>
-          </div>
-          <div>
-            <label for="adress">Adress</label>
-            <input type="text" id="adress" name="adress">
-          </div>
-          <div>
-            <label for="meddelande">Meddelande</label>
-            <textarea id="meddelande" name="meddelande"
-              placeholder="Berätta gärna kort om vad du behöver hjälp med..."></textarea>
-          </div>
-          <button type="submit" class="btn">Skicka förfrågan</button>
-          <p class="form-status" id="form-status"></p>
-        </form>
-
-        <div class="kontakt-info">
-          <div class="item">
-            <span>E-post</span>
-            <p>info@jennies-maleri.se</p>
-          </div>
-          <div class="item">
-            <span>Telefon</span>
-            <p>070-000 00 00</p>
-          </div>
-          <div class="item">
-            <span>Område</span>
-            <p>Stockholm med omnejd</p>
-          </div>
-          <div class="item">
-            <span>Följ oss</span>
-            <div class="social">
-              <a href="#" aria-label="Instagram">IG</a>
-              <a href="#" aria-label="Facebook">FB</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="inner">
-      <a href="#hem" class="brand">
-        Jennies <span class="sub">Färgsättning &amp; Måleri</span>
-
-      </a>
-      <p>Måleri & färgsättning med fokus på kvalitet, estetik och hållbarhet.</p>
-    </div>
-    <div class="foot-bottom">© <span id="year"></span> Jennies Färgsättning &amp; Måleri AB. Alla rättigheter
-      förbehållna.</div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // document.getElementById('contact-form').addEventListener('submit', function (e) {
-    //   e.preventDefault();
-    //   const status = document.getElementById('form-status');
-    //   status.textContent = 'Tack! Din förfrågan är registrerad (demo – koppla till e-posttjänst för att aktivera skarp leverans).';
-    //   status.style.color = '#2D5A4A';
-    //   this.reset();
-    // });
-
-    document.getElementById('contact-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const form = this;
-      const status = document.getElementById('form-status');
-      const data = new FormData(form);
-
-      fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      })
-        .then(response => {
-          if (response.ok) {
-            status.textContent = 'Tack! Din förfrågan har skickats.';
-            status.style.color = '#2D5A4A';
-            form.reset();
-          } else {
-            status.textContent = 'Något gick fel. Försök igen eller mejla oss direkt.';
-            status.style.color = '#B5562C';
-          }
-        })
-        .catch(() => {
-          status.textContent = 'Något gick fel. Försök igen eller mejla oss direkt.';
-          status.style.color = '#B5562C';
-        });
-    });
-
-    // Close mobile menu after clicking a link
-    document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
-      document.querySelector('nav ul').classList.remove('open');
-    }));
-  </script>
-
+  <dialog id="lightbox" class="lightbox" aria-label="Bildvisning">
+    <div class="lightbox-inner">
+      <div class="lightbox-bar">
+        <button type="button" data-lightbox="close">Stäng <span aria-hidden="true">×</span></button>
+      </div>
+      <figure class="lightbox-figure">
+        <img alt="">
+        <figcaption></figcaption>
+      </figure>
+      <div class="lightbox-nav">
+        <button type="button" data-lightbox="prev" aria-label="Föregående bild">←</button>
+        <span class="lightbox-count" aria-live="polite"></span>
+        <button type="button" data-lightbox="next" aria-label="Nästa bild">→</button>
+      </div>
+    </div>
+  </dialog>
 </body>
-
 </html>
