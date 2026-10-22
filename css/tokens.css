@@ -1,41 +1,43 @@
 /* Design tokens – Jennies Färgsättning & Måleri
-   Fas 2-utkast. Se docs/02-design-tokens.md för källor och kontrastvärden.
-   "Uppmätt" = avläst ur Jennie_Logga.png. "Härledd" = mitt förslag, ej godkänt. */
+   UTKAST B "Kulörkort": mörk teal, kondenserade versaler, raka kanter.
+   "Uppmätt" = avläst ur Jennie_Logga.png. "Härledd" = mitt förslag, ej godkänt.
+   Kontrastvärden står i kommentarerna (WCAG 2.1). */
 
 :root {
   /* ---- Färg: från loggan (uppmätt) ---- */
-  --color-teal: #366865;          /* loggans grundfärg */
-  --color-cream: #F8E0C4;         /* loggans text "Jennies" */
+  --color-teal: #366865;          /* loggans grundfärg. Vit text på teal: 6.04 */
+  --color-cream: #F8E0C4;         /* loggans text. Mot teal-deep: 8.97 */
   --color-cream-frame: #F6E5C9;   /* loggans ram */
 
   /* ---- Färg: härledda ---- */
-  --color-teal-deep: #1F3F3C;     /* rubriker, footer-bakgrund */
-  --color-paper: #FBF6EE;         /* sidbakgrund */
-  --color-paper-deep: #F3EADB;    /* alternerande sektioner */
-  --color-ink: #23211E;           /* brödtext */
-  --color-ink-muted: #5A554D;     /* sekundär text */
-  --color-border: #8C8478;        /* formulärfält, 3.43:1 mot paper */
-  --color-rule: rgba(35, 33, 30, 0.12); /* dekorativa linjer, ej för gränser som bär betydelse */
-  --color-accent: #A35233;        /* FÖRSLAG, kräver godkännande; endast små detaljer */
-  --color-focus: #1F3F3C;
+  --color-teal-deep: #1F3F3C;     /* header, hero, footer */
+  --color-paper: #FAFAF7;         /* sidbakgrund – svalare och vitare än utkast A */
+  --color-paper-deep: #F8E0C4;    /* alternerande sektioner = loggans cream */
+  --color-ink: #161A19;           /* brödtext, 16.79 mot paper */
+  --color-ink-muted: #4F5653;     /* 7.2 mot paper, 5.9 mot cream */
+  --color-on-dark-muted: #C9D6D2; /* sekundär text på teal-deep, 7.65 */
+  --color-border: #7F8783;        /* formulärfält, 3.53 mot paper */
+  --color-rule: rgba(22, 26, 25, 0.14);
+  --color-focus: #161A19;
+  --color-focus-on-dark: #F8E0C4;
 
   /* ---- Typografi ---- */
-  /* Självhostas från /fonts – ladda inte från Googles CDN (GDPR) */
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Kondenserade versaler i rubriker ekar loggans "FÄRGSÄTTNING & MÅLERI".
+     (Loggans eget typsnitt är okänt – Barlow Condensed är ett närliggande val, inte samma.) */
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* Typskala, mobil → desktop via clamp (360px → 1200px) */
-  --text-sm: 0.875rem;                               /* 14px */
-  --text-base: 1.0625rem;                            /* 17px */
-  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
-  --text-h3: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
-  --text-h2: clamp(1.75rem, 1.45rem + 1.3vw, 2.5rem);
-  --text-h1: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem);
+  --text-sm: 0.9375rem;                              /* 15px */
+  --text-base: 1.125rem;                             /* 18px – Barlow är smal, behöver lite mer storlek */
+  --text-lg: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
+  --text-h3: clamp(1.5rem, 1.35rem + 0.6vw, 1.875rem);
+  --text-h2: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem);
+  --text-h1: clamp(3rem, 1.8rem + 6vw, 7rem);
 
-  --leading-tight: 1.1;
-  --leading-snug: 1.3;
-  --leading-body: 1.6;
-  --measure: 62ch;
+  --leading-tight: 0.95;
+  --leading-snug: 1.15;
+  --leading-body: 1.55;
+  --measure: 60ch;
 
   /* ---- Avstånd (4px-bas) ---- */
   --space-1: 0.25rem;
@@ -47,11 +49,11 @@
   --space-7: 3rem;
   --space-8: 4rem;
   --space-9: 6rem;
-  --section-y: clamp(3rem, 2rem + 4vw, 6rem);
-  --gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
-  --container: 72rem;
+  --section-y: clamp(3.5rem, 2rem + 5vw, 7rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --container: 80rem;
 
   /* ---- Form ---- */
-  --radius: 2px;
+  --radius: 0;
   --tap-target: 44px;
 }

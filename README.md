@@ -1,4 +1,6 @@
-# Jennies Färgsättning & Måleri – hemsida
+# Jennies Färgsättning & Måleri – hemsida (UTKAST B "Kulörkort")
+
+Alternativ visuell riktning. Samma sidor och innehåll som utkast A (branch `claude/jennies-fargsattning-site-qwp5jv`), annan stil: mörk teal, kondenserade versaler (Barlow Condensed), raka kanter, galleribilder som kulörkort.
 
 Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webbläsaren.
 
@@ -10,7 +12,7 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 | `css/tokens.css` | Färger, typsnitt, avstånd (fas 2) |
 | `css/main.css` | All övrig stil, mobil först |
 | `js/main.js` | Mobilmeny, galleri-ljusbox, formulärsändning |
-| `fonts/` | Självhostade typsnitt (Fraunces, Work Sans, SIL OFL) |
+| `fonts/` | Självhostade typsnitt (Barlow, Barlow Condensed, SIL OFL) |
 | `images/brand/`, `images/om/` | Logga, favicon, porträtt i AVIF/WebP/JPEG |
 | `tools/bilder.py` | Gör galleribilder: `python tools/bilder.py MAPP` |
 | `docs/` | Planering per fas |

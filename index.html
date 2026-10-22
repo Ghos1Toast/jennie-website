@@ -9,7 +9,7 @@
   <meta name="description" content="Färgsättning och måleri, inomhus och utomhus. [PLATSHÅLLARE: område]. Se tidigare projekt och skicka en förfrågan.">
   <link rel="icon" href="images/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
-  <link rel="preload" href="fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/main.css">
   <script>document.documentElement.classList.add('js');</script>
@@ -51,21 +51,29 @@
   <main id="main">
     <!-- ========== Hero ========== -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Färgsättning &amp; måleri · <span class="ph">Värmdö</span></span>
-          <!-- Förslag på rubrik, kräver Jennies godkännande -->
-          <h1>Först rätt färg. Sedan måleriet.</h1>
+      <div class="container">
+        <span class="eyebrow">Färgsättning &amp; måleri · <span class="ph">[PLATSHÅLLARE: område]</span></span>
+        <!-- Förslag på rubrik, kräver Jennies godkännande -->
+        <h1>Först rätt färg.<br> Sedan måleriet.</h1>
+        <div class="hero-row">
           <p class="hero-lead">Hjälp att välja kulörer – och målning av det som ska målas, inomhus och utomhus.</p>
           <div class="btn-row">
             <a class="btn" href="kontakt.html">Skicka en förfrågan</a>
             <a class="btn btn--ghost" href="inspiration.html">Se tidigare projekt</a>
           </div>
         </div>
-        <!-- Ersätt med Jennies bästa projektbild (liggande eller stående, minst 1600 px bred) -->
-        <div class="img-ph img-ph--hero">[PLATSHÅLLARE: bästa projektbilden]</div>
+      </div>
+      <div class="container hero-media">
+        <!-- Ersätt med Jennies bästa projektbild (liggande, minst 1600 px bred) -->
+        <div class="img-ph img-ph--hero">[PLATSHÅLLARE: bästa projektbilden, liggande]</div>
+        <!-- Kulörkort: när bilden är på plats, visa kulören som syns på bilden (NCS-kod från Jennie) -->
+        <div class="chip" aria-hidden="true">
+          <span class="chip-swatch"></span>
+          <span class="chip-label">Kulör<small>[NCS-kod]</small></span>
+        </div>
       </div>
     </section>
+    <div class="fan" aria-hidden="true"><span></span><span></span><span></span></div>
 
     <!-- ========== Tjänster ========== -->
     <section class="section section--alt" aria-labelledby="tjanster-rubrik">
