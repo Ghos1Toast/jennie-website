@@ -1,0 +1,57 @@
+/* Design tokens – Jennies Färgsättning & Måleri
+   Fas 2-utkast. Se docs/02-design-tokens.md för källor och kontrastvärden.
+   "Uppmätt" = avläst ur Jennie_Logga.png. "Härledd" = mitt förslag, ej godkänt. */
+
+:root {
+  /* ---- Färg: från loggan (uppmätt) ---- */
+  --color-teal: #366865;          /* loggans grundfärg */
+  --color-cream: #F8E0C4;         /* loggans text "Jennies" */
+  --color-cream-frame: #F6E5C9;   /* loggans ram */
+
+  /* ---- Färg: härledda ---- */
+  --color-teal-deep: #1F3F3C;     /* rubriker, footer-bakgrund */
+  --color-paper: #FBF6EE;         /* sidbakgrund */
+  --color-paper-deep: #F3EADB;    /* alternerande sektioner */
+  --color-ink: #23211E;           /* brödtext */
+  --color-ink-muted: #5A554D;     /* sekundär text */
+  --color-border: #8C8478;        /* formulärfält, 3.43:1 mot paper */
+  --color-rule: rgba(35, 33, 30, 0.12); /* dekorativa linjer, ej för gränser som bär betydelse */
+  --color-accent: #A35233;        /* FÖRSLAG, kräver godkännande; endast små detaljer */
+  --color-focus: #1F3F3C;
+
+  /* ---- Typografi ---- */
+  /* Självhostas från /fonts – ladda inte från Googles CDN (GDPR) */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Typskala, mobil → desktop via clamp (360px → 1200px) */
+  --text-sm: 0.875rem;                               /* 14px */
+  --text-base: 1.0625rem;                            /* 17px */
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-h3: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --text-h2: clamp(1.75rem, 1.45rem + 1.3vw, 2.5rem);
+  --text-h1: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem);
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-body: 1.6;
+  --measure: 62ch;
+
+  /* ---- Avstånd (4px-bas) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --section-y: clamp(3rem, 2rem + 4vw, 6rem);
+  --gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
+  --container: 72rem;
+
+  /* ---- Form ---- */
+  --radius: 2px;
+  --tap-target: 44px;
+}
