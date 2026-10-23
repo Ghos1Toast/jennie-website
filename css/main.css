@@ -379,6 +379,47 @@ html:not(.js) .menu-toggle { display: none; }
   .services { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
 }
 
+/* Tre tjänster: en kolumn tills alla tre får plats, så att inget kort blir ensamt på en rad */
+.services--3 { grid-template-columns: 1fr; }
+@media (min-width: 900px) {
+  .services--3 { grid-template-columns: repeat(3, 1fr); gap: var(--space-7); }
+}
+/* Färg & måleri är de två andra ihop – siffran säger det, ingen "rekommenderad"-etikett */
+.service--combo h3::before { content: "01+02"; }
+
+/* ---------- Intro (startsida) ---------- */
+.intro { display: grid; gap: var(--space-6); }
+.intro-statement {
+  max-width: 40ch;
+  font-size: var(--text-h3);
+  line-height: 1.35;
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+.intro-follow {
+  max-width: 22ch;
+  font: 700 var(--text-h3)/var(--leading-snug) var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+@media (min-width: 900px) {
+  .intro { grid-template-columns: 2fr 1fr; gap: var(--space-9); align-items: end; }
+}
+
+/* ---------- För vem (startsida) ---------- */
+.audience { display: grid; gap: var(--space-6); }
+.audience p { font-size: var(--text-lg); color: var(--color-ink-muted); }
+.audience .audience-punch {
+  font: 700 var(--text-h3)/var(--leading-snug) var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-teal-deep);
+}
+@media (min-width: 900px) {
+  .audience { grid-template-columns: 1fr 1fr; gap: var(--space-9); align-items: start; }
+}
+
 /* ---------- Galleri ---------- */
 .gallery {
   display: grid;
