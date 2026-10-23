@@ -553,3 +553,26 @@ html:not(.js) .menu-toggle { display: none; }
 .lead-gap { margin-top: var(--space-5); }
 .lightbox-count { align-self: center; min-width: 5em; text-align: center; }
 .lightbox-figure { grid-template-rows: minmax(0, 1fr) auto; }
+
+/* ---------- Specialiteter (startsida, i tjänstesektionen) ---------- */
+.specialties { margin-top: var(--space-8); }
+.specialties h3 { margin-bottom: var(--space-5); }
+.specialty-list {
+  list-style: none; padding: 0;
+  display: grid; grid-template-columns: 1fr;
+  border-top: 1px solid var(--color-rule);
+}
+.specialty-list li {
+  display: flex; flex-direction: column; gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-rule);
+}
+.specialty-name { font: 500 var(--text-lg)/1.3 var(--font-display); color: var(--color-teal-deep); }
+.specialty-detail { color: var(--color-ink-muted); }
+@media (min-width: 900px) {
+  .specialty-list { grid-template-columns: repeat(4, 1fr); gap: var(--space-5); border-top: 0; }
+  .specialty-list li {
+    padding: var(--space-4) 0;
+    border-bottom: 0; border-top: 3px solid var(--color-teal);
+  }
+}
