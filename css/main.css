@@ -205,6 +205,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 .brand-name { font: 700 1.5rem/1 var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; }
 .brand-sub {
   margin-top: 3px;
+  white-space: nowrap;
   font: 600 0.75rem/1 var(--font-display);
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--color-on-dark-muted);
@@ -219,6 +220,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 
 .header-phone {
   display: inline-flex; align-items: center;
+  white-space: nowrap;
   min-height: var(--tap-target);
   padding-inline: var(--space-2);
   font: 700 1.125rem var(--font-display);
@@ -262,6 +264,7 @@ html:not(.js) .menu-toggle { display: none; }
 .site-nav ul { list-style: none; padding: 0; }
 .site-nav a {
   display: flex; align-items: center;
+  white-space: nowrap;
   min-height: var(--tap-target);
   font: 600 1.25rem var(--font-display);
   letter-spacing: 0.08em; text-transform: uppercase;
@@ -271,7 +274,8 @@ html:not(.js) .menu-toggle { display: none; }
 .site-nav a:hover { color: #fff; text-decoration: none; }
 .site-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--color-cream); }
 
-@media (max-width: 899px) {
+/* Hamburgermeny upp till 1099px – under det får logga, telefon, fyra länkar och knapp inte plats på en rad */
+@media (max-width: 1099px) {
   .header-inner { flex-wrap: wrap; }
   .site-nav { flex-basis: 100%; padding-bottom: var(--space-5); }
   .js .site-nav { display: none; }
@@ -284,7 +288,7 @@ html:not(.js) .menu-toggle { display: none; }
   .site-nav .nav-cta a { justify-content: center; font-size: 1.25rem; color: var(--color-teal-deep); }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .header-inner { min-height: 84px; gap: var(--space-6); }
   .brand img { width: 63px; height: 56px; }
   .menu-toggle { display: none; }
@@ -315,24 +319,6 @@ html:not(.js) .menu-toggle { display: none; }
 @media (min-width: 900px) {
   .hero-media .img-ph { aspect-ratio: 21 / 9; }
 }
-
-/* Kulörkortet: liten provkarta i hörnet av bilden.
-   När riktiga bilder finns kan det visa kulören som används på bilden. */
-.chip {
-  position: absolute; right: calc(var(--gutter) + var(--space-4)); bottom: var(--space-4);
-  display: flex; flex-direction: column;
-  width: 8.5rem;
-  background: #fff;
-  color: var(--color-ink);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-.chip-swatch { display: block; height: 5rem; background: var(--color-teal); }
-.chip-label {
-  padding: var(--space-2) var(--space-3) var(--space-3);
-  font: 700 1rem/1.15 var(--font-display);
-  letter-spacing: 0.06em; text-transform: uppercase;
-}
-.chip-label small { display: block; font: 500 0.8125rem var(--font-body); letter-spacing: 0; color: var(--color-ink-muted); text-transform: none; }
 
 /* Färgremsa under hero – som kanten på en färgkarta */
 .fan { display: grid; grid-template-columns: 3fr 2fr 1fr; height: 14px; }
@@ -634,3 +620,30 @@ html:not(.js) .menu-toggle { display: none; }
 @media (min-width: 1100px) {
   .specialty-list { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ---------- Samarbetspartner (om oss) ---------- */
+.partners-section { border-top: 1px solid var(--color-rule); }
+.partners {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5);
+  margin-top: var(--space-6);
+  list-style: none; padding: 0;
+}
+@media (min-width: 900px) {
+  .partners { grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+}
+.partner-logo {
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 3 / 2;
+  padding: var(--space-4);
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  font-size: var(--text-sm); color: var(--color-ink-muted); text-align: center;
+}
+.partner-logo img { max-height: 100%; width: auto; object-fit: contain; }
+.partner-name {
+  margin-top: var(--space-3);
+  font: 700 1.125rem/1.2 var(--font-display);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--color-teal-deep);
+}
+.partner-what { margin-top: var(--space-1); font-size: var(--text-sm); color: var(--color-ink-muted); }
