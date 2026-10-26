@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Utkast: ta bort noindex vid lansering (se launch-checklistan) -->
+  <!-- Utkast: ta bort noindex vid lansering -->
   <meta name="robots" content="noindex, nofollow">
-  <title>Inspiration – tidigare projekt | Jennies Färgsättning &amp; Måleri</title>
-  <meta name="description" content="Bilder från tidigare färgsättnings- och måleriprojekt, inomhus och utomhus.">
+  <title>Tidigare projekt – Jennies Färgsättning &amp; Måleri</title>
+  <meta name="description" content="Bilder och filmer från tidigare färgsättnings- och måleriprojekt, invändigt och utvändigt.">
   <link rel="icon" href="images/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
   <link rel="preload" href="fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,8 +30,9 @@
           <span class="brand-sub">Färgsättning &amp; Måleri</span>
         </span>
       </a>
-      <a class="header-phone" href="tel:+46700000000" aria-label="Ring 070-000 00 00">
-        <span class="label">Ring</span><span class="num">070-000 00 00</span>
+      <!-- Telefonnummer saknas: byt "[telefon]" och href på alla sidor -->
+      <a class="header-phone" href="tel:+46700000000">
+        <span class="label">Ring</span><span class="num"><span class="ph">[telefon]</span></span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="menu-toggle-icon" aria-hidden="true"></span>Meny
@@ -54,29 +55,28 @@
         <div class="section-head">
           <span class="eyebrow">Inspiration</span>
           <h1>Tidigare projekt</h1>
-          <p>Ett urval av färdiga uppdrag. Klicka på en bild för att se den större.</p>
         </div>
 
         <!--
-          MALL FÖR EN RIKTIG BILD (kör tools/bilder.py för att skapa filerna och HTML:en).
-          Byt ut en platshållare mot ett sådant block. Alt-texten beskriver vad som syns,
-          bildtexten kan nämna rum och ort.
+          MALL FÖR EN BILD (kör tools/bilder.py för att skapa filerna och HTML:en).
+          Bildtext: rum och ort, t.ex. "Vardagsrum, Värmdö". Om Jennie vill kan den också
+          nämna färgen, t.ex. "Kök, Nacka. Linoljefärg från Ottosson".
           Bara bilder som kunden har godkänt för publicering.
 
           <li class="gallery-item">
             <a class="gallery-link" href="images/projekt/NAMN-1600.jpg" data-caption="Vardagsrum, Värmdö">
               <picture>
-                <source type="image/avif" srcset="images/projekt/NAMN-480.avif 480w, images/projekt/NAMN-960.avif 960w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 33vw, 50vw">
-                <source type="image/webp" srcset="images/projekt/NAMN-480.webp 480w, images/projekt/NAMN-960.webp 960w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 33vw, 50vw">
-                <img src="images/projekt/NAMN-960.jpg" srcset="images/projekt/NAMN-480.jpg 480w, images/projekt/NAMN-960.jpg 960w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 33vw, 50vw" width="960" height="1200" loading="lazy" decoding="async" alt="Vardagsrum med ljusgrå väggar och vita fönsterfoder">
+                <source type="image/avif" srcset="images/projekt/NAMN-480.avif 480w, images/projekt/NAMN-960.avif 960w" sizes="(min-width: 900px) 33vw, 50vw">
+                <source type="image/webp" srcset="images/projekt/NAMN-480.webp 480w, images/projekt/NAMN-960.webp 960w" sizes="(min-width: 900px) 33vw, 50vw">
+                <img src="images/projekt/NAMN-960.jpg" srcset="images/projekt/NAMN-480.jpg 480w, images/projekt/NAMN-960.jpg 960w" sizes="(min-width: 900px) 33vw, 50vw" width="960" height="1200" loading="lazy" decoding="async" alt="Beskriv vad som syns på bilden">
               </picture>
             </a>
             <p class="gallery-caption">Vardagsrum, Värmdö</p>
           </li>
 
-          Exemplet ovan är påhittat. Den första bilden på sidan ska inte ha loading="lazy".
+          Den första bilden på sidan ska inte ha loading="lazy".
         -->
-        <ul class="gallery gallery--full">
+        <ul class="gallery">
           <li class="gallery-item">
             <div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div>
             <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: rum, ort]</span></p>
@@ -126,6 +126,39 @@
             <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: rum, ort]</span></p>
           </li>
         </ul>
+
+        <!--
+          MALL FÖR EN FILM. Lägg filerna i videos/ på sajten – bädda INTE in från Instagram
+          eller YouTube, de sätter cookies och då krävs en samtyckesruta.
+          Komprimera till MP4 (H.264), max 720p och helst under 10 MB per film.
+          Har filmen tal behövs undertexter (<track kind="captions">).
+
+          <li class="video-item">
+            <video controls preload="none" playsinline poster="videos/NAMN.jpg" width="720" height="1280">
+              <source src="videos/NAMN.mp4" type="video/mp4">
+            </video>
+            <p class="gallery-caption">Kort beskrivning</p>
+          </li>
+        -->
+        <h2 class="videos-head" id="filmer-rubrik">Filmer</h2>
+        <ul class="videos" aria-labelledby="filmer-rubrik">
+          <li class="video-item">
+            <div class="img-ph img-ph--video">[PLATSHÅLLARE: film]</div>
+            <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: kort beskrivning]</span></p>
+          </li>
+          <li class="video-item">
+            <div class="img-ph img-ph--video">[PLATSHÅLLARE: film]</div>
+            <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: kort beskrivning]</span></p>
+          </li>
+          <li class="video-item">
+            <div class="img-ph img-ph--video">[PLATSHÅLLARE: film]</div>
+            <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: kort beskrivning]</span></p>
+          </li>
+          <li class="video-item">
+            <div class="img-ph img-ph--video">[PLATSHÅLLARE: film]</div>
+            <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: kort beskrivning]</span></p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -135,7 +168,7 @@
         <p>Berätta om ditt projekt så får du svar.</p>
         <div class="btn-row">
           <a class="btn" href="kontakt.html">Skicka en förfrågan</a>
-          <a class="btn btn--ghost" href="tel:+46700000000">Ring 070-000 00 00</a>
+          <a class="btn btn--ghost" href="tel:+46700000000">Ring <span class="ph">[SAKNAS: telefonnummer]</span></a>
         </div>
       </div>
     </section>
@@ -153,8 +186,8 @@
         <div>
           <p class="footer-heading">Kontakt</p>
           <ul class="footer-list">
-            <li><a href="tel:+46700000000">070-000 00 00</a></li>
-            <li><a href="mailto:info@jennies-maleri.se">info@jennies-maleri.se</a></li>
+            <li><a href="tel:+46700000000"><span class="ph">[SAKNAS: telefonnummer]</span></a></li>
+            <li><a href="mailto:info@jennies-maleri.se">info@jennies-maleri.se</a> <span class="ph">[FRÅGA: stämmer adressen?]</span></li>
             <li>Värmdö, skärgården, Nacka och Stockholmsområdet</li>
           </ul>
         </div>
@@ -175,7 +208,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© <span id="year">2026</span> <span class="ph">[PLATSHÅLLARE: registrerat företagsnamn]</span> · Org.nr <span class="ph">[PLATSHÅLLARE]</span></p>
+        <p>© <span id="year">2026</span> <span class="ph">[SAKNAS: registrerat företagsnamn]</span> · Org.nr <span class="ph">[SAKNAS]</span></p>
       </div>
     </div>
   </footer>
