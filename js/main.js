@@ -50,7 +50,14 @@
       img.alt = thumb ? thumb.alt : '';
       caption.textContent = link.getAttribute('data-caption') || '';
       counter.textContent = (current + 1) + ' av ' + links.length;
+      // Ladda grannbilderna i förväg så att bläddring går snabbt
+      [current - 1, current + 1].forEach(function (n) {
+        new Image().src = links[(n + links.length) % links.length].getAttribute('href');
+      });
     };
+
+    // En enda bild: inga pilar
+    if (links.length < 2) box.querySelector('.lightbox-nav').hidden = true;
 
     links.forEach(function (link, i) {
       link.addEventListener('click', function (e) {
@@ -58,6 +65,7 @@
         opener = link;
         show(i);
         box.showModal();
+        document.documentElement.classList.add('lightbox-open');
       });
     });
 
@@ -75,7 +83,18 @@
       if (e.target === box || e.target.classList.contains('lightbox-figure')) box.close();
     });
 
+    // Svep åt vänster/höger på mobil
+    var touchX = null;
+    box.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', function (e) {
+      if (touchX === null || links.length < 2) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+      touchX = null;
+    });
+
     box.addEventListener('close', function () {
+      document.documentElement.classList.remove('lightbox-open');
       img.removeAttribute('src');
       if (opener) opener.focus();
     });

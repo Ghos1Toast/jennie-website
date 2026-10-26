@@ -428,7 +428,7 @@ html:not(.js) .menu-toggle { display: none; }
   background: #fff;
   box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px rgba(22, 26, 25, 0.06);
 }
-.gallery-link { display: block; overflow: hidden; }
+.gallery-link { display: block; overflow: hidden; cursor: zoom-in; }
 .gallery-link img,
 .gallery-item .img-ph { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform 0.4s ease; }
 @media (prefers-reduced-motion: no-preference) {
@@ -452,6 +452,8 @@ html:not(.js) .menu-toggle { display: none; }
   background: rgba(15, 31, 29, 0.97);
   color: var(--color-cream);
 }
+/* Sidan bakom ska inte scrolla medan bilden är öppen */
+.lightbox-open { overflow: hidden; }
 .lightbox::backdrop { background: rgba(15, 31, 29, 0.97); }
 .lightbox-inner { display: grid; grid-template-rows: auto 1fr auto; height: 100%; padding: var(--space-3); }
 .lightbox-bar { display: flex; justify-content: flex-end; }

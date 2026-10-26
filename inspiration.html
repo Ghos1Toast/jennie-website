@@ -56,26 +56,9 @@
           <h1>Tidigare projekt</h1>
         </div>
 
-        <!--
-          MALL FÖR EN BILD (kör tools/bilder.py för att skapa filerna och HTML:en).
-          Bildtext: rum och ort, t.ex. "Vardagsrum, Värmdö". Om Jennie vill kan den också
-          nämna färgen, t.ex. "Kök, Nacka. Linoljefärg från Ottosson".
-          Bara bilder som kunden har godkänt för publicering.
-
-          <li class="gallery-item">
-            <a class="gallery-link" href="images/projekt/NAMN-1600.jpg" data-caption="Vardagsrum, Värmdö">
-              <picture>
-                <source type="image/avif" srcset="images/projekt/NAMN-480.avif 480w, images/projekt/NAMN-960.avif 960w" sizes="(min-width: 900px) 33vw, 50vw">
-                <source type="image/webp" srcset="images/projekt/NAMN-480.webp 480w, images/projekt/NAMN-960.webp 960w" sizes="(min-width: 900px) 33vw, 50vw">
-                <img src="images/projekt/NAMN-960.jpg" srcset="images/projekt/NAMN-480.jpg 480w, images/projekt/NAMN-960.jpg 960w" sizes="(min-width: 900px) 33vw, 50vw" width="960" height="1200" loading="lazy" decoding="async" alt="Beskriv vad som syns på bilden">
-              </picture>
-            </a>
-            <p class="gallery-caption">Vardagsrum, Värmdö</p>
-          </li>
-
-          Den första bilden på sidan ska inte ha loading="lazy".
-        -->
+        <!-- Alla bilder i galleri.csv visas här. Instruktioner: bilder-original/LÄSMIG.txt -->
         <ul class="gallery">
+          <!-- GALLERI:START – genereras av tools/bilder.py från galleri.csv, ändra inte för hand -->
           <li class="gallery-item">
             <div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div>
             <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: rum, ort]</span></p>
@@ -124,6 +107,7 @@
             <div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div>
             <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: rum, ort]</span></p>
           </li>
+          <!-- GALLERI:SLUT -->
         </ul>
 
         <!--

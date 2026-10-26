@@ -1,0 +1,33 @@
+BILDER TILL GALLERIET
+=====================
+
+Den här mappen laddas INTE upp till GitHub (se .gitignore). Originalbilder från
+mobilen är stora och innehåller GPS-position – för en kunds hus är det kundens
+adress. Bara de komprimerade webbversionerna i images/projekt/ läggs upp.
+
+1. Lägg originalbilderna här (jpg, png eller heic).
+   Bara bilder som kunden har godkänt att publicera.
+
+2. Fyll i galleri.csv i projektmappen, en rad per bild, i den ordning de ska visas:
+
+   fil        filnamnet här i mappen, t.ex. kok-nacka.jpg
+   bildtext   rum och ort, t.ex. Kök, Nacka
+   farg       valfritt, t.ex. Linoljefärg från Ottosson eller NCS S 1002-Y
+              (visas efter bildtexten: "Kök, Nacka. Linoljefärg från Ottosson")
+   alt        vad som syns på bilden, för den som inte ser den,
+              t.ex. Kök med ljusgröna skåpluckor och vita väggar
+   startsida  ja = visas även på startsidan (max 6)
+
+   Exempel:
+   fil;bildtext;farg;alt;startsida
+   kok-nacka.jpg;Kök, Nacka;Linoljefärg från Ottosson;Kök med ljusgröna skåpluckor och vita väggar;ja
+
+   Filen går att öppna i Excel. Spara som CSV (semikolon- eller kommaavgränsad går båda).
+
+3. Kör i projektmappen:   python tools/bilder.py
+
+   Skriptet gör webbversioner, skriver in bilderna i inspiration.html och
+   index.html och säger till om något saknas. Kör det igen varje gång du
+   ändrar i galleri.csv eller byter en bild.
+
+4. Kolla sidan i webbläsaren, sedan commit + push.
