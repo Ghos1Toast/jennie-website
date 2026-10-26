@@ -190,7 +190,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 }
 .header-inner {
   display: flex; align-items: center; gap: var(--space-3);
-  min-height: 68px;
+  min-height: 76px;
 }
 
 .brand {
@@ -200,7 +200,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   color: var(--color-cream);
 }
 .brand:hover { color: var(--color-cream); text-decoration: none; }
-.brand img { width: 54px; height: 48px; }
+.brand img { width: 72px; height: 64px; }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-name { font: 700 1.5rem/1 var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; }
 .brand-sub {
@@ -289,8 +289,8 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 @media (min-width: 1100px) {
-  .header-inner { min-height: 84px; gap: var(--space-6); }
-  .brand img { width: 63px; height: 56px; }
+  .header-inner { min-height: 104px; gap: var(--space-6); }
+  .brand img { width: 99px; height: 88px; }
   .menu-toggle { display: none; }
   .site-nav { order: 2; }
   .site-nav ul { display: flex; align-items: center; gap: var(--space-5); }
@@ -546,7 +546,10 @@ html:not(.js) .menu-toggle { display: none; }
 .site-footer a { color: var(--color-cream); }
 .site-footer a:hover { color: #fff; }
 .footer-grid { display: grid; gap: var(--space-6); }
-.footer-brand img { width: 90px; height: 80px; }
+.footer-brand img { width: 180px; height: 160px; }
+@media (min-width: 800px) {
+  .footer-brand img { width: 217px; height: 192px; }
+}
 .footer-heading {
   margin-bottom: var(--space-2);
   font: 700 0.9375rem var(--font-display);
