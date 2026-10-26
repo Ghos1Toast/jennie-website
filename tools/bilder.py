@@ -25,7 +25,11 @@ import re
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageOps
+try:
+    from PIL import Image, ImageOps
+except ImportError:
+    sys.exit("Pillow saknas. Installera med:\n    python -m pip install pillow pillow-heif\n"
+             "(använd samma python som du kör skriptet med)")
 
 try:  # valfritt: stöd för iPhone-bilder
     from pillow_heif import register_heif_opener
