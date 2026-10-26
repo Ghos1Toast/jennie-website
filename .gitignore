@@ -1,0 +1,3 @@
+# Originalbilder: stora filer med GPS-position i EXIF. Bara webbversionerna (images/projekt/) ska upp.
+bilder-original/*
+!bilder-original/LÄSMIG.txt

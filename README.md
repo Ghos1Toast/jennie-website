@@ -14,7 +14,9 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 | `js/main.js` | Mobilmeny, galleri-ljusbox, formulärsändning |
 | `fonts/` | Självhostade typsnitt (Barlow, Barlow Condensed, SIL OFL) |
 | `images/brand/`, `images/om/` | Logga, favicon, porträtt i AVIF/WebP/JPEG |
-| `tools/bilder.py` | Gör galleribilder: `python tools/bilder.py MAPP` |
+| `bilder-original/` | Originalbilder till galleriet. Laddas inte upp (GPS i bilderna). Se `LÄSMIG.txt` där. |
+| `galleri.csv` | En rad per galleribild: fil, bildtext, färg, alt-text, startsida |
+| `tools/bilder.py` | Bygger galleriet: `python tools/bilder.py` |
 
 Gul markering med `[PLATSHÅLLARE: …]` = text som Jennie måste leverera eller bekräfta.
 Inget av det får finnas kvar vid lansering.
