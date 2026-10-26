@@ -375,6 +375,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 /* ---------- Intro (startsida) ---------- */
 .intro { display: grid; gap: var(--space-6); }
+.intro-title { margin-bottom: var(--space-5); }
 .intro-statement {
   max-width: 40ch;
   font-size: var(--text-h3);
@@ -491,33 +492,14 @@ html:not(.js) .menu-toggle { display: none; }
   .split--top { align-items: start; }
 }
 
-.steps { list-style: none; padding: 0; counter-reset: step; display: grid; gap: var(--space-6); }
-@media (min-width: 800px) {
-  .steps { grid-template-columns: repeat(4, 1fr); }
-}
-.steps li { counter-increment: step; padding-top: var(--space-4); border-top: 3px solid var(--color-teal-deep); }
-.steps li::before {
-  content: "0" counter(step);
-  display: block;
-  margin-bottom: var(--space-3);
-  font: 700 3rem/0.9 var(--font-display);
-  color: var(--color-teal);
-}
-.steps h3 { font-size: 1.5rem; margin-bottom: var(--space-2); }
-.steps p { color: var(--color-ink-muted); }
-
 /* ---------- CTA-band (ljust, motsats till mörk hero) ---------- */
 .cta-band { background: var(--color-cream); }
 .cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); }
 .cta-band p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--color-ink-muted); }
 
 /* ---------- Kontakt ---------- */
-.contact-grid { display: grid; gap: var(--space-8); align-items: start; }
-@media (min-width: 900px) {
-  .contact-grid { grid-template-columns: 7fr 4fr; gap: var(--space-9); }
-}
-
 .form { display: grid; gap: var(--space-5); }
+.form--narrow { max-width: 48rem; }
 .form-row { display: grid; gap: var(--space-5); }
 @media (min-width: 600px) {
   .form-row { grid-template-columns: 1fr 1fr; }
@@ -555,17 +537,6 @@ html:not(.js) .menu-toggle { display: none; }
 .form-status { min-height: 1.5em; font-weight: 600; }
 .form-status.is-ok { color: var(--color-teal-deep); }
 .form-status.is-error { color: #A3262A; }
-
-.contact-list { display: grid; gap: var(--space-5); padding: var(--space-6); background: var(--color-teal-deep); color: var(--color-cream); }
-.contact-list dt {
-  font: 600 0.9375rem var(--font-display);
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--color-on-dark-muted);
-}
-.contact-list dd { margin-top: var(--space-1); }
-.contact-list a { font: 700 1.5rem var(--font-display); letter-spacing: 0.04em; color: var(--color-cream); text-decoration: none; overflow-wrap: anywhere; }
-.contact-list a:hover { color: #fff; text-decoration: underline; }
-.contact-list :focus-visible { outline-color: var(--color-cream); }
 
 /* ---------- Footer ---------- */
 .site-footer {
@@ -614,14 +585,11 @@ html:not(.js) .menu-toggle { display: none; }
   color: var(--color-teal-deep);
 }
 .specialty-detail { color: var(--color-ink-muted); }
-@media (min-width: 700px) {
-  .specialty-list { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
-}
-@media (min-width: 1100px) {
-  .specialty-list { grid-template-columns: repeat(4, 1fr); }
+@media (min-width: 900px) {
+  .specialty-list { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
 }
 
-/* ---------- Samarbetspartner (om oss) ---------- */
+/* ---------- Samarbetspartner (startsida) ---------- */
 .partners-section { border-top: 1px solid var(--color-rule); }
 .partners {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5);
@@ -647,3 +615,21 @@ html:not(.js) .menu-toggle { display: none; }
   color: var(--color-teal-deep);
 }
 .partner-what { margin-top: var(--space-1); font-size: var(--text-sm); color: var(--color-ink-muted); }
+
+/* ---------- Filmer (inspiration) ---------- */
+.videos-head { margin-top: var(--section-y); margin-bottom: var(--space-6); }
+.videos {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3);
+  list-style: none; padding: 0;
+}
+@media (min-width: 900px) {
+  .videos { grid-template-columns: repeat(4, 1fr); gap: var(--space-5); }
+}
+.video-item { margin: 0; background: #fff; box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px rgba(22, 26, 25, 0.06); }
+.video-item video,
+.img-ph--video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: var(--color-teal-deep); }
+
+/* ---------- Integritetspolicy ---------- */
+.policy-date { color: var(--color-ink-muted); font-size: var(--text-sm); }
+.prose h1 { font-size: var(--text-h2); overflow-wrap: anywhere; }
+.img-ph--video { color: var(--color-on-dark-muted); }

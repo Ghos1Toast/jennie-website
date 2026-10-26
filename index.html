@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Utkast: ta bort noindex vid lansering (se launch-checklistan) -->
+  <!-- Utkast: ta bort noindex vid lansering -->
   <meta name="robots" content="noindex, nofollow">
   <title>Färgsättning och måleri – Jennies Färgsättning &amp; Måleri</title>
-  <meta name="description" content="Måleri med känsla för färg. Färgsättning och måleri, invändigt och utvändigt, för privatpersoner på Värmdö, skärgården, Nacka och Stockholmsområdet. Se tidigare projekt och skicka en förfrågan.">
+  <meta name="description" content="Måleri med känsla för färg. Färgsättning och måleri, invändigt och utvändigt, på Värmdö, i skärgården, i Nacka och i Stockholmsområdet.">
   <link rel="icon" href="images/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
   <link rel="preload" href="fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,8 +30,9 @@
           <span class="brand-sub">Färgsättning &amp; Måleri</span>
         </span>
       </a>
-      <a class="header-phone" href="tel:+46700000000" aria-label="Ring 070-000 00 00">
-        <span class="label">Ring</span><span class="num">070-000 00 00</span>
+      <!-- Telefonnummer saknas: byt "[telefon]" och href på alla sidor -->
+      <a class="header-phone" href="tel:+46700000000">
+        <span class="label">Ring</span><span class="num"><span class="ph">[telefon]</span></span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="menu-toggle-icon" aria-hidden="true"></span>Meny
@@ -50,14 +51,11 @@
 
   <main id="main">
     <!-- ========== Hero ========== -->
-    <!-- Texten nedan kommer från Jennie (ChatGPT-utkast). Område bekräftat. Slogan, "vi"-form och
-         hembesök är inte bekräftade – se öppna frågor. -->
     <section class="hero">
       <div class="container">
-        <span class="eyebrow">Färgsättning &amp; måleri</span>
         <h1>Måleri med<br> känsla för färg.</h1>
         <div class="hero-row">
-          <p class="hero-lead">Färgsättning och måleri, invändigt och utvändigt – på Värmdö, skärgården, Nacka och Stockholmsområdet.</p>
+          <p class="hero-lead">Färgsättning och måleri, invändigt och utvändigt. På Värmdö, i skärgården, i Nacka och i Stockholmsområdet.</p>
           <div class="btn-row">
             <a class="btn" href="kontakt.html">Skicka en förfrågan</a>
             <a class="btn btn--ghost" href="inspiration.html">Se tidigare projekt</a>
@@ -72,10 +70,13 @@
     <div class="fan" aria-hidden="true"><span></span><span></span><span></span></div>
 
     <!-- ========== Intro ========== -->
-    <section class="section intro-section" aria-label="Om Jennies Färgsättning">
+    <section class="section" aria-labelledby="intro-rubrik">
       <div class="container intro">
-        <p class="intro-statement">På Jennies Färgsättning kombinerar vi professionellt måleri med personlig färgsättning – så att du inte bara får nymålade väggar, utan ett hem där färger, material och detaljer hänger ihop.</p>
-        <p class="intro-follow">Från första idé till sista penseldraget hjälper vi dig hela vägen.</p>
+        <div>
+          <h2 id="intro-rubrik" class="intro-title">Rätt kulör kan förändra ett helt rum.</h2>
+          <p class="intro-statement">På Jennies Färgsättning &amp; Måleri kombinerar vi professionellt måleri med personlig färgsättning. Du får inte bara nymålade väggar, utan ett hem där färger, material och detaljer hänger ihop.</p>
+        </div>
+        <p class="intro-follow">Från första kulörvalet till sista penseldraget är vi med hela vägen.</p>
       </div>
     </section>
 
@@ -83,17 +84,16 @@
     <section class="section section--alt" aria-labelledby="tjanster-rubrik">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Tjänster</span>
           <h2 id="tjanster-rubrik">Färgsättning och måleri</h2>
         </div>
         <div class="services services--3">
           <article class="service">
             <h3>Färgsättning</h3>
-            <p>Osäker på vilken färg du ska välja? Vi hjälper dig hitta kulörer som passar ditt hem, ljuset och det du redan har.</p>
+            <p>Osäker på vilken färg du ska välja? Vi tar fram kulörer som passar ditt hem, ljuset och det du redan har.</p>
           </article>
           <article class="service">
             <h3>Måleri</h3>
-            <p>Noggrant måleri med stort fokus på underarbete, finish och detaljer – invändigt och utvändigt.</p>
+            <p>Noggrant måleri med stort fokus på underarbete, finish och detaljer, invändigt och utvändigt.</p>
           </article>
           <article class="service service--combo">
             <h3>Färg &amp; måleri</h3>
@@ -101,14 +101,21 @@
           </article>
         </div>
 
-        <!-- Texten nedan kommer från Jennie. Varumärkesnamn skrivs som tillverkarna skriver dem (Ottosson med dubbel-s). -->
         <div class="specialties">
           <h3 id="specialist-rubrik">Vi är specialister på</h3>
           <ul class="specialty-list" aria-labelledby="specialist-rubrik">
-            <li><span class="specialty-name">Ytbehandlingar</span> <span class="specialty-detail">med t.ex. Osmo</span></li>
-            <li><span class="specialty-name">Linoljefärg</span> <span class="specialty-detail">Ottosson och Engwall &amp; Claesson</span></li>
-            <li><span class="specialty-name">Kulörval</span></li>
-            <li><span class="specialty-name">Snickerier</span></li>
+            <li>
+              <span class="specialty-name">Linoljefärg</span>
+              <span class="specialty-detail">Ottosson och Engwall o. Claesson. <span class="ph">[FRÅGA: en mening om vilka jobb det brukar gälla, t.ex. fasader, fönster, äldre hus?]</span></span>
+            </li>
+            <li>
+              <span class="specialty-name">Ytbehandlingar med Osmo</span>
+              <span class="specialty-detail"><span class="ph">[FRÅGA: vilka ytor? Golv, trall, panel, möbler?]</span></span>
+            </li>
+            <li>
+              <span class="specialty-name">Målning av snickerier</span>
+              <span class="specialty-detail">Vi målar fönster, dörrar, lister och andra snickerier.</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -139,9 +146,9 @@
       <div class="container audience">
         <h2 id="for-vem-rubrik">För dig som vill att det ska bli riktigt bra.</h2>
         <div class="stack">
-                    <p>Vi arbetar främst med privatpersoner på Värmdö, i skärgården, i Nacka och i Stockholmsområdet.</p>
+          <p>Vi arbetar främst med privatpersoner på Värmdö, i skärgården, i Nacka och i Stockholmsområdet.</p>
           <p>Du behöver inte veta exakt vilken färg du vill ha när du kontaktar oss.</p>
-          <p class="audience-punch">Det är det vi hjälper dig med.</p>
+          <p class="audience-punch">Det är där vi kommer in.</p>
         </div>
       </div>
     </section>
@@ -160,22 +167,49 @@
           <span class="eyebrow">Om oss</span>
           <h2 id="om-rubrik">Jennie Peterzén</h2>
           <div class="stack lead-gap">
-            <p><span class="ph">[PLATSHÅLLARE: 2–3 meningar om Jennie – bakgrund och varför färgsättning. Skrivs med Jennie.]</span></p>
+            <p><span class="ph">[SAKNAS: 2 till 3 meningar om Jennie: bakgrund, hur länge hon arbetat, varför färgsättning.]</span></p>
           </div>
           <p class="section-foot"><a class="link-arrow" href="om-oss.html">Mer om oss</a></p>
         </div>
       </div>
     </section>
 
-    <!-- ========== CTA ========== -->
-    <!-- Rubriken säger "boka", men formuläret är en förfrågan, inte en bokning. Hembesök obekräftat. -->
+    <!-- ========== Samarbetspartner ==========
+         Bara partner som godkänt att synas, och bara loggor vi fått lov att använda.
+         Texten får inte antyda att partnern rekommenderar eller garanterar arbetet. -->
+    <section class="section partners-section" aria-labelledby="partner-rubrik">
+      <div class="container">
+        <span class="eyebrow">Samarbetspartner</span>
+        <h2 id="partner-rubrik">Vi samarbetar med</h2>
+        <p class="lead-gap"><span class="ph">[SAKNAS: en mening om vilka partnerna är, t.ex. andra hantverkare eller leverantörer]</span></p>
+        <p class="lead-gap"><span class="ph">[FRÅGA: vilka partner, och har de godkänt att synas med logga?]</span></p>
+        <ul class="partners">
+          <li class="partner">
+            <div class="partner-logo">[PLATSHÅLLARE: logga]</div>
+            <p class="partner-name"><span class="ph">[SAKNAS: namn]</span></p>
+            <p class="partner-what"><span class="ph">[SAKNAS: en rad om vad ni gör ihop]</span></p>
+          </li>
+          <li class="partner">
+            <div class="partner-logo">[PLATSHÅLLARE: logga]</div>
+            <p class="partner-name"><span class="ph">[SAKNAS: namn]</span></p>
+            <p class="partner-what"><span class="ph">[SAKNAS: en rad om vad ni gör ihop]</span></p>
+          </li>
+          <li class="partner">
+            <div class="partner-logo">[PLATSHÅLLARE: logga]</div>
+            <p class="partner-name"><span class="ph">[SAKNAS: namn]</span></p>
+            <p class="partner-what"><span class="ph">[SAKNAS: en rad om vad ni gör ihop]</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <section class="section cta-band" aria-labelledby="cta-rubrik">
       <div class="container">
-        <h2 id="cta-rubrik">Boka ett första samtal <span class="ph">eller hembesök</span></h2>
+        <h2 id="cta-rubrik">Hör av dig för ett första samtal</h2>
         <p>Berätta vad du vill förändra, så hjälper vi dig hitta rätt väg framåt.</p>
         <div class="btn-row">
           <a class="btn" href="kontakt.html">Skicka en förfrågan</a>
-          <a class="btn btn--ghost" href="tel:+46700000000">Ring 070-000 00 00</a>
+          <a class="btn btn--ghost" href="tel:+46700000000">Ring <span class="ph">[SAKNAS: telefonnummer]</span></a>
         </div>
       </div>
     </section>
@@ -193,8 +227,8 @@
         <div>
           <p class="footer-heading">Kontakt</p>
           <ul class="footer-list">
-            <li><a href="tel:+46700000000">070-000 00 00</a></li>
-            <li><a href="mailto:info@jennies-maleri.se">info@jennies-maleri.se</a></li>
+            <li><a href="tel:+46700000000"><span class="ph">[SAKNAS: telefonnummer]</span></a></li>
+            <li><a href="mailto:info@jennies-maleri.se">info@jennies-maleri.se</a> <span class="ph">[FRÅGA: stämmer adressen?]</span></li>
             <li>Värmdö, skärgården, Nacka och Stockholmsområdet</li>
           </ul>
         </div>
@@ -215,7 +249,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© <span id="year">2026</span> <span class="ph">[PLATSHÅLLARE: registrerat företagsnamn]</span> · Org.nr <span class="ph">[PLATSHÅLLARE]</span></p>
+        <p>© <span id="year">2026</span> <span class="ph">[SAKNAS: registrerat företagsnamn]</span> · Org.nr <span class="ph">[SAKNAS]</span></p>
       </div>
     </div>
   </footer>
