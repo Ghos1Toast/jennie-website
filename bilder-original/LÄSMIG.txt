@@ -24,7 +24,7 @@ adress. Bara de komprimerade webbversionerna i images/projekt/ läggs upp.
 
    Filen går att öppna i Excel. Spara som CSV (semikolon- eller kommaavgränsad går båda).
 
-3. Kör i projektmappen:   python tools/bilder.py
+3. Kör i projektmappen:   python tools/bilder.py 
 
    Skriptet gör webbversioner, skriver in bilderna i inspiration.html och
    index.html och säger till om något saknas. Kör det igen varje gång du
