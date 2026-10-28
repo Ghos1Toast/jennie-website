@@ -349,14 +349,14 @@ html:not(.js) .menu-toggle { display: none; }
 /* ---------- Tjänster ---------- */
 .services { display: grid; gap: var(--space-7); counter-reset: svc; }
 .service { counter-increment: svc; padding-top: var(--space-5); border-top: 3px solid var(--color-teal-deep); }
-.service h3::before {
+/* .service h3::before {
   content: "0" counter(svc);
   display: block;
   margin-bottom: var(--space-3);
   font-size: clamp(3.5rem, 3rem + 3vw, 6rem);
   line-height: 0.85;
   color: var(--color-teal);
-}
+} */
 .service h3 { margin-bottom: var(--space-4); }
 .service p { color: var(--color-ink-muted); }
 .service p + p { margin-top: var(--space-3); }
@@ -371,7 +371,7 @@ html:not(.js) .menu-toggle { display: none; }
   .services--3 { grid-template-columns: repeat(3, 1fr); gap: var(--space-7); }
 }
 /* Färg & måleri är de två andra ihop – siffran säger det, ingen "rekommenderad"-etikett */
-.service--combo h3::before { content: "01+02"; }
+/* .service--combo h3::before { content: "01+02"; } */
 
 /* ---------- Intro (startsida) ---------- */
 .intro { display: grid; gap: var(--space-6); }
