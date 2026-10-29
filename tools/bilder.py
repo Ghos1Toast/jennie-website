@@ -19,9 +19,7 @@ Vad skriptet gör:
 5. Varnar för saknade filer, saknad alt-text och bilder som ligger i
    mappen men inte står i galleri.csv.
 """
-import csv
 import html
-import io
 import re
 import sys
 from pathlib import Path
@@ -69,20 +67,7 @@ def slug(name):
 
 
 def read_csv():
-    raw = CSV_PATH.read_bytes()
-    try:
-        text = raw.decode("utf-8-sig")
-    except UnicodeDecodeError:  # Excel sparar ibland som Windows-1252
-        text = raw.decode("cp1252")
-    delimiter = ";" if text.splitlines()[0].count(";") > text.splitlines()[0].count(",") else ","
-    rows = []
-    for i, row in enumerate(csv.DictReader(io.StringIO(text), delimiter=delimiter), start=2):
-        row = {(k or "").strip().lower(): (v or "").strip() for k, v in row.items()}
-        if not row.get("fil"):
-            continue
-        row["rad"] = i
-        rows.append(row)
-    return rows
+    return [r for r in galleri_lib.read_csv(CSV_PATH) if r.get("fil")]
 
 
 def make_versions(src, name):
