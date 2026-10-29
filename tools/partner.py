@@ -28,7 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import galleri_lib  # noqa: E402
 
 try:
-    from PIL import Image
+    from PIL import Image, ImageDraw
 except ImportError:
     sys.exit("Pillow saknas. Installera med:\n    python -m pip install pillow\n"
              "(använd samma python som du kör skriptet med)")
@@ -38,7 +38,8 @@ SRC = ROOT / "partner-original"
 OUT = ROOT / "images" / "partner"
 CSV_PATH = ROOT / "partner.csv"
 MAX_BOX = (480, 320)  # dubbla visningsstorleken, skarpt på mobil
-LOGO_EXT = {".png", ".jpg", ".jpeg", ".webp", ".svg"}
+BG_TOLERANCE = 40  # hur mycket bakgrundsfärgen får variera (JPG-brus, skuggor)
+LOGO_EXT ={".png", ".jpg", ".jpeg", ".webp", ".svg"}
 START = "<!-- PARTNER:START – genereras av tools/partner.py, ändra inte för hand -->"
 END = "<!-- PARTNER:SLUT -->"
 
@@ -57,6 +58,21 @@ def slug(name):
     return re.sub(r"-+", "-", s).strip("-") or "logga"
 
 
+def clear_background(im):
+    """Gör en enfärgad bakgrund (t.ex. vit eller grå runt loggan) genomskinlig
+    och klipper bort tomma kanter, så att loggan står direkt på sidan."""
+    w, h = im.size
+    corners = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]
+    colors = [im.getpixel(c) for c in corners]
+    if all(c[3] == 255 for c in colors) and \
+            max(sum(abs(a - b) for a, b in zip(colors[0], c)) for c in colors) <= BG_TOLERANCE:
+        for c in corners:  # fyller bara bakgrund som hänger ihop med kanten, inte färg inne i loggan
+            if im.getpixel(c)[3]:
+                ImageDraw.floodfill(im, c, (0, 0, 0, 0), thresh=BG_TOLERANCE)
+    box = im.getchannel("A").point(lambda a: 255 if a > 8 else 0).getbbox()
+    return im.crop(box) if box else im
+
+
 def make_logo(src, name):
     """Gör webbversioner om de saknas eller originalet är nyare. Returnerar (sökväg, bredd, höjd, webp-sökväg)."""
     if src.suffix.lower() == ".svg":
@@ -68,7 +84,7 @@ def make_logo(src, name):
     png, webp = OUT / f"{name}.png", OUT / f"{name}.webp"
     if not png.exists() or png.stat().st_mtime < src.stat().st_mtime:
         im = Image.open(src)
-        im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
+        im = clear_background(im.convert("RGBA"))
         im.thumbnail(MAX_BOX, Image.LANCZOS)  # skalar bara ner, aldrig upp
         # Ingen exif= skickas med, så metadata följer inte med
         im.save(png, optimize=True)
@@ -83,6 +99,9 @@ def item_html(row, logo):
     name = html.escape(row.get("namn", ""))
     text = html.escape(row.get("text", ""))
     link = row.get("lank", "") or row.get("länk", "")
+    if link and "." not in link:
+        warnings.append(f"rad {row['rad']}: '{link}' ser inte ut som en webbadress – ingen länk")
+        link = ""
     if link and not re.match(r"https?://", link):
         link = "https://" + link
     # Namnet står som text under loggan, så loggan behöver ingen egen alt-text
