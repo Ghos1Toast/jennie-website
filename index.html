@@ -50,19 +50,26 @@
   <main id="main">
     <!-- ========== Hero ========== -->
     <section class="hero">
-      <div class="container">
-        <h1>Måleri med<br> känsla för färg.</h1>
-        <div class="hero-row">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Måleri med<br> känsla för färg.</h1>
           <p class="hero-lead">Färgsättning och måleri, invändigt och utvändigt. På Värmdö, i skärgården, i Nacka och i Stockholmsområdet.</p>
           <div class="btn-row">
             <a class="btn" href="kontakt.html">Skicka en förfrågan</a>
             <a class="btn btn--ghost" href="inspiration.html">Se tidigare projekt</a>
           </div>
         </div>
-      </div>
-      <div class="container hero-media">
-        <!-- Ersätt med Jennies bästa projektbild (liggande, minst 1600 px bred) -->
-        <div class="img-ph img-ph--hero">[PLATSHÅLLARE: bästa projektbilden, liggande]</div>
+        <div class="hero-media">
+          <!-- Den första filmen i filmer-original/ (lägst nummer) visas här. -->
+          <!-- HERO:START – genereras av tools/filmer.py, ändra inte för hand -->
+          <div class="hero-video-wrap">
+            <video class="hero-video autoplay-video" muted loop playsinline preload="metadata" poster="videos/lindahlskoket-beige.jpg" width="720" height="1280" aria-hidden="true">
+              <source src="videos/lindahlskoket-beige.mp4" type="video/mp4">
+            </video>
+            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
+          </div>
+          <!-- HERO:SLUT -->
+        </div>
       </div>
     </section>
     <div class="fan" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -316,6 +323,7 @@
       </div>
       <figure class="lightbox-figure">
         <img alt="">
+        <video class="lightbox-video" controls playsinline loop hidden></video>
         <figcaption></figcaption>
       </figure>
       <div class="lightbox-nav">

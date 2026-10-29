@@ -1,28 +1,30 @@
-FILMER TILL INSPIRATIONSSIDAN
-=============================
+FILMER TILL SAJTEN
+==================
 
 Den här mappen laddas INTE upp till GitHub (se .gitignore). Originalfilmer är
 stora och kan innehålla GPS-position. Bara de komprimerade versionerna i
 videos/ läggs upp.
 
-1. Lägg filmerna här (mp4, mov m.fl.).
+1. Lägg filmerna här (mp4, mov m.fl.). Korta klipp (3–15 sekunder) passar bäst.
    Döp dem till det som ska stå under filmen. En siffra först styr ordningen
    och syns inte på sidan:
-       1 Kök, Nacka.mp4          ->  "Kök, Nacka"
-       2 Fasad före och efter.mov ->  "Fasad före och efter"
+       1 Kök, Nacka.mov            ->  "Kök, Nacka"
+       2 Fasad, Värmdö.mov         ->  "Fasad, Värmdö"
 
 2. Kör i projektmappen:   python tools/filmer.py
    (första gången:        python -m pip install imageio-ffmpeg)
 
-   Skriptet komprimerar filmerna, tar en stillbild till varje och lägger in
-   dem på inspiration.html. Stående och liggande filmer går båda bra.
+Var filmerna hamnar:
+- Alla filmer läggs sist i bildgalleriet på inspiration.html. De spelas
+  automatiskt, utan ljud och i loop, när de syns på skärmen. Klick öppnar
+  filmen stort.
+- Den FÖRSTA filmen (lägst nummer) visas också stort överst på startsidan.
+  Välj en film som ser bra ut även beskuren till 4:5 (lite bredare än stående).
 
-3. Kolla sidan i webbläsaren, sedan commit + push (videos/ och inspiration.html).
-
-Att tänka på:
-- Musik från Instagram/TikTok får bara användas där, inte på hemsidan.
-  Använd filmer utan musik eller med fri musik.
+Bra att veta:
+- Ljudet tas bort. Filmerna spelas ändå utan ljud, och musik från
+  Instagram/TikTok får inte användas på hemsidan.
+- Besökare som valt "minska rörelse" i sin telefon/dator får en stillbild
+  med en spela-knapp i stället.
 - Syns kunder, deras hem eller adress: bara med deras godkännande.
-- Pratar någon i filmen: lägg en undertextfil med samma namn bredvid,
-  t.ex. "1 Kök, Nacka.vtt", så kopplas den in automatiskt.
-- Håll filmerna korta (under ca 1 minut). Skriptet varnar om en fil blir över 25 MB.
+- Använd inte kunders efternamn i filnamnet – det blir bildtext och filnamn på sajten.
