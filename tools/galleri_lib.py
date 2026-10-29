@@ -4,6 +4,8 @@ Galleriet ligger mellan GALLERI:START och GALLERI:SLUT. Bilder (från bilder.py)
 och filmer (från filmer.py) blandas jämnt, så att varje skript kan köras för sig
 utan att ta bort det andra skriptets innehåll.
 """
+import csv
+import io
 import re
 import sys
 from pathlib import Path
@@ -54,6 +56,38 @@ def mix(photos, videos):
             vi += 1
     out.extend(videos[vi:])
     return out
+
+
+def read_csv(path):
+    """Rader ur en CSV från Excel (; eller ,, UTF-8 eller Windows-1252). Tomma rader hoppas över."""
+    raw = path.read_bytes()
+    try:
+        text = raw.decode("utf-8-sig")
+    except UnicodeDecodeError:  # Excel sparar ibland som Windows-1252
+        text = raw.decode("cp1252")
+    first = text.splitlines()[0] if text.strip() else ""
+    delimiter = ";" if first.count(";") > first.count(",") else ","
+    rows = []
+    for i, row in enumerate(csv.DictReader(io.StringIO(text), delimiter=delimiter), start=2):
+        row = {(k or "").strip().lower(): (v or "").strip() for k, v in row.items()}
+        if not any(row.values()):
+            continue
+        row["rad"] = i
+        rows.append(row)
+    return rows
+
+
+def write_block(page, start, end, body):
+    """Byter allt mellan raden med start och raden med end i page."""
+    path = ROOT / page
+    s = path.read_text(encoding="utf-8")
+    m = re.search(r"( *)" + re.escape(start) + r"\n.*?( *)" + re.escape(end), s, re.S)
+    if not m:
+        sys.exit(f"Hittar inte markeringarna i {page}")
+    indent = m.group(1)
+    lines = "".join(indent + line + "\n" for line in body.rstrip("\n").split("\n")) if body else ""
+    path.write_text(s[:m.start()] + f"{indent}{start}\n{lines}{indent}{end}" + s[m.end():],
+                    encoding="utf-8", newline="\n")
 
 
 def write_items(page, items):

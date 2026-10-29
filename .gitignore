@@ -5,3 +5,10 @@ bilder-original/*
 # Originalfilmer: stora filer med GPS-position. Bara de komprimerade i videos/ ska upp.
 filmer-original/*
 !filmer-original/LÄSMIG.txt
+
+# Partnerloggor i original. Bara webbversionerna i images/partner/ ska upp.
+partner-original/*
+!partner-original/LÄSMIG.txt
+
+# Python-cache
+__pycache__/

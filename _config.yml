@@ -1,6 +1,8 @@
 # GitHub Pages: publicera inte arbetsfiler
 exclude:
   - galleri.csv
+  - partner.csv
+  - partner-original
   - uppgifter.txt
   - bilder-original
   - filmer-original

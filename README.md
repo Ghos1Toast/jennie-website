@@ -18,6 +18,7 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 | `filmer-original/` | Släpp filmer här och kör `python tools/filmer.py` – de komprimeras och läggs ut på Inspiration. Laddas inte upp. Se `LÄSMIG.txt` där. |
 | `galleri.csv` | En rad per galleribild: fil, bildtext, färg, alt-text, startsida |
 | `tools/bilder.py` | Bygger galleriet: `python tools/bilder.py` |
+| `partner-original/`, `partner.csv` | Loggor och namn för Samarbetspartner på startsidan. Kör `python tools/partner.py`. Se `LÄSMIG.txt` i mappen. |
 | `uppgifter.txt` | Telefon, e-post, företagsnamn, org.nr. Ändra här och kör `python tools/uppgifter.py` – då uppdateras alla sidor. |
 
 Gul markering med `[PLATSHÅLLARE: …]` = text som Jennie måste leverera eller bekräfta.

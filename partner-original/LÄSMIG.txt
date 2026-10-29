@@ -1,0 +1,30 @@
+LOGGOR FÖR SAMARBETSPARTNER
+===========================
+
+Den här mappen laddas INTE upp till GitHub (se .gitignore). Bara
+webbversionerna i images/partner/ läggs upp.
+
+1. Lägg loggorna här. Bäst är SVG, annars PNG med genomskinlig bakgrund.
+   JPG går också men får en vit ruta runt sig.
+
+2. Skriv en rad per partner i partner.csv (i projektmappen), i den ordning de
+   ska visas på startsidan. Öppna i Excel eller Anteckningar:
+
+       fil;namn;text;lank
+       bygg-ab.svg;Bygg AB;Snickeri inför målning;https://byggab.se
+       ;Elfirma i Nacka;El vid renoveringar;
+
+   fil   = loggans filnamn här i mappen. Lämna tom om loggan saknas –
+           då visas namnet i stället.
+   namn  = partnerns namn (syns under loggan)
+   text  = en rad om vad ni gör ihop (valfri)
+   lank  = partnerns hemsida (valfri). Namnet blir då en länk.
+
+3. Kör i projektmappen:   python tools/partner.py
+
+Bra att veta:
+- Bara partner som sagt ja till att synas, och bara loggor ni fått lov att
+  använda. Fråga efter deras logga i SVG eller PNG.
+- Skriv inget som låter som att partnern rekommenderar eller garanterar
+  Jennies arbete.
+- Tom partner.csv = platshållare på sidan.
