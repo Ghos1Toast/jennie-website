@@ -1,4 +1,4 @@
-"""Lägger ut filmerna i filmer-original/ på sidan Inspiration.
+"""Lägger ut filmerna i filmer-original/ på sajten.
 
 Användning (från projektmappen):
 
@@ -8,16 +8,17 @@ Kräver ffmpeg. Enklast:   python -m pip install imageio-ffmpeg
 (eller ett ffmpeg som redan finns i PATH).
 
 Vad skriptet gör:
-1. Komprimerar varje film i filmer-original/ till MP4 (H.264, max 1280 px på
-   långsidan) i videos/. Metadata som GPS-position tas bort.
-   Filmer som redan är gjorda och inte ändrats hoppas över.
-2. Tar en stillbild ur filmen som visas innan man trycker play.
-3. Skriver in filmerna i inspiration.html mellan FILMER:START och FILMER:SLUT,
-   sorterade efter filnamn. Filnamnet blir bildtext:
-       "1 Kök, Nacka.mp4"  ->  "Kök, Nacka"   (siffran i början styr bara ordningen)
-4. Har filmen tal: lägg en undertextfil med samma namn bredvid, t.ex.
-   "1 Kök, Nacka.vtt", så kopplas den in automatiskt.
-5. Tar bort filer i videos/ för filmer som inte längre finns i mappen.
+1. Komprimerar varje film i filmer-original/ till en tyst MP4 (H.264, max
+   1280 px på långsidan) i videos/. Ljud och metadata som GPS-position tas bort.
+   Filmerna spelas automatiskt utan ljud, så ljudspåret behövs inte – och
+   musik från t.ex. Instagram får ändå inte användas på hemsidan.
+2. Tar en stillbild ur filmen som visas innan filmen startar.
+3. Skriver in filmerna sist i bildgalleriet på inspiration.html, sorterade
+   efter filnamn. Den första filmen visas också stort överst på startsidan.
+   Filnamnet blir bildtext:
+       "1 Kök, Nacka.mov"          ->  "Kök, Nacka"  (siffran styr bara ordningen)
+       "Kök_Nacka_1080x1920.mov"   ->  "Kök Nacka"
+4. Tar bort filer i videos/ för filmer som inte längre finns i mappen.
 """
 import html
 import re
@@ -29,17 +30,20 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "filmer-original"
 OUT = ROOT / "videos"
-PAGE = ROOT / "inspiration.html"
 VIDEO_EXT = {".mp4", ".mov", ".m4v", ".avi", ".mkv", ".webm", ".3gp"}
 MAX_SIDE = 1280
-WARN_MB = 25
+WARN_MB = 15
 
-START = "<!-- FILMER:START – genereras av tools/filmer.py, ändra inte för hand -->"
-END = "<!-- FILMER:SLUT -->"
-PLACEHOLDER = ('<li class="video-item">\n'
-               '  <div class="img-ph img-ph--video">[PLATSHÅLLARE: film]</div>\n'
-               '  <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: kort beskrivning]</span></p>\n'
-               '</li>\n') * 4
+BLOCKS = {
+    "inspiration.html": ("<!-- FILMER:START – genereras av tools/filmer.py, ändra inte för hand -->",
+                         "<!-- FILMER:SLUT -->", ""),
+    "index.html": ("<!-- HERO:START – genereras av tools/filmer.py, ändra inte för hand -->",
+                   "<!-- HERO:SLUT -->",
+                   '<div class="img-ph img-ph--hero">[PLATSHÅLLARE: film eller projektbild]</div>\n'),
+}
+
+TOGGLE = ('<button class="video-toggle" type="button" aria-label="Pausa filmen" hidden>'
+          '<span class="video-toggle-icon" aria-hidden="true"></span></button>')
 
 
 def find_ffmpeg():
@@ -55,13 +59,17 @@ def find_ffmpeg():
 
 
 def slug(name):
+    name = re.sub(r"[\s_-]*\d{3,4}x\d{3,4}", "", name)  # "_1080x1920" bort ur filnamnet
     table = str.maketrans("åäöÅÄÖéÉ ", "aaoAAOeE-")
     s = "".join(c for c in name.translate(table).lower() if c.isalnum() or c in "-_")
-    return re.sub(r"-+", "-", s).strip("-") or "film"
+    return re.sub(r"[-_]+", "-", s).strip("-") or "film"
 
 
 def caption_from(stem):
-    return re.sub(r"^\d+[\s._-]*", "", stem).strip()
+    s = re.sub(r"^\d+[\s._-]*", "", stem)             # "1 Kök" -> "Kök"
+    s = re.sub(r"[\s_-]*\d{3,4}x\d{3,4}", "", s)       # "_1080x1920" bort
+    s = re.sub(r"[_]+", " ", s)
+    return re.sub(r"\s+", " ", s).strip()
 
 
 def run(ffmpeg, args):
@@ -71,56 +79,67 @@ def run(ffmpeg, args):
 
 def size_of(ffmpeg, path):
     """Läser bredd x höjd ur ffmpegs utskrift (den färdiga filen har ingen rotation kvar)."""
-    out = run(ffmpeg, ["-i", str(path)]).stderr
-    m = re.search(r"Video:.*?(\d{2,5})x(\d{2,5})", out)
+    m = re.search(r"Video:.*?(\d{2,5})x(\d{2,5})", run(ffmpeg, ["-i", str(path)]).stderr)
     if not m:
         sys.exit(f"Kunde inte läsa storleken på {path.name}")
     return int(m.group(1)), int(m.group(2))
 
 
 def encode(ffmpeg, src, mp4, poster):
-    scale = (f"scale='if(gt(iw,ih),min({MAX_SIDE},iw),-2)':'if(gt(iw,ih),-2,min({MAX_SIDE},ih))'")
+    scale = f"scale='if(gt(iw,ih),min({MAX_SIDE},iw),-2)':'if(gt(iw,ih),-2,min({MAX_SIDE},ih))'"
     r = run(ffmpeg, ["-y", "-i", str(src),
-                     "-map", "0:v:0", "-map", "0:a:0?",
-                     "-map_metadata", "-1", "-map_chapters", "-1",  # tar bort GPS och annan metadata
+                     "-map", "0:v:0", "-an",                          # bara bild, inget ljud
+                     "-map_metadata", "-1", "-map_chapters", "-1",    # tar bort GPS och annan metadata
                      "-vf", scale,
                      "-c:v", "libx264", "-preset", "slow", "-crf", "26", "-pix_fmt", "yuv420p",
-                     "-c:a", "aac", "-b:a", "128k",
-                     "-movflags", "+faststart",  # kan börja spelas innan hela filen laddats
+                     "-movflags", "+faststart",                      # kan börja spelas innan hela filen laddats
                      str(mp4)])
     if r.returncode != 0:
         mp4.unlink(missing_ok=True)
         raise RuntimeError(r.stderr.strip().splitlines()[-1] if r.stderr.strip() else "okänt fel")
-    # Stillbild efter 1 sekund (eller första bilden om filmen är kortare)
-    for t in ("1", "0"):
+    for t in ("1", "0"):  # stillbild efter 1 s, eller första bilden om filmen är kortare
         if run(ffmpeg, ["-y", "-ss", t, "-i", str(mp4), "-frames:v", "1", "-q:v", "3", str(poster)]).returncode == 0 \
                 and poster.exists():
             break
 
 
-def item_html(name, caption, w, h, has_vtt):
+def video_tag(name, w, h, cls, preload):
+    return (f'<video class="{cls}" muted loop playsinline preload="{preload}" '
+            f'poster="videos/{name}.jpg" width="{w}" height="{h}" aria-hidden="true">\n'
+            f'  <source src="videos/{name}.mp4" type="video/mp4">\n'
+            f'</video>')
+
+
+def gallery_item(name, caption, w, h):
     cap = html.escape(caption, quote=True)
-    wide = " video-item--wide" if w > h else ""
-    track = (f'\n    <track kind="captions" src="videos/{name}.vtt" srclang="sv" label="Svenska" default>'
-             if has_vtt else "")
+    video = "\n".join("    " + line for line in video_tag(name, w, h, "autoplay-video", "none").split("\n"))
     cap_p = f'\n  <p class="gallery-caption">{cap}</p>' if cap else ""
-    label = f' aria-label="{cap}"' if cap else ""
-    return (f'<li class="video-item{wide}">\n'
-            f'  <video controls preload="none" playsinline poster="videos/{name}.jpg" width="{w}" height="{h}"{label}>\n'
-            f'    <source src="videos/{name}.mp4" type="video/mp4">{track}\n'
-            f'  </video>{cap_p}\n'
+    return (f'<li class="gallery-item gallery-item--video">\n'
+            f'  <a class="gallery-link" href="videos/{name}.mp4" data-video="videos/{name}.mp4" data-caption="{cap}">\n'
+            f'{video}\n'
+            f'    <span class="visually-hidden">Film: {cap or "utan bildtext"}</span>\n'
+            f'  </a>\n'
+            f'  {TOGGLE}{cap_p}\n'
             f'</li>\n')
 
 
-def write_block(items):
-    s = PAGE.read_text(encoding="utf-8")
-    m = re.search(r"( *)" + re.escape(START) + r"\n.*?( *)" + re.escape(END), s, re.S)
+def hero_item(name, w, h):
+    return (f'<div class="hero-video-wrap">\n'
+            + "\n".join("  " + line for line in video_tag(name, w, h, "hero-video autoplay-video", "metadata").split("\n"))
+            + f'\n  {TOGGLE}\n</div>\n')
+
+
+def write_block(page, body):
+    start, end, placeholder = BLOCKS[page]
+    path = ROOT / page
+    s = path.read_text(encoding="utf-8")
+    m = re.search(r"( *)" + re.escape(start) + r"\n.*?( *)" + re.escape(end), s, re.S)
     if not m:
-        sys.exit("Hittar inte FILMER:START/SLUT i inspiration.html")
+        sys.exit(f"Hittar inte markeringarna i {page}")
     indent = m.group(1)
-    body = "".join(items) if items else PLACEHOLDER
-    body = "".join(indent + line + "\n" for line in body.rstrip("\n").split("\n"))
-    PAGE.write_text(s[:m.start()] + f"{indent}{START}\n{body}{indent}{END}" + s[m.end():],
+    body = body or placeholder
+    lines = "".join(indent + line + "\n" for line in body.rstrip("\n").split("\n")) if body else ""
+    path.write_text(s[:m.start()] + f"{indent}{start}\n{lines}{indent}{end}" + s[m.end():],
                     encoding="utf-8", newline="\n")
 
 
@@ -129,16 +148,18 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
     ffmpeg = find_ffmpeg()
     OUT.mkdir(exist_ok=True)
+    script_time = Path(__file__).stat().st_mtime
     sources = sorted((p for p in SRC.iterdir() if p.suffix.lower() in VIDEO_EXT), key=lambda p: p.name.lower())
     print(f"{len(sources)} filmer i filmer-original/")
 
-    items, used, warnings = [], set(), []
+    built, used, warnings = [], set(), []
     for src in sources:
         name = slug(src.stem)
         if name in used:
             name = f"{name}-{len(used)}"
         mp4, poster = OUT / f"{name}.mp4", OUT / f"{name}.jpg"
-        if not mp4.exists() or mp4.stat().st_mtime < src.stat().st_mtime:
+        # Gör om filmen om den saknas, om originalet ändrats eller om skriptet ändrats sedan sist
+        if not mp4.exists() or mp4.stat().st_mtime < max(src.stat().st_mtime, script_time):
             print(f"  komprimerar {src.name} … (kan ta en stund)")
             try:
                 encode(ffmpeg, src, mp4, poster)
@@ -147,17 +168,16 @@ def main():
                 continue
         mb = mp4.stat().st_size / 1_000_000
         if mb > WARN_MB:
-            warnings.append(f"{src.name} blev {mb:.0f} MB – korta filmen eller den laddar långsamt")
-        vtt_src = src.with_suffix(".vtt")
-        if vtt_src.exists():
-            shutil.copyfile(vtt_src, OUT / f"{name}.vtt")
+            warnings.append(f"{src.name} blev {mb:.0f} MB – korta filmen, den spelas automatiskt och ska vara lätt")
         w, h = size_of(ffmpeg, mp4)
         used.add(name)
-        items.append(item_html(name, caption_from(src.stem), w, h, vtt_src.exists()))
+        built.append((name, caption_from(src.stem), w, h))
         print(f"  {name}.mp4  {w}x{h}  {mb:.1f} MB")
 
-    write_block(items)
-    print(f"inspiration.html: {len(items)} filmer")
+    write_block("inspiration.html", "".join(gallery_item(*b) for b in built))
+    write_block("index.html", hero_item(built[0][0], built[0][2], built[0][3]) if built else "")
+    print(f"inspiration.html: {len(built)} filmer i galleriet")
+    print(f"index.html: {'filmen ' + built[0][0] if built else 'platshållare'} överst")
 
     for f in OUT.iterdir():
         if f.is_file() and f.stem not in used:
