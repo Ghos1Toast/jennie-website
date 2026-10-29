@@ -1,0 +1,8 @@
+# Kontaktuppgifter som visas på hela sajten.
+# Ändra här och kör sedan:   python tools/uppgifter.py
+# Tomt värde = gul platshållare på sidan.
+
+telefon = 0735019247
+epost = info@jenniesfargsattning.se
+foretagsnamn =
+orgnr =

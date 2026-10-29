@@ -1,6 +1,7 @@
 # GitHub Pages: publicera inte arbetsfiler
 exclude:
   - galleri.csv
+  - uppgifter.txt
   - bilder-original
   - tools
   - README.md

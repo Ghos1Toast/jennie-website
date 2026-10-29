@@ -8,7 +8,7 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 
 | Sökväg | Innehåll |
 |---|---|
-| `index.html`, `inspiration.html`, `kontakt.html`, `integritetspolicy.html` | Sidorna. Header och footer är kopierade i varje fil – ändra på alla ställen. |
+| `index.html`, `inspiration.html`, `kontakt.html`, `integritetspolicy.html` | Sidorna. Header och footer är kopierade i varje fil – ändra på alla ställen (utom kontaktuppgifterna, se nedan). |
 | `css/tokens.css` | Färger, typsnitt, avstånd (fas 2) |
 | `css/main.css` | All övrig stil, mobil först |
 | `js/main.js` | Mobilmeny, galleri-ljusbox, formulärsändning |
@@ -17,6 +17,7 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 | `bilder-original/` | Originalbilder till galleriet. Laddas inte upp (GPS i bilderna). Se `LÄSMIG.txt` där. |
 | `galleri.csv` | En rad per galleribild: fil, bildtext, färg, alt-text, startsida |
 | `tools/bilder.py` | Bygger galleriet: `python tools/bilder.py` |
+| `uppgifter.txt` | Telefon, e-post, företagsnamn, org.nr. Ändra här och kör `python tools/uppgifter.py` – då uppdateras alla sidor. |
 
 Gul markering med `[PLATSHÅLLARE: …]` = text som Jennie måste leverera eller bekräfta.
 Inget av det får finnas kvar vid lansering.
