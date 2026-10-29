@@ -1,0 +1,28 @@
+FILMER TILL INSPIRATIONSSIDAN
+=============================
+
+Den här mappen laddas INTE upp till GitHub (se .gitignore). Originalfilmer är
+stora och kan innehålla GPS-position. Bara de komprimerade versionerna i
+videos/ läggs upp.
+
+1. Lägg filmerna här (mp4, mov m.fl.).
+   Döp dem till det som ska stå under filmen. En siffra först styr ordningen
+   och syns inte på sidan:
+       1 Kök, Nacka.mp4          ->  "Kök, Nacka"
+       2 Fasad före och efter.mov ->  "Fasad före och efter"
+
+2. Kör i projektmappen:   python tools/filmer.py
+   (första gången:        python -m pip install imageio-ffmpeg)
+
+   Skriptet komprimerar filmerna, tar en stillbild till varje och lägger in
+   dem på inspiration.html. Stående och liggande filmer går båda bra.
+
+3. Kolla sidan i webbläsaren, sedan commit + push (videos/ och inspiration.html).
+
+Att tänka på:
+- Musik från Instagram/TikTok får bara användas där, inte på hemsidan.
+  Använd filmer utan musik eller med fri musik.
+- Syns kunder, deras hem eller adress: bara med deras godkännande.
+- Pratar någon i filmen: lägg en undertextfil med samma namn bredvid,
+  t.ex. "1 Kök, Nacka.vtt", så kopplas den in automatiskt.
+- Håll filmerna korta (under ca 1 minut). Skriptet varnar om en fil blir över 25 MB.

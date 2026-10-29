@@ -1,3 +1,7 @@
 # Originalbilder: stora filer med GPS-position i EXIF. Bara webbversionerna (images/projekt/) ska upp.
 bilder-original/*
 !bilder-original/LÄSMIG.txt
+
+# Originalfilmer: stora filer med GPS-position. Bara de komprimerade i videos/ ska upp.
+filmer-original/*
+!filmer-original/LÄSMIG.txt

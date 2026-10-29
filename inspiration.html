@@ -131,21 +131,10 @@
           <!-- GALLERI:SLUT -->
         </ul>
 
-        <!--
-          MALL FÖR EN FILM. Lägg filerna i videos/ på sajten – bädda INTE in från Instagram
-          eller YouTube, de sätter cookies och då krävs en samtyckesruta.
-          Komprimera till MP4 (H.264), max 720p och helst under 10 MB per film.
-          Har filmen tal behövs undertexter (<track kind="captions">).
-
-          <li class="video-item">
-            <video controls preload="none" playsinline poster="videos/NAMN.jpg" width="720" height="1280">
-              <source src="videos/NAMN.mp4" type="video/mp4">
-            </video>
-            <p class="gallery-caption">Kort beskrivning</p>
-          </li>
-        -->
+        <!-- Filmerna i filmer-original/ visas här. Instruktioner: filmer-original/LÄSMIG.txt -->
         <h2 class="videos-head" id="filmer-rubrik">Filmer</h2>
         <ul class="videos" aria-labelledby="filmer-rubrik">
+          <!-- FILMER:START – genereras av tools/filmer.py, ändra inte för hand -->
           <li class="video-item">
             <div class="img-ph img-ph--video">[PLATSHÅLLARE: film]</div>
             <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: kort beskrivning]</span></p>
@@ -162,6 +151,7 @@
             <div class="img-ph img-ph--video">[PLATSHÅLLARE: film]</div>
             <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: kort beskrivning]</span></p>
           </li>
+          <!-- FILMER:SLUT -->
         </ul>
       </div>
     </section>
