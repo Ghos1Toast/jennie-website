@@ -15,7 +15,8 @@ videos/ läggs upp.
    (första gången:        python -m pip install imageio-ffmpeg)
 
 Var filmerna hamnar:
-- Alla filmer läggs sist i bildgalleriet på inspiration.html. De spelas
+- Filmerna blandas in jämnt mellan bilderna i galleriet på inspiration.html
+  (första kortet är alltid en bild). De spelas
   automatiskt, utan ljud och i loop, när de syns på skärmen. Klick öppnar
   filmen stort.
 - Den FÖRSTA filmen (lägst nummer) visas också stort överst på startsidan.

@@ -14,6 +14,7 @@ Vad skriptet gör:
    EXIF tas bort. Bilder som redan är gjorda och inte ändrats hoppas över.
 3. Skriver in galleriet i inspiration.html (alla bilder) och index.html
    (bilder med startsida = ja, max 6) mellan GALLERI:START och GALLERI:SLUT.
+   Filmer från tools/filmer.py som redan ligger i galleriet blandas in jämnt.
 4. Tar bort webbversioner av bilder som inte längre finns med i galleri.csv.
 5. Varnar för saknade filer, saknad alt-text och bilder som ligger i
    mappen men inte står i galleri.csv.
@@ -24,6 +25,9 @@ import io
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import galleri_lib  # noqa: E402
 
 try:
     from PIL import Image, ImageOps
@@ -46,8 +50,6 @@ IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif"}
 SIZES = "(min-width: 900px) min(33vw, 410px), 50vw"
 MAX_START = 6
 
-START = "<!-- GALLERI:START – genereras av tools/bilder.py från galleri.csv, ändra inte för hand -->"
-END = "<!-- GALLERI:SLUT -->"
 
 PLACEHOLDER = {
     "index.html": '<li class="gallery-item"><div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div></li>\n' * 6,
@@ -126,17 +128,11 @@ def item_html(row, name, size, eager):
             f'</li>\n')
 
 
-def write_block(page, items):
-    path = ROOT / page
-    s = path.read_text(encoding="utf-8")
-    m = re.search(r"( *)" + re.escape(START) + r"\n.*?( *)" + re.escape(END), s, re.S)
-    if not m:
-        sys.exit(f"Hittar inte GALLERI:START/SLUT i {page}")
-    indent = m.group(1)
-    body = "".join(items) if items else PLACEHOLDER[page]
-    body = "".join(indent + line + "\n" if line else "\n" for line in body.rstrip("\n").split("\n"))
-    s = s[:m.start()] + f"{indent}{START}\n{body}{indent}{END}" + s[m.end():]
-    path.write_text(s, encoding="utf-8", newline="\n")
+def write_gallery(page, photos):
+    """Skriver bilderna i galleriet. Filmer som filmer.py lagt dit behålls och blandas in."""
+    photos = photos or galleri_lib._ITEM.findall(PLACEHOLDER[page])
+    videos = [i for i in galleri_lib.read_items(page) if galleri_lib.is_video(i)]
+    galleri_lib.write_items(page, galleri_lib.mix(photos, videos))
 
 
 def main():
@@ -167,12 +163,12 @@ def main():
         used_names.add(name)
         built.append((row, name, size))
 
-    write_block("inspiration.html", [item_html(r, n, s, i == 0) for i, (r, n, s) in enumerate(built)])
+    write_gallery("inspiration.html", [item_html(r, n, s, i == 0) for i, (r, n, s) in enumerate(built)])
 
     start = [b for b in built if b[0].get("startsida", "").lower() in ("ja", "j", "x", "yes", "1")]
     if len(start) > MAX_START:
         warnings.append(f"{len(start)} bilder är märkta för startsidan – bara de {MAX_START} första visas")
-    write_block("index.html", [item_html(r, n, s, False) for r, n, s in start[:MAX_START]])
+    write_gallery("index.html", [item_html(r, n, s, False) for r, n, s in start[:MAX_START]])
     print(f"inspiration.html: {len(built)} bilder, index.html: {len(start[:MAX_START])} bilder")
 
     # Städa bort webbversioner av bilder som inte längre används

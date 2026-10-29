@@ -55,9 +55,9 @@
           <h1>Tidigare projekt</h1>
         </div>
 
-        <!-- Alla bilder i galleri.csv visas här. Instruktioner: bilder-original/LÄSMIG.txt -->
+        <!-- Bilder (galleri.csv, bilder-original/LÄSMIG.txt) och filmer (filmer-original/LÄSMIG.txt) blandas här -->
         <ul class="gallery">
-          <!-- GALLERI:START – genereras av tools/bilder.py från galleri.csv, ändra inte för hand -->
+          <!-- GALLERI:START – genereras av tools/bilder.py och tools/filmer.py, ändra inte för hand -->
           <li class="gallery-item">
             <a class="gallery-link" href="images/projekt/omslag-1600.jpg" data-caption="Kök">
               <picture>
@@ -67,6 +67,16 @@
               </picture>
             </a>
             <p class="gallery-caption">Kök</p>
+          </li>
+          <li class="gallery-item gallery-item--video">
+            <a class="gallery-link" href="videos/1-lindahlskoket-green.mp4" data-video="videos/1-lindahlskoket-green.mp4" data-caption="Lindahlsköket Green">
+              <video class="autoplay-video" muted loop playsinline preload="none" poster="videos/1-lindahlskoket-green.jpg" width="720" height="1280" aria-hidden="true">
+                <source src="videos/1-lindahlskoket-green.mp4" type="video/mp4">
+              </video>
+              <span class="visually-hidden">Film: Lindahlsköket Green</span>
+            </a>
+            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
+            <p class="gallery-caption">Lindahlsköket Green</p>
           </li>
           <li class="gallery-item">
             <a class="gallery-link" href="images/projekt/image002-1600.jpg" data-caption="Kök">
@@ -88,6 +98,16 @@
             </a>
             <p class="gallery-caption">Kök</p>
           </li>
+          <li class="gallery-item gallery-item--video">
+            <a class="gallery-link" href="videos/lindahlskoket-beige.mp4" data-video="videos/lindahlskoket-beige.mp4" data-caption="Lindahlsköket Beige">
+              <video class="autoplay-video" muted loop playsinline preload="none" poster="videos/lindahlskoket-beige.jpg" width="720" height="1280" aria-hidden="true">
+                <source src="videos/lindahlskoket-beige.mp4" type="video/mp4">
+              </video>
+              <span class="visually-hidden">Film: Lindahlsköket Beige</span>
+            </a>
+            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
+            <p class="gallery-caption">Lindahlsköket Beige</p>
+          </li>
           <li class="gallery-item">
             <a class="gallery-link" href="images/projekt/image001-1600.jpg" data-caption="Kök">
               <picture>
@@ -97,6 +117,16 @@
               </picture>
             </a>
             <p class="gallery-caption">Kök</p>
+          </li>
+          <li class="gallery-item gallery-item--video">
+            <a class="gallery-link" href="videos/lindahlskoket-bluev2.mp4" data-video="videos/lindahlskoket-bluev2.mp4" data-caption="Lindahlsköket bluev2">
+              <video class="autoplay-video" muted loop playsinline preload="none" poster="videos/lindahlskoket-bluev2.jpg" width="720" height="1280" aria-hidden="true">
+                <source src="videos/lindahlskoket-bluev2.mp4" type="video/mp4">
+              </video>
+              <span class="visually-hidden">Film: Lindahlsköket bluev2</span>
+            </a>
+            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
+            <p class="gallery-caption">Lindahlsköket bluev2</p>
           </li>
           <li class="gallery-item">
             <a class="gallery-link" href="images/projekt/image003-1600.jpg" data-caption="Kök">
@@ -118,6 +148,16 @@
             </a>
             <p class="gallery-caption">Fasad</p>
           </li>
+          <li class="gallery-item gallery-item--video">
+            <a class="gallery-link" href="videos/lindahlskoket-v2blue4.mp4" data-video="videos/lindahlskoket-v2blue4.mp4" data-caption="Lindahlsköket v2blue4">
+              <video class="autoplay-video" muted loop playsinline preload="none" poster="videos/lindahlskoket-v2blue4.jpg" width="720" height="1280" aria-hidden="true">
+                <source src="videos/lindahlskoket-v2blue4.mp4" type="video/mp4">
+              </video>
+              <span class="visually-hidden">Film: Lindahlsköket v2blue4</span>
+            </a>
+            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
+            <p class="gallery-caption">Lindahlsköket v2blue4</p>
+          </li>
           <li class="gallery-item">
             <a class="gallery-link" href="images/projekt/11-1600.jpg" data-caption="Kök">
               <picture>
@@ -129,49 +169,6 @@
             <p class="gallery-caption">Kök</p>
           </li>
           <!-- GALLERI:SLUT -->
-          <!-- Filmerna i filmer-original/ läggs efter bilderna. Instruktioner: filmer-original/LÄSMIG.txt -->
-          <!-- FILMER:START – genereras av tools/filmer.py, ändra inte för hand -->
-          <li class="gallery-item gallery-item--video">
-            <a class="gallery-link" href="videos/lindahlskoket-beige.mp4" data-video="videos/lindahlskoket-beige.mp4" data-caption="Lindahlsköket Beige">
-              <video class="autoplay-video" muted loop playsinline preload="none" poster="videos/lindahlskoket-beige.jpg" width="720" height="1280" aria-hidden="true">
-                <source src="videos/lindahlskoket-beige.mp4" type="video/mp4">
-              </video>
-              <span class="visually-hidden">Film: Lindahlsköket Beige</span>
-            </a>
-            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
-            <p class="gallery-caption">Lindahlsköket Beige</p>
-          </li>
-          <li class="gallery-item gallery-item--video">
-            <a class="gallery-link" href="videos/lindahlskoket-bluev2.mp4" data-video="videos/lindahlskoket-bluev2.mp4" data-caption="Lindahlsköket bluev2">
-              <video class="autoplay-video" muted loop playsinline preload="none" poster="videos/lindahlskoket-bluev2.jpg" width="720" height="1280" aria-hidden="true">
-                <source src="videos/lindahlskoket-bluev2.mp4" type="video/mp4">
-              </video>
-              <span class="visually-hidden">Film: Lindahlsköket bluev2</span>
-            </a>
-            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
-            <p class="gallery-caption">Lindahlsköket bluev2</p>
-          </li>
-          <li class="gallery-item gallery-item--video">
-            <a class="gallery-link" href="videos/lindahlskoket-green.mp4" data-video="videos/lindahlskoket-green.mp4" data-caption="Lindahlsköket Green">
-              <video class="autoplay-video" muted loop playsinline preload="none" poster="videos/lindahlskoket-green.jpg" width="720" height="1280" aria-hidden="true">
-                <source src="videos/lindahlskoket-green.mp4" type="video/mp4">
-              </video>
-              <span class="visually-hidden">Film: Lindahlsköket Green</span>
-            </a>
-            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
-            <p class="gallery-caption">Lindahlsköket Green</p>
-          </li>
-          <li class="gallery-item gallery-item--video">
-            <a class="gallery-link" href="videos/lindahlskoket-v2blue4.mp4" data-video="videos/lindahlskoket-v2blue4.mp4" data-caption="Lindahlsköket v2blue4">
-              <video class="autoplay-video" muted loop playsinline preload="none" poster="videos/lindahlskoket-v2blue4.jpg" width="720" height="1280" aria-hidden="true">
-                <source src="videos/lindahlskoket-v2blue4.mp4" type="video/mp4">
-              </video>
-              <span class="visually-hidden">Film: Lindahlsköket v2blue4</span>
-            </a>
-            <button class="video-toggle" type="button" aria-label="Pausa filmen" hidden><span class="video-toggle-icon" aria-hidden="true"></span></button>
-            <p class="gallery-caption">Lindahlsköket v2blue4</p>
-          </li>
-          <!-- FILMER:SLUT -->
         </ul>
       </div>
     </section>
