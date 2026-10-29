@@ -3,5 +3,6 @@ exclude:
   - galleri.csv
   - uppgifter.txt
   - bilder-original
+  - filmer-original
   - tools
   - README.md

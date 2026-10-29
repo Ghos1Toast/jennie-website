@@ -631,8 +631,12 @@ html:not(.js) .menu-toggle { display: none; }
   .videos { grid-template-columns: repeat(4, 1fr); gap: var(--space-5); }
 }
 .video-item { margin: 0; background: #fff; box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px rgba(22, 26, 25, 0.06); }
-.video-item video,
-.img-ph--video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: var(--color-teal-deep); }
+/* Riktiga filmer behåller sitt format (width/height i HTML); platshållaren är stående 9:16 */
+.video-item video { display: block; width: 100%; height: auto; background: var(--color-teal-deep); }
+.img-ph--video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; background: var(--color-teal-deep); }
+/* Liggande film tar två kolumner så att den inte blir pytteliten */
+.video-item--wide { grid-column: span 2; }
+.videos { align-items: start; }
 
 /* ---------- Integritetspolicy ---------- */
 .policy-date { color: var(--color-ink-muted); font-size: var(--text-sm); }
