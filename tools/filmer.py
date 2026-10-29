@@ -13,8 +13,8 @@ Vad skriptet gör:
    Filmerna spelas automatiskt utan ljud, så ljudspåret behövs inte – och
    musik från t.ex. Instagram får ändå inte användas på hemsidan.
 2. Tar en stillbild ur filmen som visas innan filmen startar.
-3. Skriver in filmerna sist i bildgalleriet på inspiration.html, sorterade
-   efter filnamn. Den första filmen visas också stort överst på startsidan.
+3. Blandar in filmerna jämnt mellan bilderna i galleriet på inspiration.html,
+   sorterade efter filnamn. Den första filmen visas också stort överst på startsidan.
    Filnamnet blir bildtext:
        "1 Kök, Nacka.mov"          ->  "Kök, Nacka"  (siffran styr bara ordningen)
        "Kök_Nacka_1080x1920.mov"   ->  "Kök Nacka"
@@ -27,6 +27,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import galleri_lib  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "filmer-original"
 OUT = ROOT / "videos"
@@ -35,8 +38,6 @@ MAX_SIDE = 1280
 WARN_MB = 15
 
 BLOCKS = {
-    "inspiration.html": ("<!-- FILMER:START – genereras av tools/filmer.py, ändra inte för hand -->",
-                         "<!-- FILMER:SLUT -->", ""),
     "index.html": ("<!-- HERO:START – genereras av tools/filmer.py, ändra inte för hand -->",
                    "<!-- HERO:SLUT -->",
                    '<div class="img-ph img-ph--hero">[PLATSHÅLLARE: film eller projektbild]</div>\n'),
@@ -174,9 +175,11 @@ def main():
         built.append((name, caption_from(src.stem), w, h))
         print(f"  {name}.mp4  {w}x{h}  {mb:.1f} MB")
 
-    write_block("inspiration.html", "".join(gallery_item(*b) for b in built))
+    # Filmerna blandas in jämnt mellan bilderna som bilder.py lagt i galleriet
+    photos = [i for i in galleri_lib.read_items("inspiration.html") if not galleri_lib.is_video(i)]
+    galleri_lib.write_items("inspiration.html", galleri_lib.mix(photos, [gallery_item(*b) for b in built]))
     write_block("index.html", hero_item(built[0][0], built[0][2], built[0][3]) if built else "")
-    print(f"inspiration.html: {len(built)} filmer i galleriet")
+    print(f"inspiration.html: {len(built)} filmer inblandade bland bilderna")
     print(f"index.html: {'filmen ' + built[0][0] if built else 'platshållare'} överst")
 
     for f in OUT.iterdir():
