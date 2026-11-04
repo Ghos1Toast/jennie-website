@@ -1,0 +1,115 @@
+/* FÄRGVARIANTER – bara på branchen "farger", för att jämföra. Tas bort när Jennie valt.
+   Väljaren nere till vänster (js/varianter.js) sätter data-variant på <html>.
+   Varianterna 2–4: samma färger som nu, i annan ordning. 5–8: nya paletter, samma ordning.
+
+   Teknik: main.css färgar alla delar med rollerna i tokens.css (--color-teal-deep = mörk bakgrund,
+   --color-cream = text på mörkt osv.). Här byts rollerna ut inom en viss del av sidan,
+   så att t.ex. heron blir ljus utan att main.css ändras. */
+
+/* ---------- Byggstenar ---------- */
+
+/* Gör en mörk del (header, hero, kontaktband, footer) ljus */
+html[data-variant="ljus-topp"] :is(.site-header, .hero),
+html[data-variant="vit-topp"] :is(.site-header, .hero),
+html[data-variant="vit-topp"] .cta-band,
+html[data-variant="grona-band"] .cta-band {
+  --color-teal-deep: var(--light-bg, var(--palette-tint));        /* bakgrund */
+  --color-cream: var(--palette-dark);                             /* text och knappar */
+  --color-on-dark-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-paper));
+  --color-hero-media: color-mix(in srgb, var(--palette-brand) 12%, var(--palette-paper));
+  --color-focus-on-dark: var(--palette-ink);
+  --color-white: var(--palette-brand);                            /* knappar när man pekar */
+}
+html[data-variant="ljus-topp"] .site-header,
+html[data-variant="vit-topp"] .site-header { border-bottom-color: var(--color-rule); }
+/* Kontaktbandet använder --color-teal som bakgrund */
+html[data-variant="vit-topp"] .cta-band,
+html[data-variant="grona-band"] .cta-band { --color-teal: var(--palette-light); }
+
+/* Gör en ljus sektion mörk (bakgrund = --band-bg) */
+html[data-variant="vit-topp"] section[aria-labelledby="tjanster-rubrik"],
+html[data-variant="grona-band"] section[aria-labelledby="tjanster-rubrik"],
+html[data-variant="grona-band"] section[aria-labelledby="for-vem-rubrik"] {
+  background: var(--band-bg);
+  color: var(--palette-paper);                                    /* ärvd textfärg */
+  --color-paper-deep: var(--band-bg);
+  --color-teal-deep: var(--palette-light);                        /* rubriker, linjer */
+  --color-teal: var(--palette-light);                             /* etiketter, länkar */
+  --color-ink: var(--palette-paper);                              /* brödtext */
+  --color-ink-muted: color-mix(in srgb, var(--palette-paper) 82%, var(--band-bg));
+  --color-rule: color-mix(in srgb, var(--palette-light) 22%, transparent);
+}
+/* Gul platshållare ska ha mörk text även på mörk bakgrund */
+html[data-variant] .ph { color: var(--palette-ink); }
+
+/* ---------- 2. Ljus topp: header och hero i ljus beige, resten som nu ---------- */
+html[data-variant="ljus-topp"] { --light-bg: var(--palette-tint); }
+
+/* ---------- 3. Vit topp, grön mitt: vit header och hero, tjänsterna på mörkgrönt,
+              kontaktbandet i loggans beige ---------- */
+html[data-variant="vit-topp"] { --light-bg: var(--palette-paper); --band-bg: var(--palette-dark); }
+html[data-variant="vit-topp"] .cta-band { --light-bg: var(--palette-light); }
+
+/* ---------- 4. Gröna band: mörk topp som nu, tjänster och "för dig som" i loggans
+              grön, kontaktbandet i beige ---------- */
+html[data-variant="grona-band"] { --band-bg: var(--palette-brand); }
+html[data-variant="grona-band"] .cta-band { --light-bg: var(--palette-light); }
+
+/* ---------- 5–8. Nya paletter, samma ordning som nu ---------- */
+html[data-variant="logga"] {
+  --palette-dark:  #1E3D3A;
+  --palette-brand: #356865;
+  --palette-light: #F4E4C7;
+  --palette-tint:  #F8EFE2;
+  --palette-paper: #FCFAF6;
+  --palette-ink:   #161A19;
+}
+html[data-variant="grafit"] {
+  --palette-dark:  #24292A;
+  --palette-brand: #356865;
+  --palette-light: #F4E4C7;
+  --palette-tint:  #F1EEE8;
+  --palette-paper: #FAFAF8;
+  --palette-ink:   #161A19;
+}
+html[data-variant="skog"] {
+  --palette-dark:  #22382C;
+  --palette-brand: #3D6A4D;
+  --palette-light: #EFE3CB;
+  --palette-tint:  #F3ECDF;
+  --palette-paper: #FAF8F3;
+  --palette-ink:   #1A1F1B;
+}
+html[data-variant="natt"] {
+  --palette-dark:  #1B2B3A;
+  --palette-brand: #2F5E6E;
+  --palette-light: #F1E6D2;
+  --palette-tint:  #F2EEE7;
+  --palette-paper: #FAFAF8;
+  --palette-ink:   #161A1E;
+}
+
+/* ---------- Väljaren ---------- */
+.variant-picker {
+  position: fixed; left: 12px; bottom: 12px; z-index: 200;
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 10px;
+  font: 500 14px/1.2 system-ui, sans-serif;
+  color: #161A19;
+  background: #FFF1B8;
+  border: 1px solid #161A19;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+.variant-picker label { font-weight: 600; }
+.variant-picker select,
+.variant-picker button {
+  min-height: 36px;
+  font: inherit;
+  color: #161A19;
+  background: #fff;
+  border: 1px solid #161A19;
+  cursor: pointer;
+}
+.variant-picker button { min-width: 36px; }
+.variant-picker :focus-visible { outline: 3px solid #161A19; outline-offset: 2px; }
+@media print { .variant-picker { display: none; } }
