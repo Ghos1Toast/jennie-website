@@ -16,7 +16,7 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 | `images/brand/`, `images/om/` | Logga, favicon, porträtt i AVIF/WebP/JPEG |
 | `bilder-original/` | Originalbilder till galleriet. Laddas inte upp (GPS i bilderna). Se `LÄSMIG.txt` där. |
 | `filmer-original/` | Släpp filmer här och kör `python tools/filmer.py` – de komprimeras och läggs ut på Inspiration. Laddas inte upp. Se `LÄSMIG.txt` där. |
-| `galleri.csv` | En rad per galleribild: fil, bildtext, färg, alt-text, startsida |
+| `galleri.csv` | En rad per galleribild: fil, bildtext, färg, hex, alt-text, startsida, fokus (se `bilder-original/LÄSMIG.txt`) |
 | `tools/bilder.py` | Bygger galleriet: `python tools/bilder.py` |
 | `partner-original/`, `partner.csv` | Loggor och namn för Samarbetspartner på startsidan. Kör `python tools/partner.py`. Se `LÄSMIG.txt` i mappen. |
 | `uppgifter.txt` | Telefon, e-post, företagsnamn, org.nr. Ändra här och kör `python tools/uppgifter.py` – då uppdateras alla sidor. |
