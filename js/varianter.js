@@ -19,7 +19,13 @@
     ['rodfarg', '14. Rödfärg'],
     ['lera', '15. Lera'],
     ['ockra', '16. Ockra'],
-    ['granit', '17. Granit']
+    ['granit', '17. Granit'],
+    ['omvand', '18. Galen: Omvänd'],
+    ['morkt', '19. Galen: Mörkt läge'],
+    ['beige', '20. Galen: Bara beige'],
+    ['zebra', '21. Galen: Zebra'],
+    ['gron-botten', '22. Galen: Grön botten'],
+    ['gron-hero', '23. Galen: Grön hero']
   ];
   var KEY = 'farg-variant';
   var root = document.documentElement;
