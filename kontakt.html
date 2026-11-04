@@ -31,7 +31,7 @@
         </span>
       </a>
       <a class="header-phone" href="tel:+46735019247" data-uppgift="telefon">
-        <span class="label">Ring</span><span class="num"><!--uppgift:telefon-->073-501 92 47<!--/uppgift--></span>
+        <svg class="icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="visually-hidden">Ring </span><span class="num"><!--uppgift:telefon-->073-501 92 47<!--/uppgift--></span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="menu-toggle-icon" aria-hidden="true"></span>Meny
@@ -55,52 +55,80 @@
           <h1>Berätta om ditt projekt</h1>
         </div>
 
-        <!-- Formulärtjänst ej bestämd. Nuvarande endpoint: Formspree (USA) – se integritetspolicyn. -->
-        <form id="contact-form" class="form form--narrow" action="https://formspree.io/f/mgobnqen" method="POST">
-          <input type="hidden" name="_subject" value="Ny förfrågan från hemsidan">
+        <div class="contact-layout">
+          <!-- Formulärtjänst ej bestämd. Nuvarande endpoint: Formspree (USA) – se integritetspolicyn. -->
+          <form id="contact-form" class="form form--narrow" action="https://formspree.io/f/mgobnqen" method="POST">
+            <input type="hidden" name="_subject" value="Ny förfrågan från hemsidan">
 
-          <div class="form-row">
-            <div class="field">
-              <label for="namn">Namn</label>
-              <input type="text" id="namn" name="namn" autocomplete="name" required>
+            <div class="form-row">
+              <div class="field">
+                <label for="namn">Namn</label>
+                <input type="text" id="namn" name="namn" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="epost">E-post</label>
+                <input type="email" id="epost" name="epost" autocomplete="email" required>
+              </div>
             </div>
-            <div class="field">
-              <label for="epost">E-post</label>
-              <input type="email" id="epost" name="epost" autocomplete="email" required>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="telefon">Telefon</label>
+                <input type="tel" id="telefon" name="telefon" autocomplete="tel" required>
+              </div>
+              <div class="field">
+                <label for="adress">Adress <span class="opt">(valfritt)</span></label>
+                <input type="text" id="adress" name="adress" autocomplete="street-address" aria-describedby="adress-hint">
+                <p class="hint" id="adress-hint">Där jobbet ska göras.</p>
+              </div>
             </div>
-          </div>
 
-          <div class="form-row">
             <div class="field">
-              <label for="telefon">Telefon</label>
-              <input type="tel" id="telefon" name="telefon" autocomplete="tel" required>
+              <label for="meddelande">Meddelande</label>
+              <textarea id="meddelande" name="meddelande" required aria-describedby="meddelande-hint"></textarea>
+              <p class="hint" id="meddelande-hint">Vad gäller det? Till exempel rum eller fasad, ungefärlig storlek och när du vill att det görs.</p>
             </div>
-            <div class="field">
-              <label for="adress">Adress <span class="opt">(valfritt)</span></label>
-              <input type="text" id="adress" name="adress" autocomplete="street-address" aria-describedby="adress-hint">
-              <p class="hint" id="adress-hint">Där jobbet ska göras.</p>
+
+            <!-- Honungsfälla mot spam: dold för människor, robotar fyller i den -->
+            <div class="hp" aria-hidden="true">
+              <label for="_gotcha">Lämna tomt</label>
+              <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
             </div>
-          </div>
 
-          <div class="field">
-            <label for="meddelande">Meddelande</label>
-            <textarea id="meddelande" name="meddelande" required aria-describedby="meddelande-hint"></textarea>
-            <p class="hint" id="meddelande-hint">Vad gäller det? Till exempel rum eller fasad, ungefärlig storlek och när du vill att det görs.</p>
-          </div>
+            <p class="form-note">Uppgifterna används bara för att svara på din förfrågan. Läs mer i vår <a href="integritetspolicy.html">integritetspolicy</a>.</p>
 
-          <!-- Honungsfälla mot spam: dold för människor, robotar fyller i den -->
-          <div class="hp" aria-hidden="true">
-            <label for="_gotcha">Lämna tomt</label>
-            <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
-          </div>
-
-          <p class="form-note">Uppgifterna används bara för att svara på din förfrågan. Läs mer i vår <a href="integritetspolicy.html">integritetspolicy</a>.</p>
-
-          <div>
-            <button type="submit" class="btn">Skicka förfrågan</button>
-          </div>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-        </form>
+            <div>
+              <button type="submit" class="btn">Skicka förfrågan</button>
+            </div>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <aside class="contact-aside" aria-labelledby="direkt-rubrik">
+            <div class="contact-person">
+              <picture>
+                <source type="image/avif" srcset="images/om/jennie-480.avif">
+                <source type="image/webp" srcset="images/om/jennie-480.webp">
+                <img src="images/om/jennie-480.jpg" width="480" height="617" loading="lazy" decoding="async" alt="">
+              </picture>
+              <p class="contact-name">Jennie Peterzén</p>
+            </div>
+            <h2 id="direkt-rubrik" class="contact-aside-title">Hellre ringa eller mejla?</h2>
+            <dl class="contact-list">
+              <div>
+                <dt>Telefon</dt>
+                <dd><a href="tel:+46735019247" data-uppgift="telefon"><!--uppgift:telefon-->073-501 92 47<!--/uppgift--></a></dd>
+              </div>
+              <div>
+                <dt>E-post</dt>
+                <dd><a href="mailto:info@jenniesfargsattning.se" data-uppgift="epost"><!--uppgift:epost-->info@jenniesfargsattning.se<!--/uppgift--></a></dd>
+              </div>
+              <div>
+                <dt>Område</dt>
+                <dd>Värmdö, skärgården, Nacka och Stockholmsområdet</dd>
+              </div>
+            </dl>
+            <p class="contact-reply"><span class="ph">[SAKNAS: hur snabbt ni brukar svara, t.ex. "Vi svarar oftast inom en arbetsdag."]</span></p>
+          </aside>
+        </div>
       </div>
     </section>
   </main>
@@ -133,7 +161,7 @@
         <div>
           <p class="footer-heading">Följ</p>
           <ul class="footer-list">
-            <li><a href="https://www.instagram.com/jenniesfargsattningomaleri/">Instagram</a></li>
+            <li><a class="footer-social" href="https://www.instagram.com/jenniesfargsattningomaleri/"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.25"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>Instagram</a></li>
           </ul>
         </div>
       </div>

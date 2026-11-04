@@ -9,7 +9,7 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 | Sökväg | Innehåll |
 |---|---|
 | `index.html`, `inspiration.html`, `kontakt.html`, `integritetspolicy.html` | Sidorna. Header och footer är kopierade i varje fil – ändra på alla ställen (utom kontaktuppgifterna, se nedan). |
-| `css/tokens.css` | Färger, typsnitt, avstånd (fas 2) |
+| `css/tokens.css` | Färger, typsnitt, avstånd. **Paletten** (sex färger) står överst – byt dem för att prova en annan färgsättning, kör sedan `python tools/kontrast.py` för att se att texten går att läsa. |
 | `css/main.css` | All övrig stil, mobil först |
 | `js/main.js` | Mobilmeny, galleri-ljusbox, formulärsändning |
 | `fonts/` | Självhostade typsnitt (Barlow, Barlow Condensed, SIL OFL) |

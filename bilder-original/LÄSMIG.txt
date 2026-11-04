@@ -11,16 +11,20 @@ adress. Bara de komprimerade webbversionerna i images/projekt/ läggs upp.
 2. Fyll i galleri.csv i projektmappen, en rad per bild, i den ordning de ska visas:
 
    fil        filnamnet här i mappen, t.ex. kok-nacka.jpg
-   bildtext   rum och ort, t.ex. Kök, Nacka
-   farg       valfritt, t.ex. Linoljefärg från Ottosson eller NCS S 1002-Y
-              (visas efter bildtexten: "Kök, Nacka. Linoljefärg från Ottosson")
+   bildtext   rummet, t.ex. Kök eller Kök, Nacka
+   farg       kulören, t.ex. Linoljefärg Ockra, Engwall o. Claesson eller NCS S 1002-Y.
+              Står på en egen rad under rummet. Tom = gul platshållare på sidan.
+   hex        valfritt: färgrutan bredvid kulören, sex tecken, t.ex. C9A227
    alt        vad som syns på bilden, för den som inte ser den,
               t.ex. Kök med ljusgröna skåpluckor och vita väggar
-   startsida  ja = visas även på startsidan (max 6)
+   startsida  ja = visas även på startsidan (max 6, i den ordning de står här)
+   fokus      valfritt: vilken del av bilden som syns när kortet beskär den
+              (korten är stående). vänster, höger, uppe, nere eller t.ex. 30% 70%.
+              Bra för liggande bilder där det viktiga inte är i mitten.
 
    Exempel:
-   fil;bildtext;farg;alt;startsida
-   kok-nacka.jpg;Kök, Nacka;Linoljefärg från Ottosson;Kök med ljusgröna skåpluckor och vita väggar;ja
+   fil;bildtext;farg;hex;alt;startsida;fokus
+   kok-nacka.jpg;Kök, Nacka;Linoljefärg Ockra, Engwall o. Claesson;C9A227;Kök med ockragula skåpluckor;ja;
 
    Filen går att öppna i Excel. Spara som CSV (semikolon- eller kommaavgränsad går båda).
 

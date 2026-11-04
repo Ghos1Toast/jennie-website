@@ -1,19 +1,19 @@
-fil;bildtext;farg;alt;startsida
-Omslag.JPG;Kök;;Ljust kök med beige skåpluckor, mässingsknoppar, svart spis och köksö med en stor blombukett;ja
-IMG_9070.jpeg;Fasad;;Vitt hus med stående panel och spröjsade fönster på en brygga vid vattnet, bland tallar;ja
-13852A3C-1AE1-4CE7-B893-5ED55B889708.heic;Kök;;Kök med senapsgula skåpluckor, svarta knoppar, vit porslinsho och ljust trägolv i furu;ja
-IMG_8682.jpeg;Hall;;Hall med mörkt blågröna väggar och tak, en röd dörr och en trappa i grå metall, under arbete med täckpapp på golvet;ja
-IMG_9734.heic;Vardagsrum och sovrum;;Vardagsrum med grågröna väggar och en sovalkov bakom en vägg i mörkt olivgrönt;ja
-IMG_7240.heic;Lokal;;Stort rum med mörkgröna väggar, vitt tak och schackrutigt golv;ja
-IMG_6573.heic;Hall;;Hall med mörkgrön ytterdörr, ljusa väggar och svart klinkergolv;nej
-IMG_1552.jpeg;Fasad;;Litet hus med grågrön liggande panel och vit ytterdörr bland tallar;nej
-image001.jpg;Kök;;Kök med gråbeige skåpluckor, gråbeige spis och köksfläkt och vit porslinsho;nej
-IMG_6575.heic;Vardagsrum;;Vägg i grågrönt med en golvlampa, en monstera på en pall och en mandolin på väggen;nej
-IMG_8130.jpeg;Fasad;;Målare som målar ett vitt trappräcke vid ett ljusblått hus;nej
-image003.jpg;Kök;;Kök med gråbeige skåp och köksö, ljust trägolv och en hund som ligger på mattan;nej
-IMG_6574.heic;Vardagsrum;;Rum med varmgrå väggar, en stor tavla med ett rött äpple och en tänd lykta;nej
-IMG_0221.JPG;Tak;;Mörkgrått tak med paneler och lister ovanför gula väggar;nej
-11.JPG;Kök;;Beige inbyggda skåp runt ett kylskåp i rostfritt stål;nej
-IMG_6616.heic;Snickerier;;Mörkbrun spröjsad glasdörr på bockar i verkstaden;nej
-IMG_3089.heic;Snickerier;;Spegeldörr målad i grågrönt, på bockar i verkstaden;nej
-IMG_6331.heic;Snickerier;;Obehandlade skåpluckor i furu staplade på en vagn;nej
+fil;bildtext;farg;hex;alt;startsida;fokus
+Omslag.JPG;Kök;;;Ljust kök med beige skåpluckor, mässingsknoppar, svart spis och köksö med en stor blombukett;ja;
+IMG_9734.heic;Vardagsrum och sovrum;;;Vardagsrum med grågröna väggar och en sovalkov bakom en vägg i mörkt olivgrönt;ja;
+13852A3C-1AE1-4CE7-B893-5ED55B889708.heic;Kök;;;Kök med senapsgula skåpluckor, svarta knoppar, vit porslinsho och ljust trägolv i furu;ja;
+IMG_6573.heic;Hall;;;Hall med mörkgrön ytterdörr, ljusa väggar och svart klinkergolv;ja;
+IMG_9070.jpeg;Fasad;;;Vitt hus med stående panel och spröjsade fönster på en brygga vid vattnet, bland tallar;ja;20%
+IMG_6574.heic;Vardagsrum;;;Rum med varmgrå väggar, en stor tavla med ett rött äpple och en tänd lykta;ja;
+IMG_8682.jpeg;Hall;;;Hall med mörkt blågröna väggar och tak, en röd dörr och en trappa i grå metall, under arbete med täckpapp på golvet;nej;
+IMG_7240.heic;Lokal;;;Stort rum med mörkgröna väggar, vitt tak och schackrutigt golv;nej;
+image001.jpg;Kök;;;Kök med gråbeige skåpluckor, gråbeige spis och köksfläkt och vit porslinsho;nej;
+IMG_6575.heic;Vardagsrum;;;Vägg i grågrönt med en golvlampa, en monstera på en pall och en mandolin på väggen;nej;
+IMG_1552.jpeg;Fasad;;;Litet hus med grågrön liggande panel och vit ytterdörr bland tallar;nej;
+IMG_8130.jpeg;Fasad;;;Målare som målar ett vitt trappräcke vid ett ljusblått hus;nej;
+image003.jpg;Kök;;;Kök med gråbeige skåp och köksö, ljust trägolv och en hund som ligger på mattan;nej;
+IMG_0221.JPG;Tak;;;Mörkgrått tak med paneler och lister ovanför gula väggar;nej;
+11.JPG;Kök;;;Beige inbyggda skåp runt ett kylskåp i rostfritt stål;nej;
+IMG_6616.heic;Snickerier;;;Mörkbrun spröjsad glasdörr på bockar i verkstaden;nej;
+IMG_3089.heic;Snickerier;;;Spegeldörr målad i grågrönt, på bockar i verkstaden;nej;
+IMG_6331.heic;Snickerier;;;Obehandlade skåpluckor i furu staplade på en vagn;nej;

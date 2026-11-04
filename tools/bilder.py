@@ -9,6 +9,11 @@ iPhone-bilder (.heic) kräver dessutom:   python -m pip install pillow-heif
 
 Vad skriptet gör:
 1. Läser galleri.csv (en rad per bild, i den ordning de ska visas).
+   Kolumner: fil;bildtext;farg;hex;alt;startsida;fokus
+     farg  = kulören, t.ex. "Linoljefärg Ockra, Engwall o. Claesson" (tom = gul platshållare)
+     hex   = färgrutan på kortet, t.ex. C9A227 (valfri)
+     fokus = vilken del av bilden som syns när kortet beskär den: vänster, höger,
+             uppe, nere eller t.ex. "30% 70%" (valfri, tom = mitten)
 2. Gör webbversioner av varje bild i bilder-original/ till images/projekt/
    (480/960/1600 px bred i AVIF, WebP och JPEG). Platsdata (GPS) och annan
    EXIF tas bort. Bilder som redan är gjorda och inte ändrats hoppas över.
@@ -94,22 +99,53 @@ def caption(row):
     return f"{text}. {color}" if text and color else (text or color)
 
 
+def focus_style(row):
+    """Kolumnen fokus styr vilken del av bilden som syns när kortet beskär den,
+    t.ex. "vänster", "nere", "30% 70%". Tom = mitten."""
+    words = {"vänster": "0%", "höger": "100%", "uppe": "0%", "nere": "100%", "mitten": "50%"}
+    value = row.get("fokus", "").lower().split()
+    if not value:
+        return ""
+    if len(value) == 1 and value[0] in ("uppe", "nere"):
+        value = ["50%", words[value[0]]]
+    parts = [words.get(v, v) for v in value]
+    if not all(re.fullmatch(r"\d{1,3}%", p) for p in parts):
+        warnings.append(f"rad {row['rad']} ({row['fil']}): fokus '{row['fokus']}' förstås inte – "
+                        "skriv t.ex. vänster, nere eller 30% 70%")
+        return ""
+    return f' style="object-position: {" ".join(parts)}"'
+
+
+def caption_html(row):
+    """Kulörkortets etikett: rummet, och under det kulören (med färgruta om hex finns)."""
+    room = html.escape(row.get("bildtext", ""))
+    color = html.escape(row.get("farg", "") or row.get("färg", ""))
+    hexcode = row.get("hex", "").strip().lstrip("#")
+    if hexcode and not re.fullmatch(r"[0-9a-fA-F]{6}", hexcode):
+        warnings.append(f"rad {row['rad']} ({row['fil']}): hex '{row['hex']}' ska vara sex tecken, t.ex. C9A227")
+        hexcode = ""
+    swatch = f'<span class="swatch" style="background: #{hexcode}" aria-hidden="true"></span>' if hexcode else ""
+    color_html = color or f'<span class="ph">[SAKNAS: kulör, t.ex. namn, kod och märke]</span>'
+    room_html = f'<span class="gallery-room">{room}</span>' if room else ""
+    return (f'\n  <p class="gallery-caption">{room_html}'
+            f'<span class="gallery-color">{swatch}{color_html}</span></p>')
+
+
 def item_html(row, name, size, eager):
     w, h = size
     cap = html.escape(caption(row), quote=True)
     alt = html.escape(row.get("alt", ""), quote=True)
     srcset = lambda ext: f"images/projekt/{name}-480.{ext} 480w, images/projekt/{name}-960.{ext} 960w"
     loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
-    cap_p = f'\n  <p class="gallery-caption">{cap}</p>' if cap else ""
     return (f'<li class="gallery-item">\n'
             f'  <a class="gallery-link" href="images/projekt/{name}-1600.jpg" data-caption="{cap}">\n'
             f'    <picture>\n'
             f'      <source type="image/avif" srcset="{srcset("avif")}" sizes="{SIZES}">\n'
             f'      <source type="image/webp" srcset="{srcset("webp")}" sizes="{SIZES}">\n'
             f'      <img src="images/projekt/{name}-960.jpg" srcset="{srcset("jpg")}" sizes="{SIZES}" '
-            f'width="{w}" height="{h}" {loading} decoding="async" alt="{alt}">\n'
+            f'width="{w}" height="{h}" {loading} decoding="async" alt="{alt}"{focus_style(row)}>\n'
             f'    </picture>\n'
-            f'  </a>{cap_p}\n'
+            f'  </a>{caption_html(row)}\n'
             f'</li>\n')
 
 
