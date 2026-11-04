@@ -424,33 +424,42 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 /* ---------- Galleri ---------- */
+/* Murverk: kolumner där varje bild visas hel i sitt eget format, utan beskärning */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-3);
+  columns: 2;
+  column-gap: var(--space-3);
   list-style: none;
   padding: 0;
 }
 @media (min-width: 600px) {
-  .gallery { gap: var(--space-5); }
+  .gallery { column-gap: var(--space-5); }
 }
 @media (min-width: 900px) {
-  .gallery { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  .gallery { columns: 3; column-gap: var(--space-6); }
 }
 
 /* Varje bild är ett "kulörkort": bild + vit etikett under */
 .gallery-item {
   position: relative;
-  margin: 0;
+  break-inside: avoid;
+  margin: 0 0 var(--space-3);
   background: var(--color-white);
   box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px color-mix(in srgb, var(--color-ink) 6%, transparent);
 }
-.gallery-item { display: flex; flex-direction: column; }
+@media (min-width: 600px) {
+  .gallery-item { margin-bottom: var(--space-5); }
+}
+@media (min-width: 900px) {
+  .gallery-item { margin-bottom: var(--space-6); }
+}
 /* Ljus färg medan bilden laddas, i stället för en tom vit ruta */
 .gallery-link { display: block; overflow: hidden; cursor: zoom-in; background: var(--color-paper-deep); }
 .gallery-link img,
 .gallery-link video,
-.gallery-item .img-ph { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; transition: transform 0.4s ease; }
+.gallery-item .img-ph { display: block; width: 100%; height: auto; transition: transform 0.4s ease; }
+/* Filmerna är stående; fokus-kolumnen i galleri.csv behövs inte när bilden visas hel */
+.gallery-link video { aspect-ratio: 9 / 16; object-fit: cover; }
+.gallery-item .img-ph { aspect-ratio: 4 / 5; }
 @media (prefers-reduced-motion: no-preference) {
   .gallery-link:hover img,
   .gallery-link:hover video { transform: scale(1.03); }
