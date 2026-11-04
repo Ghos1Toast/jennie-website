@@ -49,27 +49,25 @@ def main():
     c = {
         "mörk (dark)": p["dark"], "grön (brand)": p["brand"], "beige (light)": p["light"],
         "ljus beige (tint)": p["tint"], "bakgrund (paper)": p["paper"], "text (ink)": p["ink"],
-        "grå text": mix(p["ink"], p["paper"], 0.75),
-        "ljusgrå text på mörkt": mix(p["paper"], p["brand"], 0.75),
+        "grå text": mix(p["ink"], p["paper"], 0.72),
         "formulärkant": mix(p["ink"], p["paper"], 0.55),
         "vit": white,
     }
-    # (förgrund, bakgrund, gräns, var på sajten)
-    checks = [
-        ("text (ink)", "bakgrund (paper)", 4.5, "brödtext"),
-        ("text (ink)", "ljus beige (tint)", 4.5, "brödtext i beige sektioner"),
-        ("grå text", "bakgrund (paper)", 4.5, "sekundär text"),
-        ("grå text", "ljus beige (tint)", 4.5, "sekundär text i beige sektioner"),
-        ("mörk (dark)", "bakgrund (paper)", 4.5, "rubriker"),
-        ("mörk (dark)", "ljus beige (tint)", 4.5, "rubriker i beige sektioner"),
-        ("grön (brand)", "bakgrund (paper)", 4.5, "länkar, små etiketter"),
-        ("grön (brand)", "ljus beige (tint)", 4.5, "länkar i beige sektioner"),
-        ("beige (light)", "mörk (dark)", 4.5, "text i header, hero, footer"),
-        ("ljusgrå text på mörkt", "mörk (dark)", 4.5, "sekundär text i hero och footer"),
-        ("mörk (dark)", "beige (light)", 4.5, "text på beige knappar"),
-        ("beige (light)", "grön (brand)", 4.5, "text i kontaktrutan längst ner på startsidan"),
-        ("vit", "grön (brand)", 4.5, "knapptext när man pekar på en knapp"),
-        ("formulärkant", "bakgrund (paper)", 3.0, "kant runt formulärfält"),
+    # (förgrund, bakgrund, gräns, var på sajten) – utkast C: ljus sajt, mörk text överallt
+    checks = []
+    for bg, where in (("bakgrund (paper)", "vanliga sektioner"), ("ljus beige (tint)", "tjänster, partner, footer"),
+                      ("beige (light)", "citatsektionen")):
+        checks += [
+            ("text (ink)", bg, 4.5, f"brödtext – {where}"),
+            ("grå text", bg, 4.5, f"sekundär text – {where}"),
+            ("mörk (dark)", bg, 4.5, f"rubriker – {where}"),
+            ("grön (brand)", bg, 4.5, f"länkar, etiketter, kursiv accent – {where}"),
+        ]
+    checks += [
+        ("vit", "grön (brand)", 4.5, "text på knappar"),
+        ("vit", "mörk (dark)", 4.5, "knapptext när man pekar på en knapp"),
+        ("beige (light)", "mörk (dark)", 4.5, "text i stor bildvisning"),
+        ("formulärkant", "bakgrund (paper)", 3.0, "linjen under formulärfälten"),
     ]
     fails = 0
     for fg, bg, need, where in checks:
