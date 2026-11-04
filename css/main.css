@@ -276,9 +276,20 @@ html:not(.js) .menu-toggle { display: none; }
 }
 .site-nav a:hover { color: #fff; text-decoration: none; }
 .site-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--color-cream); }
+.site-nav .nav-cta a[aria-current="page"] { box-shadow: none; }
 
-/* Hamburgermeny upp till 1099px – under det får logga, telefon, fyra länkar och knapp inte plats på en rad */
-@media (max-width: 1099px) {
+/* Telefonnumret i menyn är en tyst extrauppgift bredvid Kontakt-knappen, inte en menylänk */
+.site-nav .nav-phone a {
+  gap: var(--space-2);
+  font: 500 1.0625rem var(--font-body);
+  letter-spacing: 0.02em; text-transform: none;
+  color: var(--color-on-dark-muted);
+}
+.site-nav .nav-phone a:hover { color: var(--color-cream); }
+.nav-phone-icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Hamburgermeny upp till 959px – under det får logga, två länkar, telefon och knapp inte plats på en rad */
+@media (max-width: 959px) {
   .header-inner { flex-wrap: wrap; }
   .site-nav { flex-basis: 100%; padding-bottom: var(--space-5); }
   .js .site-nav { display: none; }
@@ -289,18 +300,19 @@ html:not(.js) .menu-toggle { display: none; }
   .site-nav a[aria-current="page"]::before { content: ""; width: 0.75rem; height: 0.75rem; margin-right: var(--space-3); background: var(--color-cream); }
   .site-nav .nav-cta { margin-top: var(--space-4); border-top: 0; }
   .site-nav .nav-cta a { justify-content: center; font-size: 1.25rem; color: var(--color-teal-deep); }
+  .site-nav .nav-cta a::before { content: none; }
+  .site-nav .nav-phone { display: none; } /* "Ring" ligger redan i listen */
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 960px) {
   .header-inner { min-height: 104px; gap: var(--space-6); }
   .brand img { width: 99px; height: 88px; }
   .menu-toggle { display: none; }
   .site-nav { order: 2; }
   .site-nav ul { display: flex; align-items: center; gap: var(--space-5); }
   .site-nav .nav-cta a { padding-inline: var(--space-5); color: var(--color-teal-deep); box-shadow: none; }
-  .header-phone { order: 1; }
-  .header-phone .num { display: inline; }
-  .header-phone .label { display: none; }
+  .site-nav .nav-phone { margin-left: var(--space-4); } /* luft mellan sidlänkarna och kontaktdelen */
+  .header-phone { display: none; }
 }
 
 /* ---------- Hero ----------
