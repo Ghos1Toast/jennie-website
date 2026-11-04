@@ -53,6 +53,21 @@ def tel_href(number):
     return "tel:" + digits
 
 
+def tel_text(number):
+    """Svenskt skrivsätt: 073-501 92 47, 08-123 456 78. Okända format visas som de skrivits."""
+    digits = re.sub(r"\D", "", number)
+    if number.strip().startswith("+46") or digits.startswith("0046"):
+        digits = "0" + digits[len("0046") if digits.startswith("0046") else 2:]
+    nbsp = " "  # hårt mellanslag, så att numret inte bryts över två rader
+    if re.fullmatch(r"07\d{8}", digits):
+        return f"{digits[:3]}-{digits[3:6]}{nbsp}{digits[6:8]}{nbsp}{digits[8:]}"
+    if re.fullmatch(r"08\d{7,8}", digits):
+        rest = digits[2:]
+        groups = [rest[:3], rest[3:-2], rest[-2:]] if len(rest) == 7 else [rest[:3], rest[3:6], rest[6:]]
+        return "08-" + nbsp.join(groups)
+    return number
+
+
 def href_for(key, value):
     if not value:
         return {"telefon": "tel:", "epost": "mailto:"}.get(key, "#")
@@ -73,7 +88,9 @@ def main():
         if key not in PLACEHOLDER:
             sys.exit(f"Okänd markering <!--uppgift:{key}-->")
         value = values.get(key, "")
-        body = html.escape(value) if value else f'<span class="ph">{html.escape(PLACEHOLDER[key])}</span>'
+        if key == "telefon" and value:
+            value = tel_text(value)
+        body =html.escape(value) if value else f'<span class="ph">{html.escape(PLACEHOLDER[key])}</span>'
         return f"<!--uppgift:{key}-->{body}<!--/uppgift-->"
 
     def href(m):
