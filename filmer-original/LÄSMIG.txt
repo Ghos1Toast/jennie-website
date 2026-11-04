@@ -14,6 +14,11 @@ videos/ läggs upp.
 2. Kör i projektmappen:   python tools/filmer.py
    (första gången:        python -m pip install imageio-ffmpeg)
 
+3. Kulören under bildtexten fyller du i i filmer.csv (i projektmappen).
+   Nya filmer läggs till där automatiskt – skriv kulören i kolumnen farg och,
+   om du vill ha en färgruta, färgkoden i kolumnen hex (t.ex. C9A227). Kör
+   sedan skriptet igen. Tom kulör = gul platshållare på sidan.
+
 Var filmerna hamnar:
 - Filmerna blandas in jämnt mellan bilderna i galleriet på inspiration.html
   (första kortet är alltid en bild). De spelas
@@ -23,6 +28,8 @@ Var filmerna hamnar:
   Välj en film som ser bra ut även beskuren till 4:5 (lite bredare än stående).
 
 Bra att veta:
+- Svart i början eller slutet av en film klipps bort automatiskt, så att
+  den inte blir svart innan den börjar om.
 - Ljudet tas bort. Filmerna spelas ändå utan ljud, och musik från
   Instagram/TikTok får inte användas på hemsidan.
 - Besökare som valt "minska rörelse" i sin telefon/dator får en stillbild

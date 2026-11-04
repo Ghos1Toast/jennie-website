@@ -5,6 +5,7 @@ och filmer (från filmer.py) blandas jämnt, så att varje skript kan köras fö
 utan att ta bort det andra skriptets innehåll.
 """
 import csv
+import html
 import io
 import re
 import sys
@@ -56,6 +57,24 @@ def mix(photos, videos):
             vi += 1
     out.extend(videos[vi:])
     return out
+
+
+def caption_html(room, color, hexcode=""):
+    """Kulörkortets etikett: rummet, och under det kulören (med färgruta om hex finns).
+    Tom kulör = gul platshållare. hexcode ska redan vara kontrollerad (sex tecken) eller tom."""
+    room = html.escape(room)
+    swatch = f'<span class="swatch" style="background: #{hexcode}" aria-hidden="true"></span>' if hexcode else ""
+    color_html = html.escape(color) or '<span class="ph">[SAKNAS: kulör, t.ex. namn, kod och märke]</span>'
+    room_html = f'<span class="gallery-room">{room}</span>' if room else ""
+    return f'<p class="gallery-caption">{room_html}<span class="gallery-color">{swatch}{color_html}</span></p>'
+
+
+def valid_hex(value):
+    """"#C9A227" eller "c9a227" -> "C9A227". Ogiltigt -> None, tomt -> ""."""
+    value = (value or "").strip().lstrip("#")
+    if not value:
+        return ""
+    return value.upper() if re.fullmatch(r"[0-9a-fA-F]{6}", value) else None
 
 
 def read_csv(path):

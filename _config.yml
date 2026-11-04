@@ -2,6 +2,7 @@
 exclude:
   - galleri.csv
   - partner.csv
+  - filmer.csv
   - partner-original
   - uppgifter.txt
   - bilder-original

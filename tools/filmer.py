@@ -12,12 +12,16 @@ Vad skriptet gör:
    1280 px på långsidan) i videos/. Ljud och metadata som GPS-position tas bort.
    Filmerna spelas automatiskt utan ljud, så ljudspåret behövs inte – och
    musik från t.ex. Instagram får ändå inte användas på hemsidan.
+   Svart i början eller slutet av filmen klipps bort, så att den inte blir svart
+   innan den börjar om.
 2. Tar en stillbild ur filmen som visas innan filmen startar.
 3. Blandar in filmerna jämnt mellan bilderna i galleriet på inspiration.html,
    sorterade efter filnamn. Den första filmen visas också stort överst på startsidan.
    Filnamnet blir bildtext:
        "1 Kök, Nacka.mov"          ->  "Kök, Nacka"  (siffran styr bara ordningen)
        "Kök_Nacka_1080x1920.mov"   ->  "Kök Nacka"
+   Kulören under bildtexten står i filmer.csv (fil;farg;hex). Nya filmer läggs
+   till där automatiskt – fyll bara i farg (och hex för färgrutan).
 4. Tar bort filer i videos/ för filmer som inte längre finns i mappen.
 """
 import html
@@ -33,6 +37,7 @@ import galleri_lib  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "filmer-original"
 OUT = ROOT / "videos"
+CSV_PATH = ROOT / "filmer.csv"
 VIDEO_EXT = {".mp4", ".mov", ".m4v", ".avi", ".mkv", ".webm", ".3gp"}
 MAX_SIDE = 1280
 WARN_MB = 15
@@ -86,9 +91,35 @@ def size_of(ffmpeg, path):
     return int(m.group(1)), int(m.group(2))
 
 
+def black_trim(ffmpeg, src):
+    """Hittar svart i början och slutet av filmen. Returnerar (start, längd) i sekunder,
+    eller (0, None) om inget behöver klippas."""
+    r = run(ffmpeg, ["-i", str(src), "-an", "-vf", "blackdetect=d=0.2:pix_th=0.08", "-f", "null", "-"])
+    m = re.search(r"Duration: (\d+):(\d+):([\d.]+)", r.stderr)
+    if not m:
+        return 0, None
+    duration = int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3))
+    start, end = 0.0, duration
+    for b_start, b_end in re.findall(r"black_start:([\d.]+) black_end:([\d.]+)", r.stderr):
+        b_start, b_end = float(b_start), float(b_end)
+        if b_start < 0.1:
+            start = max(start, b_end)
+        if b_end > duration - 0.15:
+            end = min(end, b_start)
+    if end - start < 1:  # nästan helt svart – låt filmen vara som den är
+        return 0, None
+    if start == 0 and end == duration:
+        return 0, None
+    return start, end - start
+
+
 def encode(ffmpeg, src, mp4, poster):
     scale = f"scale='if(gt(iw,ih),min({MAX_SIDE},iw),-2)':'if(gt(iw,ih),-2,min({MAX_SIDE},ih))'"
-    r = run(ffmpeg, ["-y", "-i", str(src),
+    start, length = black_trim(ffmpeg, src)
+    trim = ["-ss", f"{start:.3f}", "-t", f"{length:.3f}"] if length else []
+    if length:
+        print(f"    klipper bort svart: använder {start:.1f}–{start + length:.1f} s")
+    r = run(ffmpeg, ["-y", "-i", str(src), *trim,
                      "-map", "0:v:0", "-an",                          # bara bild, inget ljud
                      "-map_metadata", "-1", "-map_chapters", "-1",    # tar bort GPS och annan metadata
                      "-vf", scale,
@@ -111,16 +142,37 @@ def video_tag(name, w, h, cls, preload):
             f'</video>')
 
 
-def gallery_item(name, caption, w, h):
-    cap = html.escape(caption, quote=True)
+def read_colors(sources):
+    """Läser filmer.csv (fil;farg;hex) och lägger till rader för nya filmer, så att
+    det bara är att fylla i kulören. Returnerar {filnamn: (farg, hex)}."""
+    rows = galleri_lib.read_csv(CSV_PATH) if CSV_PATH.exists() else []
+    colors, warnings = {}, []
+    for row in rows:
+        hexcode = galleri_lib.valid_hex(row.get("hex"))
+        if hexcode is None:
+            warnings.append(f"filmer.csv rad {row['rad']}: hex '{row['hex']}' ska vara sex tecken, t.ex. C9A227")
+            hexcode = ""
+        colors[row.get("fil", "").lower()] = (row.get("farg", "") or row.get("färg", ""), hexcode)
+    new = [s.name for s in sources if s.name.lower() not in colors]
+    if new:
+        text = CSV_PATH.read_text(encoding="utf-8-sig") if CSV_PATH.exists() else "fil;farg;hex\n"
+        text = text if text.endswith("\n") else text + "\n"
+        CSV_PATH.write_text(text + "".join(f"{n};;\n" for n in new), encoding="utf-8", newline="\n")
+        print(f"  la till {len(new)} filmer i filmer.csv – fyll i kulören där")
+    return colors, warnings
+
+
+def gallery_item(name, caption, w, h, color="", hexcode=""):
+    full = f"{caption}. {color}" if caption and color else (caption or color)
+    cap = html.escape(full, quote=True)
     video = "\n".join("    " + line for line in video_tag(name, w, h, "autoplay-video", "none").split("\n"))
-    cap_p = f'\n  <p class="gallery-caption">{cap}</p>' if cap else ""
     return (f'<li class="gallery-item gallery-item--video">\n'
             f'  <a class="gallery-link" href="videos/{name}.mp4" data-video="videos/{name}.mp4" data-caption="{cap}">\n'
             f'{video}\n'
             f'    <span class="visually-hidden">Film: {cap or "utan bildtext"}</span>\n'
             f'  </a>\n'
-            f'  {TOGGLE}{cap_p}\n'
+            f'  {TOGGLE}\n'
+            f'  {galleri_lib.caption_html(caption, color, hexcode)}\n'
             f'</li>\n')
 
 
@@ -153,7 +205,8 @@ def main():
     sources = sorted((p for p in SRC.iterdir() if p.suffix.lower() in VIDEO_EXT), key=lambda p: p.name.lower())
     print(f"{len(sources)} filmer i filmer-original/")
 
-    built, used, warnings = [], set(), []
+    colors, warnings = read_colors(sources)
+    built, used = [], set()
     for src in sources:
         name = slug(src.stem)
         if name in used:
@@ -172,7 +225,7 @@ def main():
             warnings.append(f"{src.name} blev {mb:.0f} MB – korta filmen, den spelas automatiskt och ska vara lätt")
         w, h = size_of(ffmpeg, mp4)
         used.add(name)
-        built.append((name, caption_from(src.stem), w, h))
+        built.append((name, caption_from(src.stem), w, h, *colors.get(src.name.lower(), ("", ""))))
         print(f"  {name}.mp4  {w}x{h}  {mb:.1f} MB")
 
     # Filmerna blandas in jämnt mellan bilderna som bilder.py lagt i galleriet

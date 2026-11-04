@@ -117,18 +117,12 @@ def focus_style(row):
 
 
 def caption_html(row):
-    """Kulörkortets etikett: rummet, och under det kulören (med färgruta om hex finns)."""
-    room = html.escape(row.get("bildtext", ""))
-    color = html.escape(row.get("farg", "") or row.get("färg", ""))
-    hexcode = row.get("hex", "").strip().lstrip("#")
-    if hexcode and not re.fullmatch(r"[0-9a-fA-F]{6}", hexcode):
+    hexcode = galleri_lib.valid_hex(row.get("hex"))
+    if hexcode is None:
         warnings.append(f"rad {row['rad']} ({row['fil']}): hex '{row['hex']}' ska vara sex tecken, t.ex. C9A227")
         hexcode = ""
-    swatch = f'<span class="swatch" style="background: #{hexcode}" aria-hidden="true"></span>' if hexcode else ""
-    color_html = color or f'<span class="ph">[SAKNAS: kulör, t.ex. namn, kod och märke]</span>'
-    room_html = f'<span class="gallery-room">{room}</span>' if room else ""
-    return (f'\n  <p class="gallery-caption">{room_html}'
-            f'<span class="gallery-color">{swatch}{color_html}</span></p>')
+    color = row.get("farg", "") or row.get("färg", "")
+    return "\n  " + galleri_lib.caption_html(row.get("bildtext", ""), color, hexcode)
 
 
 def item_html(row, name, size, eager):

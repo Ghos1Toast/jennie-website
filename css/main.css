@@ -383,16 +383,6 @@ html:not(.js) .menu-toggle { display: none; }
   .services { grid-template-columns: 1fr 1fr; gap: var(--space-7) var(--space-8); }
 }
 
-/* Tjänsterna till vänster, en bild från verkstaden till höger */
-.services-layout { display: grid; gap: var(--space-7); }
-.services-photo { margin: 0; }
-.services-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--color-cream); }
-@media (min-width: 700px) and (max-width: 899px) {
-  .services-photo { max-width: 26rem; }
-}
-@media (min-width: 900px) {
-  .services-layout { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: var(--space-8); align-items: start; }
-}
 
 /* Tre tjänster: en kolumn tills alla tre får plats, så att inget kort blir ensamt på en rad */
 .services--3 { grid-template-columns: 1fr; }
