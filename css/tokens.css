@@ -1,6 +1,6 @@
 /* Design tokens – Jennies Färgsättning & Måleri
-   UTKAST D "Kulörkarta": mörkt och djärvt. Filmen fyller hela första skärmen, tjänsterna
-   är färgplattor, projekten rullar i sidled. Runda knappar och hörn. */
+   UTKAST D "Kulörkarta": mjukt, vänligt och professionellt. Varm ljus bakgrund, tjänsterna som
+   färgprovsplattor i dämpade toner, mjukt rundade hörn, filmen i en stor rundad ruta. */
 
 /* =====================================================================
    PALETTEN – alla färger på sajten kommer från de sex raderna här.
@@ -9,64 +9,70 @@
    så ser du om texten fortfarande går att läsa (WCAG-kontrast).
    ===================================================================== */
 :root {
-  --palette-bg:      #101C1A;  /* sidans bakgrund (nästan svart grön) */
-  --palette-surface: #1A2B28;  /* upphöjda ytor: varannan sektion, kort, formulärfält */
-  --palette-text:    #F4E4C7;  /* text – loggans beige */
-  --palette-brand:   #356865;  /* loggans grön: färgplattor och kontaktrutan */
-  --palette-accent:  #D9A441;  /* ockra (som det gula köket): knappar, länkar, detaljer */
-  --palette-chip:    #F4EFE6;  /* ljusa plattor bakom partnerloggor och en tjänsteplatta */
+  --palette-bg:      #F7F3ED;  /* sidans bakgrund (varm, ljus sand) */
+  --palette-surface: #EDE5DA;  /* varannan sektion */
+  --palette-text:    #23302D;  /* text och rubriker */
+  --palette-brand:   #356865;  /* loggans grön: knappar, länkar, kontaktrutan, footern */
+  --palette-accent:  #D9A441;  /* ockra (som det gula köket): bara som färgyta, aldrig som text */
+  --palette-chip:    #FFFFFF;  /* kort, etiketter på bilderna, formulärfält */
 }
 
 /* Fler paletter att prova: kopiera in värdena ovan.
-   Djupblå med korall:
-     --palette-bg: #0F1720; --palette-surface: #18232F; --palette-text: #F1ECE4;
-     --palette-brand: #2E5A78; --palette-accent: #E3826B; --palette-chip: #F3EFEA;
-   Varm brun med salvia:
-     --palette-bg: #1B1512; --palette-surface: #261E1A; --palette-text: #F2E6D8;
-     --palette-brand: #5F7360; --palette-accent: #D9A441; --palette-chip: #F4EEE6;
+   Salvia och terrakotta:
+     --palette-bg: #F6F3EE; --palette-surface: #E9E4DA; --palette-text: #2B2A26;
+     --palette-brand: #5B6E58; --palette-accent: #C9805E; --palette-chip: #FFFFFF;
+   Loggans exakta färger, ljusare beige:
+     --palette-bg: #FBF7F0; --palette-surface: #F4E4C7; --palette-text: #1F2B29;
+     --palette-brand: #356865; --palette-accent: #D9A441; --palette-chip: #FFFFFF;
 */
 
 :root {
   /* ---- Färgernas roller (räknas ut från paletten – ändra paletten, inte här) ---- */
   --color-bg: var(--palette-bg);
   --color-surface: var(--palette-surface);
+  --color-card: var(--palette-chip);
   --color-text: var(--palette-text);
-  --color-muted: color-mix(in srgb, var(--palette-text) 72%, var(--palette-bg));   /* sekundär text */
+  --color-muted: color-mix(in srgb, var(--palette-text) 74%, var(--palette-bg));      /* sekundär text */
   --color-brand: var(--palette-brand);
+  --color-brand-deep: color-mix(in srgb, var(--palette-brand) 60%, var(--palette-text)); /* footern, knappar när man pekar */
+  --color-on-brand: var(--palette-chip);                                               /* text på grönt */
+  --color-on-brand-muted: color-mix(in srgb, var(--palette-chip) 78%, var(--palette-brand));
   --color-accent: var(--palette-accent);
-  --color-chip: var(--palette-chip);
-  --color-on-light: var(--palette-bg);                                               /* text på ockra och ljusa plattor */
-  --color-on-light-muted: color-mix(in srgb, var(--palette-bg) 75%, var(--palette-chip));
-  --color-border: color-mix(in srgb, var(--palette-text) 45%, var(--palette-bg));     /* formulärfält, knappkanter */
-  --color-rule: color-mix(in srgb, var(--palette-text) 16%, transparent);             /* tunna linjer */
+  /* Tjänsteplattorna: dämpade toner blandade ur paletten, som provbitar på en färgkarta */
+  --color-tile-1: color-mix(in srgb, var(--palette-brand) 22%, var(--palette-bg));
+  --color-tile-2: color-mix(in srgb, var(--palette-accent) 34%, var(--palette-bg));
+  --color-tile-3: color-mix(in srgb, var(--palette-surface) 70%, var(--palette-chip));
+  --color-tile-4: color-mix(in srgb, var(--palette-brand) 10%, var(--palette-chip));
+  --color-border: color-mix(in srgb, var(--palette-text) 55%, var(--palette-bg));     /* formulärfält */
+  --color-rule: color-mix(in srgb, var(--palette-text) 12%, transparent);             /* tunna linjer */
+  --color-shadow: color-mix(in srgb, var(--palette-text) 10%, transparent);           /* mjuka skuggor */
   --color-img-ph: var(--palette-surface);
-  --color-scrim: var(--palette-bg);                                                    /* tonas över filmen så att texten syns */
-  --color-overlay: color-mix(in srgb, var(--palette-bg) 96%, transparent);            /* bakom stor bild */
-  --color-focus: var(--palette-accent);
+  --color-overlay: color-mix(in srgb, color-mix(in srgb, var(--palette-brand) 30%, #000) 95%, transparent); /* bakom stor bild */
+  --color-on-overlay: var(--palette-bg);
+  --color-focus: var(--palette-brand);
 
   /* ---- Neutrala färger som inte följer paletten ---- */
-  --color-white: #FFFFFF;
   --color-black: #000000;        /* bakom film i stor visning */
   --color-placeholder: #FFF1B8;  /* gul markering för text som saknas */
   --color-placeholder-text: #161A19;
-  --color-error: #FF9A8A;        /* felmeddelanden – ljus röd, läsbar på mörk bakgrund */
+  --color-error: #A3262A;        /* felmeddelanden i formuläret */
 
   /* ---- Typografi ---- */
-  /* Space Grotesk för rubriker, Inter för text. Båda SIL OFL, självhostade i fonts/. */
-  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Figtree: vänlig och lättläst. SIL OFL, självhostad i fonts/. */
+  --font-display: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --text-sm: 0.875rem;
+  --text-sm: 0.9375rem;
   --text-base: 1.0625rem;
   --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
-  --text-h3: clamp(1.375rem, 1.25rem + 0.5vw, 1.75rem);
-  --text-h2: clamp(2.25rem, 1.5rem + 3vw, 4.25rem);
-  --text-h1: clamp(2.5rem, 1.8rem + 3.2vw, 4.75rem);
-  --text-hero: clamp(3.25rem, 1.6rem + 7vw, 8.5rem);
+  --text-h3: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);
+  --text-h2: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --text-h1: clamp(2.5rem, 1.8rem + 3vw, 4.25rem);
+  --text-hero: clamp(2.75rem, 1.8rem + 3.8vw, 5rem);
 
-  --leading-tight: 0.98;
-  --leading-snug: 1.15;
-  --leading-body: 1.6;
+  --leading-tight: 1.08;
+  --leading-snug: 1.2;
+  --leading-body: 1.65;
   --measure: 62ch;
 
   /* ---- Avstånd (4px-bas) ---- */
@@ -79,12 +85,13 @@
   --space-7: 3rem;
   --space-8: 4rem;
   --space-9: 6rem;
-  --section-y: clamp(4rem, 2.5rem + 5vw, 8rem);
+  --section-y: clamp(4rem, 2.5rem + 5vw, 7.5rem);
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
-  --container: 84rem;
+  --container: 80rem;
 
   /* ---- Form ---- */
+  --radius-sm: 12px;
   --radius: 20px;
-  --radius-lg: 32px;
+  --radius-lg: 28px;
   --tap-target: 44px;
 }
