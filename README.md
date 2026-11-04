@@ -1,6 +1,6 @@
 # Jennies Färgsättning & Måleri – hemsida (UTKAST B "Kulörkort")
 
-> **Branchen `farger`:** samma sajt som `main`, med en färgväljare nere till vänster för att jämföra 8 färgvarianter (`css/varianter.css`, `js/varianter.js`). Länka direkt till en variant med `?variant=skog` osv. Väljaren tas bort när Jennie valt – den valda varianten flyttas då in i `main`.
+> **Branchen `farger`:** samma sajt som `main`, med en färgväljare nere till vänster för att jämföra 7 färgvarianter (`css/varianter.css`, `js/varianter.js`). Länka direkt till en variant med `?variant=skog` osv. Väljaren tas bort när Jennie valt – den valda varianten flyttas då in i `main`.
 
 Alternativ visuell riktning. Samma sidor och innehåll som utkast A (branch `claude/jennies-fargsattning-site-qwp5jv`), annan stil: mörk teal, kondenserade versaler (Barlow Condensed), raka kanter, galleribilder som kulörkort.
 

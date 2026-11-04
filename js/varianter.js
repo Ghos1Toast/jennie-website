@@ -7,18 +7,20 @@
     ['ljus-topp', '2. Ljus topp'],
     ['vit-topp', '3. Vit topp, grön mitt'],
     ['grona-band', '4. Gröna band'],
-    ['logga', '5. Loggans exakta färger'],
-    ['grafit', '6. Grafit'],
-    ['skog', '7. Skog'],
-    ['natt', '8. Natt']
+    ['grafit', '5. Grafit'],
+    ['skog', '6. Skog'],
+    ['natt', '7. Natt']
   ];
   var KEY = 'farg-variant';
   var root = document.documentElement;
 
+  function known(value) {
+    return variants.some(function (v) { return v[0] === value; }) ? value : '';
+  }
   function read() {
     var fromUrl = new URLSearchParams(location.search).get('variant');
-    if (fromUrl !== null) return fromUrl;
-    try { return localStorage.getItem(KEY) || ''; } catch (e) { return ''; }
+    if (fromUrl !== null) return known(fromUrl);
+    try { return known(localStorage.getItem(KEY) || ''); } catch (e) { return ''; }
   }
   function apply(value) {
     if (value) root.setAttribute('data-variant', value);

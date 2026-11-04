@@ -1,6 +1,6 @@
 /* FÄRGVARIANTER – bara på branchen "farger", för att jämföra. Tas bort när Jennie valt.
    Väljaren nere till vänster (js/varianter.js) sätter data-variant på <html>.
-   Varianterna 2–4: samma färger som nu, i annan ordning. 5–8: nya paletter, samma ordning.
+   Varianterna 2–4: samma färger som nu, i annan ordning. 5–7: nya paletter, samma ordning.
 
    Teknik: main.css färgar alla delar med rollerna i tokens.css (--color-teal-deep = mörk bakgrund,
    --color-cream = text på mörkt osv.). Här byts rollerna ut inom en viss del av sidan,
@@ -55,15 +55,7 @@ html[data-variant="vit-topp"] .cta-band { --light-bg: var(--palette-light); }
 html[data-variant="grona-band"] { --band-bg: var(--palette-brand); }
 html[data-variant="grona-band"] .cta-band { --light-bg: var(--palette-light); }
 
-/* ---------- 5–8. Nya paletter, samma ordning som nu ---------- */
-html[data-variant="logga"] {
-  --palette-dark:  #1E3D3A;
-  --palette-brand: #356865;
-  --palette-light: #F4E4C7;
-  --palette-tint:  #F8EFE2;
-  --palette-paper: #FCFAF6;
-  --palette-ink:   #161A19;
-}
+/* ---------- 5–7. Nya paletter, samma ordning som nu ---------- */
 html[data-variant="grafit"] {
   --palette-dark:  #24292A;
   --palette-brand: #356865;
