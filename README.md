@@ -1,6 +1,6 @@
 # Jennies Färgsättning & Måleri – hemsida (UTKAST C "Ateljé")
 
-Tredje visuella riktningen, byggd på utkast B (branch `claude/jennies-draft-b`) med samma innehåll, verktyg och platshållare. Stil: ljust och luftigt, serif-rubriker (Fraunces) i vanlig skrift, bild och porträtt i valv, galleri i murverk där bilderna visas hela, numrerad tjänstelista.
+Tredje visuella riktningen, byggd på utkast B (branch `claude/jennies-draft-b`) med samma innehåll, verktyg och platshållare. Stil: ljust och luftigt, serif-rubriker (Fraunces) i vanlig skrift, galleri i murverk där bilderna visas hela, numrerad tjänstelista.
 
 Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webbläsaren.
 

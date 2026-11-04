@@ -289,21 +289,15 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 /* ---------- Hero ----------
-   Stor serif-rubrik, filmen i ett valv med ett beige valv bakom, förskjutet */
+   Stor serif-rubrik till vänster, filmen till höger */
 .hero { padding-block: var(--space-7) var(--section-y); }
 .hero h1 { font-size: var(--text-hero); line-height: 0.98; letter-spacing: -0.025em; }
 .hero h1 em { display: block; }
 .hero-grid { display: grid; gap: var(--space-8); align-items: end; }
 .hero-lead { margin-top: var(--space-6); max-width: 34ch; font-size: var(--text-lg); color: var(--color-muted); }
 
-.hero-media { position: relative; isolation: isolate; max-width: 28rem; width: 100%; justify-self: center; }
-.hero-media::before {
-  content: ""; position: absolute; z-index: -1;
-  inset: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-7) var(--space-7);
-  border-radius: 999px 999px 0 0;
-  background: var(--color-bg-accent);
-}
-.hero-video-wrap { position: relative; overflow: hidden; border-radius: 999px 999px 0 0; }
+.hero-media { position: relative; max-width: 30rem; width: 100%; justify-self: center; }
+.hero-video-wrap { position: relative; overflow: hidden; border-radius: var(--radius); }
 .hero-video,
 .hero-media .img-ph {
   display: block; width: 100%; height: auto;
@@ -465,16 +459,10 @@ html:not(.js) .menu-toggle { display: none; }
 .lightbox button:hover { background: var(--color-on-overlay); color: var(--color-heading); }
 .lightbox :focus-visible { outline-color: var(--color-on-overlay); }
 
-/* ---------- Om-delar: porträtt i valv ---------- */
+/* ---------- Om-delar ---------- */
 .split { display: grid; gap: var(--space-8); align-items: center; }
-.portrait { position: relative; isolation: isolate; max-width: 26rem; margin: var(--space-5) var(--space-5) 0 0; }
-.portrait::before {
-  content: ""; position: absolute; z-index: -1;
-  inset: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-7) var(--space-7);
-  border-radius: 999px 999px 0 0;
-  background: var(--color-bg-accent);
-}
-.portrait img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 30%; border-radius: 999px 999px 0 0; background: var(--color-img-ph); }
+.portrait { max-width: 28rem; }
+.portrait img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 30%; border-radius: var(--radius); background: var(--color-img-ph); }
 @media (min-width: 800px) {
   .split { grid-template-columns: 5fr 7fr; gap: var(--space-9); }
 }
@@ -545,7 +533,7 @@ html:not(.js) .menu-toggle { display: none; }
 @media (min-width: 960px) {
   .contact-layout { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: var(--space-9); align-items: start; }
 }
-.contact-aside { padding: var(--space-8) var(--space-6) var(--space-7); background: var(--color-bg-alt); border-radius: 999px 999px var(--radius) var(--radius); text-align: center; }
+.contact-aside { padding: var(--space-7) var(--space-6); background: var(--color-bg-alt); border-radius: var(--radius); text-align: center; }
 .contact-person { display: grid; justify-items: center; gap: var(--space-3); margin-bottom: var(--space-6); }
 .contact-person img { width: 6rem; height: 6rem; object-fit: cover; object-position: 50% 25%; border-radius: 50%; }
 .contact-name { font: 400 1.5rem/1.2 var(--font-display); color: var(--color-heading); }

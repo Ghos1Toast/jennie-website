@@ -1,5 +1,5 @@
 /* Design tokens – Jennies Färgsättning & Måleri
-   UTKAST C "Ateljé": ljust och luftigt, serif-rubriker i vanlig skrift, valv-formade bilder,
+   UTKAST C "Ateljé": ljust och luftigt, serif-rubriker i vanlig skrift,
    galleri i murverk (bilderna beskärs inte). */
 
 /* =====================================================================
@@ -11,7 +11,7 @@
 :root {
   --palette-dark:  #24403D;  /* rubriker, knappar när man pekar på dem */
   --palette-brand: #356865;  /* loggans grön: knappar, länkar, kursiv accent */
-  --palette-light: #F4E4C7;  /* loggans beige: valven bakom bilderna, citatsektionen */
+  --palette-light: #F4E4C7;  /* loggans beige: citatsektionen */
   --palette-tint:  #F2EDE5;  /* varannan sektion och footern */
   --palette-paper: #FBF9F5;  /* sidans bakgrund */
   --palette-ink:   #1D2321;  /* brödtext */
