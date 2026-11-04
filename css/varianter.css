@@ -1,6 +1,6 @@
 /* FÄRGVARIANTER – bara på branchen "farger", för att jämföra. Tas bort när Jennie valt.
    Väljaren nere till vänster (js/varianter.js) sätter data-variant på <html>.
-   Varianterna 2–4: samma färger som nu, i annan ordning. 5–7: nya paletter, samma ordning.
+   Varianterna 2–4: samma färger som nu, i annan ordning. 5–17: nya paletter, samma ordning.
 
    Teknik: main.css färgar alla delar med rollerna i tokens.css (--color-teal-deep = mörk bakgrund,
    --color-cream = text på mörkt osv.). Här byts rollerna ut inom en viss del av sidan,
@@ -79,6 +79,48 @@ html[data-variant="natt"] {
   --palette-tint:  #F2EEE7;
   --palette-paper: #FAFAF8;
   --palette-ink:   #161A1E;
+}
+
+/* ---------- 8–17. Fler paletter, samma ordning som nu (alla klarar tools/kontrast.py) ---------- */
+html[data-variant="salvia"] {   /* dämpad salviagrön */
+  --palette-dark: #2E3B33; --palette-brand: #4F6B57; --palette-light: #ECE5D0;
+  --palette-tint: #EEF0E8; --palette-paper: #FAFAF6; --palette-ink: #181C19;
+}
+html[data-variant="mossa"] {    /* olivgrön */
+  --palette-dark: #2B3220; --palette-brand: #5A6B35; --palette-light: #EDE3C6;
+  --palette-tint: #F2F0E4; --palette-paper: #FAFAF5; --palette-ink: #1A1C16;
+}
+html[data-variant="petrol"] {   /* djup blågrön */
+  --palette-dark: #123A40; --palette-brand: #1F5F66; --palette-light: #F4DFC0;
+  --palette-tint: #EAF0EF; --palette-paper: #FAFBFA; --palette-ink: #131A1A;
+}
+html[data-variant="hav"] {      /* marinblå */
+  --palette-dark: #14304A; --palette-brand: #2C5878; --palette-light: #F2E6CF;
+  --palette-tint: #ECF0F3; --palette-paper: #FAFBFB; --palette-ink: #141A20;
+}
+html[data-variant="ljung"] {    /* gråviolett */
+  --palette-dark: #2E2B3D; --palette-brand: #55507A; --palette-light: #EEE3D3;
+  --palette-tint: #F1EFF3; --palette-paper: #FAFAFB; --palette-ink: #18171D;
+}
+html[data-variant="plommon"] {  /* mörkt plommon */
+  --palette-dark: #3A2433; --palette-brand: #6E3F5E; --palette-light: #F3E1D6;
+  --palette-tint: #F5ECEE; --palette-paper: #FBF9F8; --palette-ink: #1C161A;
+}
+html[data-variant="rodfarg"] {  /* falu rödfärg */
+  --palette-dark: #3B1C1A; --palette-brand: #8B2F27; --palette-light: #F2E0CC;
+  --palette-tint: #F6ECE6; --palette-paper: #FBF8F6; --palette-ink: #1C1615;
+}
+html[data-variant="lera"] {     /* terrakotta och brunt */
+  --palette-dark: #3A2A24; --palette-brand: #8A4B32; --palette-light: #F3DFC8;
+  --palette-tint: #F5ECE2; --palette-paper: #FBF8F4; --palette-ink: #1C1816;
+}
+html[data-variant="ockra"] {    /* ockra och mörkbrunt */
+  --palette-dark: #2F2A1E; --palette-brand: #745514; --palette-light: #F2D9A0;
+  --palette-tint: #F6EEDC; --palette-paper: #FBF9F3; --palette-ink: #1B1915;
+}
+html[data-variant="granit"] {   /* nästan svart, varmgrått */
+  --palette-dark: #1E1F1F; --palette-brand: #4A4E4F; --palette-light: #E8E2D6;
+  --palette-tint: #EFEEEA; --palette-paper: #FAFAF8; --palette-ink: #151616;
 }
 
 /* ---------- Väljaren ---------- */

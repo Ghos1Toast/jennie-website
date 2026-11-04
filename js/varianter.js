@@ -9,7 +9,17 @@
     ['grona-band', '4. Gröna band'],
     ['grafit', '5. Grafit'],
     ['skog', '6. Skog'],
-    ['natt', '7. Natt']
+    ['natt', '7. Natt'],
+    ['salvia', '8. Salvia'],
+    ['mossa', '9. Mossa'],
+    ['petrol', '10. Petrol'],
+    ['hav', '11. Hav'],
+    ['ljung', '12. Ljung'],
+    ['plommon', '13. Plommon'],
+    ['rodfarg', '14. Rödfärg'],
+    ['lera', '15. Lera'],
+    ['ockra', '16. Ockra'],
+    ['granit', '17. Granit']
   ];
   var KEY = 'farg-variant';
   var root = document.documentElement;
