@@ -1,6 +1,6 @@
-# Jennies Färgsättning & Måleri – hemsida (UTKAST B "Kulörkort")
+# Jennies Färgsättning & Måleri – hemsida (UTKAST E "Nordisk")
 
-Alternativ visuell riktning. Samma sidor och innehåll som utkast A (branch `claude/jennies-fargsattning-site-qwp5jv`), annan stil: mörk teal, kondenserade versaler (Barlow Condensed), raka kanter, galleribilder som kulörkort.
+Femte visuella riktningen, byggd på `main` med samma innehåll, verktyg och platshållare. Stil: minimalt och skandinaviskt – menyn som fast kolumn till vänster på stora skärmar, rubrikerna står kvar till vänster medan innehållet rullar, numrerade sektioner, tunna linjer, nästan svartvitt med loggans grön som accent (Hanken Grotesk).
 
 Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webbläsaren.
 
@@ -12,7 +12,7 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 | `css/tokens.css` | Färger, typsnitt, avstånd. **Paletten** (sex färger) står överst – byt dem för att prova en annan färgsättning, kör sedan `python tools/kontrast.py` för att se att texten går att läsa. |
 | `css/main.css` | All övrig stil, mobil först |
 | `js/main.js` | Mobilmeny, galleri-ljusbox, formulärsändning |
-| `fonts/` | Självhostade typsnitt (Barlow, Barlow Condensed, SIL OFL) |
+| `fonts/` | Självhostade typsnitt (Hanken Grotesk, SIL OFL) |
 | `images/brand/`, `images/om/` | Logga, favicon, porträtt i AVIF/WebP/JPEG |
 | `bilder-original/` | Originalbilder till galleriet. Laddas inte upp (GPS i bilderna). Se `LÄSMIG.txt` där. |
 | `filmer-original/` | Släpp filmer här och kör `python tools/filmer.py` – de komprimeras och läggs ut på Inspiration. Laddas inte upp. Se `LÄSMIG.txt` där. |
