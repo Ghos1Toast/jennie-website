@@ -19,7 +19,7 @@ def read_palette():
     s = TOKENS.read_text(encoding="utf-8")
     block = s[s.index(":root"):s.index("}")]  # första :root-blocket = paletten
     pal = dict(re.findall(r"--palette-(\w+):\s*(#[0-9a-fA-F]{6})", block))
-    missing = {"dark", "brand", "light", "tint", "paper", "ink"} - pal.keys()
+    missing = {"paper", "ink", "brand", "ochre", "sage", "clay"} - pal.keys()
     if missing:
         sys.exit(f"Hittar inte --palette-{', --palette-'.join(sorted(missing))} i tokens.css (skriv dem som #RRGGBB)")
     return {k: tuple(int(v[i:i + 2], 16) for i in (1, 3, 5)) for k, v in pal.items()}
@@ -47,29 +47,35 @@ def main():
     p = read_palette()
     white = (255, 255, 255)
     c = {
-        "mörk (dark)": p["dark"], "grön (brand)": p["brand"], "beige (light)": p["light"],
-        "ljus beige (tint)": p["tint"], "bakgrund (paper)": p["paper"], "text (ink)": p["ink"],
-        "grå text": mix(p["ink"], p["paper"], 0.75),
-        "ljusgrå text på mörkt": mix(p["paper"], p["brand"], 0.75),
-        "formulärkant": mix(p["ink"], p["paper"], 0.55),
-        "vit": white,
+        "papper (paper)": p["paper"], "text (ink)": p["ink"], "grön (brand)": p["brand"],
+        "ockra (ochre)": p["ochre"], "salvia (sage)": p["sage"], "terrakotta (clay)": p["clay"],
+        "grå text": mix(p["ink"], p["paper"], 0.74),
+        "mörkgrön": mix(p["brand"], p["ink"], 0.70),
+        "ljus salvia": mix(p["sage"], p["paper"], 0.35),
+        "ljus ockra": mix(p["ochre"], p["paper"], 0.18),
+        "ljusgrå text på mörkt": mix(p["paper"], p["ink"], 0.70),
+        "formulärkant": mix(p["ink"], p["paper"], 0.50),
+        "vit ram": (255, 255, 255),
     }
-    # (förgrund, bakgrund, gräns, var på sajten)
-    checks = [
-        ("text (ink)", "bakgrund (paper)", 4.5, "brödtext"),
-        ("text (ink)", "ljus beige (tint)", 4.5, "brödtext i beige sektioner"),
-        ("grå text", "bakgrund (paper)", 4.5, "sekundär text"),
-        ("grå text", "ljus beige (tint)", 4.5, "sekundär text i beige sektioner"),
-        ("mörk (dark)", "bakgrund (paper)", 4.5, "rubriker"),
-        ("mörk (dark)", "ljus beige (tint)", 4.5, "rubriker i beige sektioner"),
-        ("grön (brand)", "bakgrund (paper)", 4.5, "länkar, små etiketter"),
-        ("grön (brand)", "ljus beige (tint)", 4.5, "länkar i beige sektioner"),
-        ("beige (light)", "mörk (dark)", 4.5, "text i header, hero, footer"),
-        ("ljusgrå text på mörkt", "mörk (dark)", 4.5, "sekundär text i hero och footer"),
-        ("mörk (dark)", "beige (light)", 4.5, "text på beige knappar"),
-        ("beige (light)", "grön (brand)", 4.5, "text i kontaktrutan längst ner på startsidan"),
-        ("vit", "grön (brand)", 4.5, "knapptext när man pekar på en knapp"),
-        ("formulärkant", "bakgrund (paper)", 3.0, "kant runt formulärfält"),
+    # (förgrund, bakgrund, gräns, var på sajten) – utkast F: ljus sajt, mörk text på kulörer
+    checks = []
+    for bg, where in (("papper (paper)", "sidorna"), ("vit ram", "kort och ramar"),
+                      ("ljus ockra", "varannan sektion"), ("ljus salvia", "för dig som")):
+        checks += [
+            ("text (ink)", bg, 4.5, f"text och rubriker – {where}"),
+            ("grå text", bg, 4.5, f"sekundär text – {where}"),
+            ("grön (brand)", bg, 4.5, f"länkar – {where}"),
+        ]
+    checks += [
+        ("text (ink)", "ockra (ochre)", 4.5, "text på ockra panel och kontaktbandet"),
+        ("text (ink)", "salvia (sage)", 4.5, "text på salviapanelen"),
+        ("text (ink)", "terrakotta (clay)", 4.5, "text på terrakotta (om den används)"),
+        ("papper (paper)", "text (ink)", 4.5, "text på mörkbruna knappar i kontaktbandet"),
+        ("papper (paper)", "grön (brand)", 4.5, "text på gröna knappar"),
+        ("papper (paper)", "mörkgrön", 4.5, "knapptext när man pekar"),
+        ("papper (paper)", "text (ink)", 4.5, "text i footern"),
+        ("ljusgrå text på mörkt", "text (ink)", 4.5, "sekundär text i footern"),
+        ("formulärkant", "vit ram", 3.0, "kant runt formulärfält"),
     ]
     fails = 0
     for fg, bg, need, where in checks:

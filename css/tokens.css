@@ -1,5 +1,7 @@
 /* Design tokens – Jennies Färgsättning & Måleri
-   UTKAST B "Kulörkort": mörk teal, kondenserade versaler, raka kanter. */
+   UTKAST F "Färgprov": varmt och taktilt, som en provbok med kulörer. Centrerad layout,
+   filmen mellan två färgpaneler, tjänsterna som färgprovskort, bilderna i vita ramar,
+   jordnära toner (ockra, salvia, terrakotta) med loggans grön. */
 
 /* =====================================================================
    PALETTEN – alla färger på sajten kommer från de sex raderna här.
@@ -8,64 +10,69 @@
    så ser du om texten fortfarande går att läsa (WCAG-kontrast).
    ===================================================================== */
 :root {
-  --palette-dark:  #1F3F3C;  /* header, hero, footer, rubriker */
-  --palette-brand: #366865;  /* loggans grön: länkar, detaljer, kontaktrutan längst ner */
-  --palette-light: #F8E0C4;  /* loggans beige: knappar och text på mörk bakgrund */
-  --palette-tint:  #F7EADA;  /* varannan sektion (ljus beige) */
-  --palette-paper: #FAFAF7;  /* sidans bakgrund */
-  --palette-ink:   #161A19;  /* brödtext */
+  --palette-paper: #FAF6F0;  /* sidans bakgrund (varmt papper) */
+  --palette-ink:   #2B2622;  /* text och rubriker (varm mörkbrun), footern */
+  --palette-brand: #356865;  /* loggans grön: knappar och länkar */
+  --palette-ochre: #D4A04B;  /* ockra: färgpanel, provkort, kontaktbandet */
+  --palette-sage:  #A9B8A3;  /* salvia: färgpanel, provkort, "för dig som" */
+  --palette-clay:  #C98468;  /* terrakotta: provkort, små detaljer */
 }
 
 /* Fler paletter att prova: kopiera in värdena ovan.
-   Loggans exakta färger (från Max):
-     --palette-dark: #1F3F3C; --palette-brand: #356865; --palette-light: #F4E4C7;
-     --palette-tint: #F8EFE2; --palette-paper: #FCFAF6; --palette-ink: #161A19;
-   Första versionen av utkast B (kraftigare beige):
-     --palette-dark: #1F3F3C; --palette-brand: #366865; --palette-light: #F8E0C4;
-     --palette-tint: #F8E0C4; --palette-paper: #FAFAF7; --palette-ink: #161A19;
+   Svalare, blått och grått:
+     --palette-paper: #F6F7F5; --palette-ink: #232A2E; --palette-brand: #3B5D6E;
+     --palette-ochre: #C9B37E; --palette-sage: #A7B7BD; --palette-clay: #B88B7A;
+   Loggans grön och beige som huvudfärger:
+     --palette-paper: #FBF7F0; --palette-ink: #1F2B29; --palette-brand: #356865;
+     --palette-ochre: #F4E4C7; --palette-sage: #B9CBC4; --palette-clay: #D9B99B;
 */
 
 :root {
   /* ---- Färgernas roller (räknas ut från paletten – ändra paletten, inte här) ---- */
-  --color-teal-deep: var(--palette-dark);
-  --color-teal: var(--palette-brand);
-  --color-cream: var(--palette-light);
-  --color-paper-deep: var(--palette-tint);
-  --color-paper: var(--palette-paper);
-  --color-ink: var(--palette-ink);
-  --color-ink-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-paper));        /* sekundär text */
-  --color-on-dark-muted: color-mix(in srgb, var(--palette-paper) 75%, var(--palette-brand)); /* sekundär text på mörkt */
-  --color-border: color-mix(in srgb, var(--palette-ink) 55%, var(--palette-paper));           /* formulärfält */
-  --color-rule: color-mix(in srgb, var(--palette-ink) 14%, transparent);                      /* tunna linjer */
-  --color-hero-media: color-mix(in srgb, var(--palette-dark) 55%, var(--palette-brand));      /* bakom filmen innan den laddat */
-  --color-img-ph: color-mix(in srgb, var(--palette-brand) 10%, var(--palette-paper));         /* bildplatshållare */
-  --color-overlay: color-mix(in srgb, color-mix(in srgb, var(--palette-dark) 50%, #000) 97%, transparent); /* bakom stor bild */
-  --color-focus: var(--palette-ink);
-  --color-focus-on-dark: var(--palette-light);
+  --color-bg: var(--palette-paper);
+  --color-text: var(--palette-ink);
+  --color-muted: color-mix(in srgb, var(--palette-ink) 74%, var(--palette-paper));
+  --color-brand: var(--palette-brand);
+  --color-brand-deep: color-mix(in srgb, var(--palette-brand) 70%, var(--palette-ink));
+  --color-ochre: var(--palette-ochre);
+  --color-sage: var(--palette-sage);
+  --color-clay: var(--palette-clay);
+  --color-on-brand: var(--palette-paper);
+  --color-sage-soft: color-mix(in srgb, var(--palette-sage) 35%, var(--palette-paper));  /* "för dig som"-sektionen */
+  --color-ochre-soft: color-mix(in srgb, var(--palette-ochre) 18%, var(--palette-paper));
+  --color-frame: #FFFFFF;                                                                 /* vita ramar runt bilderna */
+  --color-on-dark: var(--palette-paper);
+  --color-on-dark-muted: color-mix(in srgb, var(--palette-paper) 70%, var(--palette-ink));
+  --color-border: color-mix(in srgb, var(--palette-ink) 50%, var(--palette-paper));
+  --color-rule: color-mix(in srgb, var(--palette-ink) 14%, transparent);
+  --color-shadow: color-mix(in srgb, var(--palette-ink) 12%, transparent);
+  --color-img-ph: color-mix(in srgb, var(--palette-ochre) 14%, var(--palette-paper));
+  --color-overlay: color-mix(in srgb, color-mix(in srgb, var(--palette-ink) 60%, #000) 96%, transparent);
+  --color-focus: var(--palette-brand);
 
   /* ---- Neutrala färger som inte följer paletten ---- */
-  --color-white: #FFFFFF;        /* kort, formulärfält, hover på mörkt */
   --color-black: #000000;        /* bakom film i stor visning */
   --color-placeholder: #FFF1B8;  /* gul markering för text som saknas */
-  --color-error: #A3262A;        /* felmeddelanden i formuläret */
+  --color-placeholder-text: #161A19;
+  --color-error: #A3262A;
 
   /* ---- Typografi ---- */
-  /* Kondenserade versaler i rubriker ekar loggans "FÄRGSÄTTNING & MÅLERI".
-     (Loggans eget typsnitt är okänt – Barlow Condensed är ett närliggande val, inte samma.) */
-  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Young Serif för rubriker, Instrument Sans för text. Båda SIL OFL, självhostade i fonts/. */
+  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --text-sm: 0.9375rem;                              /* 15px */
-  --text-base: 1.125rem;                             /* 18px – Barlow är smal, behöver lite mer storlek */
-  --text-lg: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
-  --text-h3: clamp(1.5rem, 1.35rem + 0.6vw, 1.875rem);
-  --text-h2: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem);
-  --text-h1: clamp(2.75rem, 1.9rem + 3.6vw, 5rem); /* sidrubriker; startsidans hero har en egen, större */
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-h3: clamp(1.3125rem, 1.2rem + 0.5vw, 1.5625rem);
+  --text-h2: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --text-h1: clamp(2.5rem, 1.8rem + 3vw, 4.25rem);
+  --text-hero: clamp(2.75rem, 1.7rem + 4.2vw, 5.5rem);
 
-  --leading-tight: 0.95;
-  --leading-snug: 1.15;
-  --leading-body: 1.55;
-  --measure: 60ch;
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-body: 1.65;
+  --measure: 62ch;
 
   /* ---- Avstånd (4px-bas) ---- */
   --space-1: 0.25rem;
@@ -77,11 +84,11 @@
   --space-7: 3rem;
   --space-8: 4rem;
   --space-9: 6rem;
-  --section-y: clamp(3.5rem, 2rem + 5vw, 7rem);
+  --section-y: clamp(4rem, 2.5rem + 5vw, 7.5rem);
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
-  --container: 80rem;
+  --container: 76rem;
 
   /* ---- Form ---- */
-  --radius: 0;
+  --radius: 6px;
   --tap-target: 44px;
 }

@@ -1,6 +1,6 @@
-# Jennies Färgsättning & Måleri – hemsida (UTKAST B "Kulörkort")
+# Jennies Färgsättning & Måleri – hemsida (UTKAST F "Färgprov")
 
-Alternativ visuell riktning. Samma sidor och innehåll som utkast A (branch `claude/jennies-fargsattning-site-qwp5jv`), annan stil: mörk teal, kondenserade versaler (Barlow Condensed), raka kanter, galleribilder som kulörkort.
+Sjätte visuella riktningen, byggd på `main` med samma innehåll, verktyg och platshållare. Stil: varmt och taktilt som en provbok med kulörer – centrerad layout, filmen mellan två färgpaneler, tjänsterna som färgprovskort, bilderna i vita ramar, jordnära toner (ockra, salvia, terrakotta) med loggans grön (Young Serif + Instrument Sans).
 
 Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webbläsaren.
 
@@ -9,10 +9,10 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 | Sökväg | Innehåll |
 |---|---|
 | `index.html`, `inspiration.html`, `kontakt.html`, `integritetspolicy.html` | Sidorna. Header och footer är kopierade i varje fil – ändra på alla ställen (utom kontaktuppgifterna, se nedan). |
-| `css/tokens.css` | Färger, typsnitt, avstånd. **Paletten** (sex färger) står överst – byt dem för att prova en annan färgsättning, kör sedan `python tools/kontrast.py` för att se att texten går att läsa. |
+| `css/tokens.css` | Färger, typsnitt, avstånd. **Paletten** (sex färger: paper, ink, brand, ochre, sage, clay) står överst – byt dem för att prova en annan färgsättning, kör sedan `python tools/kontrast.py` för att se att texten går att läsa. |
 | `css/main.css` | All övrig stil, mobil först |
 | `js/main.js` | Mobilmeny, galleri-ljusbox, formulärsändning |
-| `fonts/` | Självhostade typsnitt (Barlow, Barlow Condensed, SIL OFL) |
+| `fonts/` | Självhostade typsnitt (Young Serif, Instrument Sans, SIL OFL) |
 | `images/brand/`, `images/om/` | Logga, favicon, porträtt i AVIF/WebP/JPEG |
 | `bilder-original/` | Originalbilder till galleriet. Laddas inte upp (GPS i bilderna). Se `LÄSMIG.txt` där. |
 | `filmer-original/` | Släpp filmer här och kör `python tools/filmer.py` – de komprimeras och läggs ut på Inspiration. Laddas inte upp. Se `LÄSMIG.txt` där. |
