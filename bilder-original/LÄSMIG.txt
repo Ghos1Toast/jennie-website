@@ -18,10 +18,9 @@ adress. Bara de komprimerade webbversionerna i images/projekt/ läggs upp.
    alt        vad som syns på bilden, för den som inte ser den,
               t.ex. Kök med ljusgröna skåpluckor och vita väggar
    startsida  ja = visas även på startsidan (max 6, i den ordning de står här)
-   fokus      valfritt: vilken del av bilden som syns om korten beskär bilden
-              (vänster, höger, uppe, nere eller t.ex. 30% 70%). Galleriet visar
-              just nu bilderna hela (murverk), så kolumnen märks inte – men låt den
-              stå kvar, den behövs om galleriet byts till lika stora kort igen.
+   fokus      valfritt: vilken del av bilden som syns när kortet beskär den
+              (korten är stående). vänster, höger, uppe, nere eller t.ex. 30% 70%.
+              Bra för liggande bilder där det viktiga inte är i mitten.
 
    Exempel:
    fil;bildtext;farg;hex;alt;startsida;fokus
