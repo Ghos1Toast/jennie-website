@@ -342,7 +342,15 @@ html:not(.js) .menu-toggle { display: none; }
   .site-nav ul { display: flex; align-items: center; gap: var(--space-5); }
   .site-nav .nav-cta a { padding-inline: var(--space-5); color: var(--color-teal-deep); box-shadow: none; }
   .site-nav .nav-insta { margin-left: var(--space-4); } /* luft mellan sidlänkarna och kontaktdelen */
-  .site-nav .nav-insta a { justify-content: center; min-width: var(--tap-target); }
+  /* Instagram som en rund, fylld knapp – en tunn ikon ensam ser vilsen ut */
+  .site-nav .nav-insta a {
+    justify-content: center;
+    width: var(--tap-target); height: var(--tap-target);
+    border-radius: 50%;
+    color: var(--color-teal-deep);
+    background: var(--color-cream);
+  }
+  .site-nav .nav-insta a:hover { color: var(--color-teal-deep); background: var(--color-white); }
   .nav-insta-text {
     position: absolute; width: 1px; height: 1px;
     overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
@@ -839,3 +847,24 @@ html:not(.js) .menu-toggle { display: none; }
 .policy-date { color: var(--color-ink-muted); font-size: var(--text-sm); }
 .prose h1 { font-size: var(--text-h2); overflow-wrap: anywhere; }
 
+
+/* ---------- Om oss (om-oss.html) ---------- */
+.om-lead { font-size: var(--text-h3); line-height: 1.35; color: var(--color-ink); text-wrap: pretty; }
+.om-facts { display: grid; gap: var(--space-7); }
+.om-facts h3 { margin-bottom: var(--space-4); }
+.specialty-list--stack { grid-template-columns: 1fr; gap: var(--space-3); }
+@media (min-width: 900px) {
+  .om-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); }
+  .specialty-list--stack { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+/* Tre bilder från verkstaden i samma vita ram som galleriet */
+.om-photos { display: grid; gap: var(--space-4); list-style: none; padding: 0; }
+.om-photos li {
+  padding: var(--space-2);
+  background: var(--color-white);
+  box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px color-mix(in srgb, var(--color-ink) 6%, transparent);
+}
+.om-photos img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--color-paper-deep); }
+@media (min-width: 600px) {
+  .om-photos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+}
