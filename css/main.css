@@ -414,15 +414,16 @@ html:not(.js) .menu-toggle { display: none; }
 .service:nth-child(4n+4)::before { background: var(--color-teal); }
 .service h3,
 .service p { padding-inline: var(--space-5); }
-.service h3 { margin-bottom: var(--space-3); }
+.service h3 { margin-bottom: var(--space-3); overflow-wrap: break-word; hyphens: manual; }
 .service p { font-size: var(--text-lg); color: var(--color-ink); }
 .service p + p { margin-top: var(--space-3); }
 
 @media (min-width: 600px) {
-  .services { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  /* minmax(0, 1fr): alla kort lika breda, även när ett ord i rubriken är långt */
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 }
 @media (min-width: 1100px) {
-  .services--4 { grid-template-columns: repeat(4, 1fr); }
+  .services--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .service::before { height: 9rem; }
 }
 
