@@ -13,11 +13,6 @@
   font-weight: 700; font-style: normal; font-display: swap;
 }
 @font-face {
-  font-family: "Young Serif";
-  src: url("../fonts/young-serif-latin-400-normal.woff2") format("woff2");
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
   font-family: "Barlow";
   src: url("../fonts/barlow-latin-400-normal.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
@@ -309,6 +304,14 @@ html:not(.js) .menu-toggle { display: none; }
 }
 .site-nav .nav-phone a:hover { color: var(--color-cream); }
 .nav-phone-icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* Instagram i menyn: bara ikonen på desktop, en egen rad med text i mobilmenyn */
+.site-nav .nav-insta a {
+  gap: var(--space-3);
+  font: 500 1.0625rem var(--font-body);
+  letter-spacing: 0.02em; text-transform: none;
+  color: var(--color-on-dark-muted);
+}
+.site-nav .nav-insta a:hover { color: var(--color-cream); }
 
 /* Hamburgermeny upp till 959px – under det får logga, två länkar, telefon och knapp inte plats på en rad */
 @media (max-width: 959px) {
@@ -324,6 +327,7 @@ html:not(.js) .menu-toggle { display: none; }
   .site-nav .nav-cta a { justify-content: center; font-size: 1.25rem; color: var(--color-teal-deep); }
   .site-nav .nav-cta a::before { content: none; }
   .site-nav .nav-phone { display: none; } /* "Ring" ligger redan i listen */
+  .site-nav .nav-insta a { font-size: 1.25rem; }
 }
 
 @media (min-width: 960px) {
@@ -333,7 +337,12 @@ html:not(.js) .menu-toggle { display: none; }
   .site-nav { order: 2; }
   .site-nav ul { display: flex; align-items: center; gap: var(--space-5); }
   .site-nav .nav-cta a { padding-inline: var(--space-5); color: var(--color-teal-deep); box-shadow: none; }
-  .site-nav .nav-phone { margin-left: var(--space-4); } /* luft mellan sidlänkarna och kontaktdelen */
+  .site-nav .nav-insta { margin-left: var(--space-4); } /* luft mellan sidlänkarna och kontaktdelen */
+  .site-nav .nav-insta a { justify-content: center; min-width: var(--tap-target); }
+  .nav-insta-text {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
   .header-phone { display: none; }
 }
 
@@ -572,14 +581,71 @@ html:not(.js) .menu-toggle { display: none; }
 
 /* ---------- CTA-band ----------
    Ockra: avslutar sidan varmt och ljust, mörkgröna knappar (rubrik 4.87, text 7.47 mot ockra) */
-.cta-band { background: var(--color-ochre); color: var(--color-ink); }
-.cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); color: var(--color-teal-deep); }
-.cta-band p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--color-ink); }
-.cta-band .btn { background: var(--color-teal-deep); border-color: var(--color-teal-deep); color: var(--color-cream); }
-.cta-band .btn:hover { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-white); }
-.cta-band .btn--ghost { background: transparent; color: var(--color-teal-deep); border-color: var(--color-teal-deep); }
-.cta-band .btn--ghost:hover { background: var(--color-teal-deep); color: var(--color-cream); }
-.cta-band :focus-visible { outline-color: var(--color-ink); }
+.cta-band {
+  --cta-bg: var(--color-ochre);
+  --cta-fg: var(--palette-dark);        /* rubrik och knappar */
+  --cta-text: var(--palette-ink);
+  --cta-on-btn: var(--palette-light);   /* text på knapparna */
+  --cta-hover: var(--palette-ink);
+  --cta-on-hover: var(--palette-paper);
+  background: var(--cta-bg); color: var(--cta-text);
+}
+.cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); color: var(--cta-fg); }
+.cta-band p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--cta-text); }
+.cta-band .btn { background: var(--cta-fg); border-color: var(--cta-fg); color: var(--cta-on-btn); }
+.cta-band .btn:hover { background: var(--cta-hover); border-color: var(--cta-hover); color: var(--cta-on-hover); }
+.cta-band .btn--ghost { background: transparent; color: var(--cta-fg); border-color: var(--cta-fg); }
+.cta-band .btn--ghost:hover { background: var(--cta-fg); color: var(--cta-on-btn); }
+.cta-band :focus-visible { outline-color: var(--cta-text); }
+
+/* ---------- Instagram (startsida) ----------
+   Utvalda bilder som ligger på sajten och länkar till inläggen – ingen kod från Instagram */
+.insta-head { display: grid; gap: var(--space-5); align-items: end; margin-bottom: var(--space-5); }
+.insta-head p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--color-ink-muted); }
+.insta-btn { justify-self: start; gap: var(--space-2); }
+.insta-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2);
+  margin-top: var(--space-5);
+  list-style: none; padding: 0;
+}
+.insta-tile { position: relative; display: block; overflow: hidden; background: var(--color-img-ph); }
+.insta-tile img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 0.4s ease, opacity 0.2s ease; }
+/* Instagram-ikonen tonas fram när man pekar */
+.insta-tile::after {
+  content: ""; position: absolute; inset: 0;
+  background: color-mix(in srgb, var(--palette-dark) 45%, transparent)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.6'%3E%3Crect x='2.5' y='2.5' width='19' height='19' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4.25'/%3E%3C/svg%3E")
+    center / 2.5rem no-repeat;
+  opacity: 0; transition: opacity 0.2s ease;
+}
+.insta-tile:hover::after,
+.insta-tile:focus-visible::after { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .insta-tile:hover img { transform: scale(1.04); }
+}
+.insta-handle { margin-top: var(--space-5); font-weight: 600; overflow-wrap: anywhere; }
+.insta-handle a { color: var(--color-teal-deep); }
+@media (min-width: 700px) {
+  .insta-head { grid-template-columns: 1fr auto; }
+  .insta-btn { justify-self: end; }
+}
+@media (min-width: 900px) {
+  .insta-grid { grid-template-columns: repeat(6, 1fr); gap: var(--space-3); }
+}
+
+/* Galleriets sista kort: vidare till Instagram */
+.insta-card {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3);
+  min-height: 16rem; padding: var(--space-6) var(--space-4);
+  text-align: center; text-decoration: none;
+  color: var(--palette-light);
+  background: var(--palette-dark);
+}
+.insta-card:hover { color: var(--palette-paper); background: var(--palette-brand); text-decoration: none; }
+.insta-card .icon { width: 2.5rem; height: 2.5rem; }
+.insta-card-title { font: 700 var(--text-h3)/1.1 var(--font-display); text-transform: uppercase; }
+.insta-card-handle { font-size: var(--text-sm); overflow-wrap: anywhere; }
+.gallery-item--insta { padding: 0; }
 
 /* ---------- Kontakt ---------- */
 .form { display: grid; gap: var(--space-5); }
@@ -654,7 +720,16 @@ html:not(.js) .menu-toggle { display: none; }
 @media (min-width: 800px) {
   .footer-brand img { width: 144px; height: 128px; }
 }
-.footer-social { display: inline-flex; align-items: center; gap: var(--space-2); }
+/* Instagram som en tydlig knapp med kontonamnet, inte bara en liten länk */
+.site-footer .footer-social {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  min-height: var(--tap-target); max-width: 100%;
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--color-cream);
+  overflow-wrap: anywhere;
+}
+.site-footer .footer-social:hover { color: var(--color-teal-deep); background: var(--color-cream); text-decoration: none; }
+.footer-social .icon { flex: none; }
 .footer-heading {
   margin-bottom: var(--space-2);
   font: 700 0.9375rem var(--font-display);
@@ -766,12 +841,3 @@ html:not(.js) .menu-toggle { display: none; }
 .policy-date { color: var(--color-ink-muted); font-size: var(--text-sm); }
 .prose h1 { font-size: var(--text-h2); overflow-wrap: anywhere; }
 
-/* ---------- Utkast: serifrubriker ----------
-   Slås på med väljaren nere till vänster (js/utkast.js). Tas bort när Jennie valt. */
-.rubriker-serif :is(h1, h2, h3, .audience-punch) {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  text-transform: none;
-}
-.rubriker-serif :is(h1, h2) { line-height: 1.08; }

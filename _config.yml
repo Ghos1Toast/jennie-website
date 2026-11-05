@@ -3,6 +3,7 @@ exclude:
   - galleri.csv
   - partner.csv
   - filmer.csv
+  - instagram.csv
   - partner-original
   - uppgifter.txt
   - bilder-original

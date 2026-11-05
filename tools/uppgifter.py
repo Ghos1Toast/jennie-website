@@ -23,6 +23,7 @@ PLACEHOLDER = {
     "epost": "[SAKNAS: e-post]",
     "foretagsnamn": "[SAKNAS: registrerat företagsnamn]",
     "orgnr": "[SAKNAS: org.nr]",
+    "instagram": "[SAKNAS: Instagram-konto]",
 }
 
 TEXT_RE = re.compile(r"<!--uppgift:(\w+)-->.*?<!--/uppgift-->")
@@ -68,9 +69,16 @@ def tel_text(number):
     return number
 
 
+def insta_handle(value):
+    """"@namn", "namn" eller hela länken -> "namn"."""
+    return value.strip().rstrip("/").split("/")[-1].lstrip("@")
+
+
 def href_for(key, value):
     if not value:
         return {"telefon": "tel:", "epost": "mailto:"}.get(key, "#")
+    if key == "instagram":
+        return f"https://www.instagram.com/{insta_handle(value)}/"
     if key == "telefon":
         return tel_href(value)
     if key == "epost":
@@ -90,6 +98,8 @@ def main():
         value = values.get(key, "")
         if key == "telefon" and value:
             value = tel_text(value)
+        if key == "instagram" and value:
+            value = "@" + insta_handle(value)
         body =html.escape(value) if value else f'<span class="ph">{html.escape(PLACEHOLDER[key])}</span>'
         return f"<!--uppgift:{key}-->{body}<!--/uppgift-->"
 

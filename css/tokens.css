@@ -65,7 +65,6 @@
      (Loggans eget typsnitt är okänt – Barlow Condensed är ett närliggande val, inte samma.) */
   --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: "Young Serif", Georgia, serif;   /* rubriker när "Rubriker: Serif" är valt (utkast) */
 
   --text-sm: 0.9375rem;                              /* 15px */
   --text-base: 1.125rem;                             /* 18px – Barlow är smal, behöver lite mer storlek */

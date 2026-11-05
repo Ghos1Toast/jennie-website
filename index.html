@@ -12,9 +12,9 @@
   <link rel="preload" href="fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/main.css">
-  <!-- Utkastväljare: bara på branchen main-f, tas bort när Jennie valt -->
-  <link rel="stylesheet" href="css/utkast.css">
-  <script src="js/utkast.js"></script>
+  <!-- Färgvarianter: bara på utkastbrancherna, tas bort när Jennie valt -->
+  <link rel="stylesheet" href="css/varianter.css">
+  <script src="js/varianter.js"></script>
   <script>document.documentElement.classList.add('js');</script>
   <script src="js/main.js" defer></script>
 </head>
@@ -43,6 +43,7 @@
         <ul>
           <li><a href="index.html" aria-current="page">Startsida</a></li>
           <li><a href="inspiration.html">Inspiration</a></li>
+          <li class="nav-insta"><a href="https://www.instagram.com/jenniesfargsattningomaleri/" data-uppgift="instagram"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.25"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg><span class="nav-insta-text">Instagram</span></a></li>
           <li class="nav-phone"><a href="tel:+46735019247" data-uppgift="telefon"><svg class="nav-phone-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><!--uppgift:telefon-->073-501 92 47<!--/uppgift--></a></li>
           <li class="nav-cta"><a class="btn" href="kontakt.html">Kontakt</a></li>
         </ul>
@@ -206,6 +207,75 @@
       </div>
     </section>
 
+    <!-- ========== Instagram ========== -->
+    <section class="section section--alt" aria-labelledby="insta-rubrik">
+      <div class="container">
+        <div class="insta-head">
+          <div>
+            <span class="eyebrow">Instagram</span>
+            <h2 id="insta-rubrik">Följ projekten på Instagram</h2>
+            <p>Fler bilder från våra projekt finns på Instagram.</p>
+          </div>
+          <a class="btn insta-btn" href="https://www.instagram.com/jenniesfargsattningomaleri/" data-uppgift="instagram"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.25"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>Följ på Instagram</a>
+        </div>
+        <p><span class="ph">[FRÅGA: vilka 4–6 inlägg ska visas här? Skicka länkarna. Bilderna nedan är bara exempel ur galleriet.]</span></p>
+        <!-- Bilderna väljs i instagram.csv -->
+        <ul class="insta-grid">
+          <!-- INSTAGRAM:START – genereras av tools/instagram.py, ändra inte för hand -->
+          <li>
+            <a class="insta-tile" href="https://www.instagram.com/jenniesfargsattningomaleri/" aria-label="Se inlägget på Instagram: Hall med mörkgrön ytterdörr, ljusa väggar och svart klinkergolv">
+              <picture>
+                <source type="image/webp" srcset="images/instagram/img_6573-400.webp 400w, images/instagram/img_6573-800.webp 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw">
+                <img src="images/instagram/img_6573-400.jpg" srcset="images/instagram/img_6573-400.jpg 400w, images/instagram/img_6573-800.jpg 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw" width="400" height="400" loading="lazy" decoding="async" alt="">
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a class="insta-tile" href="https://www.instagram.com/jenniesfargsattningomaleri/" aria-label="Se inlägget på Instagram: Stort rum med mörkgröna väggar, vitt tak och schackrutigt golv">
+              <picture>
+                <source type="image/webp" srcset="images/instagram/img_7240-400.webp 400w, images/instagram/img_7240-800.webp 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw">
+                <img src="images/instagram/img_7240-400.jpg" srcset="images/instagram/img_7240-400.jpg 400w, images/instagram/img_7240-800.jpg 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw" width="400" height="400" loading="lazy" decoding="async" alt="">
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a class="insta-tile" href="https://www.instagram.com/jenniesfargsattningomaleri/" aria-label="Se inlägget på Instagram: Kök med gråbeige skåpluckor, gråbeige spis och köksfläkt och vit porslinsho">
+              <picture>
+                <source type="image/webp" srcset="images/instagram/image001-400.webp 400w, images/instagram/image001-800.webp 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw">
+                <img src="images/instagram/image001-400.jpg" srcset="images/instagram/image001-400.jpg 400w, images/instagram/image001-800.jpg 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw" width="400" height="400" loading="lazy" decoding="async" alt="">
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a class="insta-tile" href="https://www.instagram.com/jenniesfargsattningomaleri/" aria-label="Se inlägget på Instagram: Vägg i grågrönt med en golvlampa, en monstera på en pall och en mandolin på väggen">
+              <picture>
+                <source type="image/webp" srcset="images/instagram/img_6575-400.webp 400w, images/instagram/img_6575-800.webp 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw">
+                <img src="images/instagram/img_6575-400.jpg" srcset="images/instagram/img_6575-400.jpg 400w, images/instagram/img_6575-800.jpg 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw" width="400" height="400" loading="lazy" decoding="async" alt="">
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a class="insta-tile" href="https://www.instagram.com/jenniesfargsattningomaleri/" aria-label="Se inlägget på Instagram: Hall med mörkt blågröna väggar och tak, en röd dörr och en trappa i grå metall, under arbete med täckpapp på golvet">
+              <picture>
+                <source type="image/webp" srcset="images/instagram/img_8682-400.webp 400w, images/instagram/img_8682-800.webp 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw">
+                <img src="images/instagram/img_8682-400.jpg" srcset="images/instagram/img_8682-400.jpg 400w, images/instagram/img_8682-800.jpg 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw" width="400" height="400" loading="lazy" decoding="async" alt="">
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a class="insta-tile" href="https://www.instagram.com/jenniesfargsattningomaleri/" aria-label="Se inlägget på Instagram: Mörkbrun spröjsad glasdörr på bockar i verkstaden">
+              <picture>
+                <source type="image/webp" srcset="images/instagram/img_6616-400.webp 400w, images/instagram/img_6616-800.webp 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw">
+                <img src="images/instagram/img_6616-400.jpg" srcset="images/instagram/img_6616-400.jpg 400w, images/instagram/img_6616-800.jpg 800w" sizes="(min-width: 900px) min(16vw, 210px), 33vw" width="400" height="400" loading="lazy" decoding="async" alt="">
+              </picture>
+            </a>
+          </li>
+          <!-- INSTAGRAM:SLUT -->
+        </ul>
+        <p class="insta-handle"><a href="https://www.instagram.com/jenniesfargsattningomaleri/" data-uppgift="instagram"><!--uppgift:instagram-->@jenniesfargsattningomaleri<!--/uppgift--></a></p>
+      </div>
+    </section>
+
     <!-- ========== För vem ========== -->
     <section class="section section--sage" aria-labelledby="for-vem-rubrik">
       <div class="container audience">
@@ -312,7 +382,7 @@
         <div>
           <p class="footer-heading">Följ</p>
           <ul class="footer-list">
-            <li><a class="footer-social" href="https://www.instagram.com/jenniesfargsattningomaleri/"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.25"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>Instagram</a></li>
+            <li><a class="footer-social" href="https://www.instagram.com/jenniesfargsattningomaleri/" data-uppgift="instagram"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.25"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg><span><!--uppgift:instagram-->@jenniesfargsattningomaleri<!--/uppgift--></span></a></li>
           </ul>
         </div>
       </div>

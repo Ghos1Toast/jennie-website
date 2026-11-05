@@ -1,0 +1,216 @@
+/* FÄRGVARIANTER – bara på utkastbrancherna, för att jämföra. Tas bort när Jennie valt.
+   Väljaren nere till vänster (js/varianter.js) sätter data-variant på <html>.
+   1 = main-f som den är. 2–5: samma färger i annan ordning. 6–18: nya paletter.
+   19–24: galna ordningar.
+
+   Teknik: main.css färgar alla delar med rollerna i tokens.css (--color-teal-deep = bakgrund
+   i header/hero/footer, --color-cream = text där osv.). Här byts rollerna ut inom en viss del
+   av sidan. Kontaktbandet har egna variabler (--cta-*). */
+
+/* ---------- Byggstenar ---------- */
+
+/* Mörk header och hero (som på main) */
+html:is([data-variant="mork-topp"], [data-variant="morkt"]) :is(.site-header, .hero),
+html[data-variant="zebra"] .hero {
+  --color-teal-deep: var(--palette-dark);
+  --color-cream: var(--palette-light);
+  --color-on-dark-muted: color-mix(in srgb, var(--palette-paper) 75%, var(--palette-brand));
+  --color-hero-media: color-mix(in srgb, var(--palette-dark) 55%, var(--palette-brand));
+  --color-focus-on-dark: var(--palette-light);
+  --color-white: #FFFFFF;
+}
+
+/* Ljus header, hero eller footer i en annan ljus färg (--light-bg) */
+html[data-variant="vit-topp"] :is(.site-header, .hero),
+html[data-variant="omvand"] :is(.site-header, .hero, .site-footer),
+html[data-variant="beige"] :is(.site-header, .hero),
+html[data-variant="zebra"] .site-header,
+html[data-variant="gron-botten"] :is(.site-header, .hero),
+html[data-variant="gron-hero"] :is(.site-header, .site-footer) {
+  --color-teal-deep: var(--light-bg, var(--palette-tint));        /* bakgrund */
+  --color-cream: var(--palette-dark);                             /* text och knappar */
+  --color-on-dark-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-paper));
+  --color-hero-media: color-mix(in srgb, var(--palette-brand) 12%, var(--palette-paper));
+  --color-focus-on-dark: var(--palette-ink);
+  --color-white: var(--palette-brand);                            /* knappar när man pekar */
+}
+
+/* Gör en ljus sektion mörk (bakgrund = --band-bg).
+   Samarbetspartnerna får alltid vara ljusa – loggorna syns inte på mörkt. */
+html[data-variant="vit-topp"] section[aria-labelledby="tjanster-rubrik"],
+html[data-variant="grona-band"] section:is([aria-labelledby="tjanster-rubrik"], [aria-labelledby="for-vem-rubrik"]),
+html[data-variant="omvand"] main > .section:not(.cta-band, .partners-section),
+html[data-variant="morkt"] main > .section:not(.cta-band, .partners-section),
+html[data-variant="zebra"] section:is([aria-labelledby="tjanster-rubrik"], [aria-labelledby="insta-rubrik"], [aria-labelledby="om-rubrik"]),
+html[data-variant="gron-botten"] section:is([aria-labelledby="for-vem-rubrik"], [aria-labelledby="om-rubrik"]) {
+  background: var(--band-bg);
+  color: var(--palette-paper);                                    /* ärvd textfärg */
+  --color-paper-deep: var(--band-bg);
+  --color-teal-deep: var(--palette-light);                        /* rubriker, linjer, knappar */
+  --color-cream: var(--band-bg);                                  /* text på knappar */
+  --color-teal: var(--palette-light);                             /* etiketter, länkar */
+  --color-ink: var(--palette-paper);                              /* brödtext */
+  --color-ink-muted: color-mix(in srgb, var(--palette-paper) 82%, var(--band-bg));
+  --color-rule: color-mix(in srgb, var(--palette-light) 22%, transparent);
+}
+/* Gul platshållare ska ha mörk text även på mörk bakgrund */
+html[data-variant] .ph { color: var(--palette-ink); }
+/* Vita kort och formulärfält behåller vanliga färger, även i en mörk sektion */
+html[data-variant] :is(.gallery-item, .service, .field input, .field textarea) {
+  --color-teal-deep: var(--palette-dark);
+  --color-teal: var(--palette-brand);
+  --color-ink: var(--palette-ink);
+  --color-ink-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-paper));
+  --color-paper-deep: var(--palette-tint);
+  --color-rule: color-mix(in srgb, var(--palette-ink) 14%, transparent);
+  color: var(--color-ink);
+}
+
+/* Kontaktbandet i ljus beige */
+html:is([data-variant="vit-topp"], [data-variant="grona-band"], [data-variant="omvand"], [data-variant="zebra"]) .cta-band {
+  --cta-bg: var(--palette-light);
+}
+/* Kontaktbandet mörkt (--cta-bg) med beige text */
+html:is([data-variant="gron-cta"], [data-variant="beige"], [data-variant="gron-botten"], [data-variant="gron-hero"]) .cta-band {
+  --cta-bg: var(--palette-dark);
+  --cta-fg: var(--palette-light);
+  --cta-text: var(--palette-light);
+  --cta-on-btn: var(--palette-dark);
+  --cta-hover: var(--palette-paper);
+  --cta-on-hover: var(--palette-dark);
+}
+
+/* ---------- 2. Mörk topp: header och hero mörkgröna som på main ---------- */
+/* (allt sköts av byggstenen ovan) */
+
+/* ---------- 3. Vit topp, grön mitt: vit header och hero, tjänsterna på mörkgrönt,
+              kontaktbandet i loggans beige ---------- */
+html[data-variant="vit-topp"] { --light-bg: var(--palette-paper); --band-bg: var(--palette-dark); }
+
+/* ---------- 4. Gröna band: tjänster och "för dig som" i loggans grön, kontaktbandet beige ---------- */
+html[data-variant="grona-band"] { --band-bg: var(--palette-brand); }
+
+/* ---------- 5. Grönt kontaktband: kontaktbandet i loggans grön som på main ---------- */
+html[data-variant="gron-cta"] .cta-band { --cta-bg: var(--palette-brand); }
+
+/* ---------- 6–18. Nya paletter, samma ordning som nu (alla klarar tools/kontrast.py).
+              Ockra, salvia och terrakotta är desamma i alla. ---------- */
+html[data-variant="grafit"] {
+  --palette-dark: #24292A; --palette-brand: #356865; --palette-light: #F4E4C7;
+  --palette-tint: #F1EEE8; --palette-paper: #FAFAF8; --palette-ink: #161A19;
+}
+html[data-variant="skog"] {
+  --palette-dark: #22382C; --palette-brand: #3D6A4D; --palette-light: #EFE3CB;
+  --palette-tint: #F3ECDF; --palette-paper: #FAF8F3; --palette-ink: #1A1F1B;
+}
+html[data-variant="natt"] {
+  --palette-dark: #1B2B3A; --palette-brand: #2F5E6E; --palette-light: #F1E6D2;
+  --palette-tint: #F2EEE7; --palette-paper: #FAFAF8; --palette-ink: #161A1E;
+}
+html[data-variant="salvia"] {   /* dämpad salviagrön */
+  --palette-dark: #2E3B33; --palette-brand: #4F6B57; --palette-light: #ECE5D0;
+  --palette-tint: #EEF0E8; --palette-paper: #FAFAF6; --palette-ink: #181C19;
+}
+html[data-variant="mossa"] {    /* olivgrön */
+  --palette-dark: #2B3220; --palette-brand: #5A6B35; --palette-light: #EDE3C6;
+  --palette-tint: #F2F0E4; --palette-paper: #FAFAF5; --palette-ink: #1A1C16;
+}
+html[data-variant="petrol"] {   /* djup blågrön */
+  --palette-dark: #123A40; --palette-brand: #1F5F66; --palette-light: #F4DFC0;
+  --palette-tint: #EAF0EF; --palette-paper: #FAFBFA; --palette-ink: #131A1A;
+}
+html[data-variant="hav"] {      /* marinblå */
+  --palette-dark: #14304A; --palette-brand: #2C5878; --palette-light: #F2E6CF;
+  --palette-tint: #ECF0F3; --palette-paper: #FAFBFB; --palette-ink: #141A20;
+}
+html[data-variant="ljung"] {    /* gråviolett */
+  --palette-dark: #2E2B3D; --palette-brand: #55507A; --palette-light: #EEE3D3;
+  --palette-tint: #F1EFF3; --palette-paper: #FAFAFB; --palette-ink: #18171D;
+}
+html[data-variant="plommon"] {  /* mörkt plommon */
+  --palette-dark: #3A2433; --palette-brand: #6E3F5E; --palette-light: #F3E1D6;
+  --palette-tint: #F5ECEE; --palette-paper: #FBF9F8; --palette-ink: #1C161A;
+}
+html[data-variant="rodfarg"] {  /* falu rödfärg */
+  --palette-dark: #3B1C1A; --palette-brand: #8B2F27; --palette-light: #F2E0CC;
+  --palette-tint: #F6ECE6; --palette-paper: #FBF8F6; --palette-ink: #1C1615;
+}
+html[data-variant="lera"] {     /* terrakotta och brunt */
+  --palette-dark: #3A2A24; --palette-brand: #8A4B32; --palette-light: #F3DFC8;
+  --palette-tint: #F5ECE2; --palette-paper: #FBF8F4; --palette-ink: #1C1816;
+}
+html[data-variant="ockra"] {    /* ockra och mörkbrunt */
+  --palette-dark: #2F2A1E; --palette-brand: #745514; --palette-light: #F2D9A0;
+  --palette-tint: #F6EEDC; --palette-paper: #FBF9F3; --palette-ink: #1B1915;
+}
+html[data-variant="granit"] {   /* nästan svart, varmgrått */
+  --palette-dark: #1E1F1F; --palette-brand: #4A4E4F; --palette-light: #E8E2D6;
+  --palette-tint: #EFEEEA; --palette-paper: #FAFAF8; --palette-ink: #151616;
+}
+
+/* ---------- 19–24. Galna ordningar: samma färger som nu, helt omkastade ---------- */
+
+/* 19. Omvänd: ljus header, hero och footer – mörkgröna sektioner däremellan */
+html[data-variant="omvand"] { --band-bg: var(--palette-dark); }
+html[data-variant="omvand"] :is(.site-header, .site-footer) { --light-bg: var(--palette-paper); }
+html[data-variant="omvand"] main > .section--alt:not(.partners-section) { --band-bg: var(--palette-brand); }
+
+/* 20. Mörkt läge: hela sidan mörk, bara partnerna och kontaktbandet ljusa */
+html[data-variant="morkt"] { --band-bg: var(--palette-dark); }
+html[data-variant="morkt"] main > .section--alt:not(.partners-section) {
+  --band-bg: color-mix(in srgb, var(--palette-dark) 70%, var(--palette-brand));
+}
+
+/* 21. Bara beige: loggans beige som bakgrund överallt, mörkt kontaktband och footer */
+html[data-variant="beige"] {
+  --light-bg: var(--palette-light);
+  --color-paper: var(--palette-light);
+  --color-ink-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-light));
+}
+
+/* 22. Zebra: varannan sektion mörk, varannan ljus, hela vägen ner */
+html[data-variant="zebra"] .site-header { --light-bg: var(--palette-paper); }
+html[data-variant="zebra"] section:is([aria-labelledby="tjanster-rubrik"], [aria-labelledby="om-rubrik"]) { --band-bg: var(--palette-brand); }
+html[data-variant="zebra"] section[aria-labelledby="insta-rubrik"] { --band-bg: var(--palette-dark); }
+
+/* 23. Grön botten: beige upptill, sidan blir mörkare ju längre ner man kommer */
+html[data-variant="gron-botten"] { --light-bg: var(--palette-light); }
+html[data-variant="gron-botten"] section[aria-labelledby="for-vem-rubrik"] { --band-bg: var(--palette-brand); }
+html[data-variant="gron-botten"] section[aria-labelledby="om-rubrik"] { --band-bg: var(--palette-dark); }
+
+/* 24. Grön hero: beige header, heron i loggans grön, mörkt kontaktband, ljus footer */
+html[data-variant="gron-hero"] .site-header { --light-bg: var(--palette-light); }
+html[data-variant="gron-hero"] .hero {
+  --color-teal-deep: var(--palette-brand);
+  --color-cream: var(--palette-light);
+  --color-on-dark-muted: var(--palette-light);   /* den vanliga ljusgrå blir för svag mot grönt */
+  --color-hero-media: var(--palette-dark);
+  --color-focus-on-dark: var(--palette-light);
+  --color-white: #FFFFFF;
+}
+html[data-variant="gron-hero"] .site-footer { --light-bg: var(--palette-tint); }
+
+/* ---------- Väljaren ---------- */
+.variant-picker {
+  position: fixed; left: 12px; bottom: 12px; z-index: 200;
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 10px;
+  font: 500 14px/1.2 system-ui, sans-serif;
+  color: #161A19;
+  background: #FFF1B8;
+  border: 1px solid #161A19;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+.variant-picker label { font-weight: 600; }
+.variant-picker select,
+.variant-picker button {
+  min-height: 36px;
+  font: inherit;
+  color: #161A19;
+  background: #fff;
+  border: 1px solid #161A19;
+  cursor: pointer;
+}
+.variant-picker button { min-width: 36px; }
+.variant-picker :focus-visible { outline: 3px solid #161A19; outline-offset: 2px; }
+@media print { .variant-picker { display: none; } }
