@@ -13,6 +13,11 @@
   font-weight: 700; font-style: normal; font-display: swap;
 }
 @font-face {
+  font-family: "Young Serif";
+  src: url("../fonts/young-serif-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
   font-family: "Barlow";
   src: url("../fonts/barlow-latin-400-normal.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
@@ -55,19 +60,18 @@ picture { display: block; max-width: 100%; height: auto; }
 /* hidden-attributet ska alltid vinna över display-regler */
 [hidden] { display: none !important; }
 
+/* Rubrikerna i serif (som utkast F); etiketter, knappar och menyn behåller Barlow Condensed */
 h1, h2, h3 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: var(--leading-tight);
-  text-transform: uppercase;
-  letter-spacing: 0.005em;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   color: var(--color-teal-deep);
   text-wrap: balance;
 }
 h1 { font-size: var(--text-h1); }
 h2 { font-size: var(--text-h2); }
-/* Versaler bara i h1/h2, knappar och menyn – resten i vanlig skrift, så att sidan inte "ropar" överallt */
-h3 { font-size: var(--text-h3); line-height: var(--leading-snug); font-weight: 600; letter-spacing: 0.01em; text-transform: none; }
+h3 { font-size: var(--text-h3); line-height: var(--leading-snug); }
 
 .icon { flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -454,8 +458,7 @@ html:not(.js) .menu-toggle { display: none; }
 .audience { display: grid; gap: var(--space-6); }
 .audience p { font-size: var(--text-lg); color: var(--color-ink-muted); }
 .audience .audience-punch {
-  font: 600 var(--text-h3)/var(--leading-snug) var(--font-display);
-  letter-spacing: 0.01em;
+  font: 400 var(--text-h3)/var(--leading-snug) var(--font-heading);
   color: var(--color-teal-deep);
 }
 @media (min-width: 900px) {
@@ -636,7 +639,7 @@ html:not(.js) .menu-toggle { display: none; }
 }
 .insta-card:hover { color: var(--palette-paper); background: var(--palette-brand); text-decoration: none; }
 .insta-card .icon { width: 2.5rem; height: 2.5rem; }
-.insta-card-title { font: 700 var(--text-h3)/1.1 var(--font-display); text-transform: uppercase; }
+.insta-card-title { font: 400 var(--text-h3)/1.15 var(--font-heading); }
 .insta-card-handle { font-size: var(--text-sm); overflow-wrap: anywhere; }
 .gallery-item--insta { padding: 0; }
 

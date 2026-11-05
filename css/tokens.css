@@ -66,6 +66,7 @@
      (Loggans eget typsnitt är okänt – Barlow Condensed är ett närliggande val, inte samma.) */
   --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: "Young Serif", Georgia, serif;   /* rubriker (h1–h3) – Jennie gillade serifen i utkast F */
 
   --text-sm: 0.9375rem;                              /* 15px */
   --text-base: 1.125rem;                             /* 18px – Barlow är smal, behöver lite mer storlek */
