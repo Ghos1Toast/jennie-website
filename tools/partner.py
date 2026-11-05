@@ -1,4 +1,4 @@
-"""Bygger avsnittet Samarbetspartner på startsidan från partner-original/ och partner.csv.
+"""Bygger avsnittet Samarbetspartner (startsidan och Om oss) från partner-original/ och partner.csv.
 
 Användning (från projektmappen):
 
@@ -15,7 +15,7 @@ Vad skriptet gör:
      lank  = partnerns hemsida, t.ex. https://exempel.se (valfri)
 2. Gör webbversioner av loggorna till images/partner/ (PNG och WebP, genomskinlig
    bakgrund behålls). SVG-loggor kopieras som de är – det är bästa formatet för loggor.
-3. Skriver in partnerna i index.html mellan PARTNER:START och PARTNER:SLUT.
+3. Skriver in partnerna i index.html och om-oss.html mellan PARTNER:START och PARTNER:SLUT.
 4. Tar bort loggor i images/partner/ som inte längre används.
 """
 import html
@@ -40,6 +40,7 @@ CSV_PATH = ROOT / "partner.csv"
 MAX_BOX = (480, 320)  # dubbla visningsstorleken, skarpt på mobil
 BG_TOLERANCE = 40  # hur mycket bakgrundsfärgen får variera (JPG-brus, skuggor)
 LOGO_EXT ={".png", ".jpg", ".jpeg", ".webp", ".svg"}
+PAGES = ("index.html", "om-oss.html")
 START = "<!-- PARTNER:START – genereras av tools/partner.py, ändra inte för hand -->"
 END = "<!-- PARTNER:SLUT -->"
 
@@ -154,8 +155,9 @@ def main():
         items.append(item_html(row, logo))
 
     body = "".join(items) or PLACEHOLDER
-    galleri_lib.write_block("index.html", START, END, body)
-    print(f"index.html: {len(items) or 'platshållare för'} partner")
+    for page in PAGES:
+        galleri_lib.write_block(page, START, END, body)
+        print(f"{page}: {len(items) or 'platshållare för'} partner")
 
     for f in OUT.iterdir():
         if f.is_file() and f.stem not in used:
