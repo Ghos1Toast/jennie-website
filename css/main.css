@@ -647,19 +647,16 @@ html:not(.js) .menu-toggle { display: none; }
   .insta-grid { grid-template-columns: repeat(6, 1fr); gap: var(--space-3); }
 }
 
-/* Galleriets sista kort: vidare till Instagram (och på Om oss: vidare till Inspiration) */
-.insta-card,
-.link-card {
+/* Galleriets sista kort: vidare till Instagram */
+.insta-card {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3);
   flex: 1; min-height: 16rem; padding: var(--space-6) var(--space-4);
   text-align: center; text-decoration: none;
   color: var(--palette-light);
   background: var(--palette-dark);
 }
-.insta-card:hover,
-.link-card:hover { color: var(--palette-paper); background: var(--palette-brand); text-decoration: none; }
+.insta-card:hover { color: var(--palette-paper); background: var(--palette-brand); text-decoration: none; }
 .insta-card .icon { width: 2.5rem; height: 2.5rem; }
-.link-card-title,
 .insta-card-title { font: 400 var(--text-h3)/1.15 var(--font-heading); }
 .insta-card-handle { font-size: var(--text-sm); overflow-wrap: anywhere; }
 .gallery-item--insta { padding: 0; }
@@ -868,19 +865,4 @@ html:not(.js) .menu-toggle { display: none; }
 @media (min-width: 900px) {
   .om-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); }
   .specialty-list--stack { grid-template-columns: 1fr; gap: var(--space-3); }
-}
-/* Tre bilder från verkstaden i samma vita ram som galleriet */
-.om-photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); list-style: none; padding: 0; }
-.om-photos li:not(.om-photos-more) {
-  padding: var(--space-2);
-  background: var(--color-white);
-  box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px color-mix(in srgb, var(--color-ink) 6%, transparent);
-}
-.om-photos img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--color-paper-deep); }
-/* Fjärde rutan: länken vidare till Inspiration, lika stor som bilderna */
-.om-photos-more { display: flex; }
-.om-photos-more .link-card { flex: 1; min-height: 0; }
-.link-card-arrow { font-size: 1.75rem; line-height: 1; }
-@media (min-width: 900px) {
-  .om-photos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
 }
