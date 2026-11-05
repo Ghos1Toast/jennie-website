@@ -1,5 +1,7 @@
 /* Design tokens – Jennies Färgsättning & Måleri
-   UTKAST B "Kulörkort": mörk teal, kondenserade versaler, raka kanter. */
+   UTKAST B "Kulörkort": mörk teal, kondenserade versaler, raka kanter.
+   Branch main-f: samma sida med det Jennie gillade i utkast F – ljus topp, tjänsterna som
+   färgprovskort, varma accentfärger och ockra kontaktband. */
 
 /* =====================================================================
    PALETTEN – alla färger på sajten kommer från de sex raderna här.
@@ -14,6 +16,11 @@
   --palette-tint:  #F7EADA;  /* varannan sektion (ljus beige) */
   --palette-paper: #FAFAF7;  /* sidans bakgrund */
   --palette-ink:   #161A19;  /* brödtext */
+
+  /* Varma accentfärger (från utkast F, som Jennie gillade): tjänstekorten och kontaktbandet */
+  --palette-ochre: #D4A04B;  /* ockra: kontaktbandet, första tjänstekortet */
+  --palette-sage:  #A9B8A3;  /* salvia: tjänstekort, "för dig som" (utspädd) */
+  --palette-clay:  #C98468;  /* terrakotta: tjänstekort */
 }
 
 /* Fler paletter att prova: kopiera in värdena ovan.
@@ -42,6 +49,10 @@
   --color-overlay: color-mix(in srgb, color-mix(in srgb, var(--palette-dark) 50%, #000) 97%, transparent); /* bakom stor bild */
   --color-focus: var(--palette-ink);
   --color-focus-on-dark: var(--palette-light);
+  --color-ochre: var(--palette-ochre);
+  --color-sage: var(--palette-sage);
+  --color-clay: var(--palette-clay);
+  --color-sage-soft: color-mix(in srgb, var(--palette-sage) 35%, var(--palette-paper));      /* "för dig som"-sektionen */
 
   /* ---- Neutrala färger som inte följer paletten ---- */
   --color-white: #FFFFFF;        /* kort, formulärfält, hover på mörkt */
@@ -54,6 +65,7 @@
      (Loggans eget typsnitt är okänt – Barlow Condensed är ett närliggande val, inte samma.) */
   --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Young Serif", Georgia, serif;   /* rubriker när "Rubriker: Serif" är valt (utkast) */
 
   --text-sm: 0.9375rem;                              /* 15px */
   --text-base: 1.125rem;                             /* 18px – Barlow är smal, behöver lite mer storlek */

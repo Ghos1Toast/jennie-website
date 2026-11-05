@@ -4,7 +4,7 @@ Användning (från projektmappen):
 
     python tools/kontrast.py
 
-Läser de sex --palette-färgerna, räknar ut de färger som blandas fram ur dem
+Läser --palette-färgerna, räknar ut de färger som blandas fram ur dem
 (samma blandning som i tokens.css) och skriver ut kontrasten för alla par
 text/bakgrund som finns på sajten. Under gränsen = svårläst, välj en annan färg.
 """
@@ -19,7 +19,7 @@ def read_palette():
     s = TOKENS.read_text(encoding="utf-8")
     block = s[s.index(":root"):s.index("}")]  # första :root-blocket = paletten
     pal = dict(re.findall(r"--palette-(\w+):\s*(#[0-9a-fA-F]{6})", block))
-    missing = {"dark", "brand", "light", "tint", "paper", "ink"} - pal.keys()
+    missing = {"dark", "brand", "light", "tint", "paper", "ink", "ochre", "sage", "clay"} - pal.keys()
     if missing:
         sys.exit(f"Hittar inte --palette-{', --palette-'.join(sorted(missing))} i tokens.css (skriv dem som #RRGGBB)")
     return {k: tuple(int(v[i:i + 2], 16) for i in (1, 3, 5)) for k, v in pal.items()}
@@ -53,6 +53,8 @@ def main():
         "ljusgrå text på mörkt": mix(p["paper"], p["brand"], 0.75),
         "formulärkant": mix(p["ink"], p["paper"], 0.55),
         "vit": white,
+        "ockra": p["ochre"], "salvia utspädd": mix(p["sage"], p["paper"], 0.35),
+        "grå text i ljus header": mix(p["ink"], p["tint"], 0.75),
     }
     # (förgrund, bakgrund, gräns, var på sajten)
     checks = [
@@ -70,6 +72,13 @@ def main():
         ("beige (light)", "grön (brand)", 4.5, "text i kontaktrutan längst ner på startsidan"),
         ("vit", "grön (brand)", 4.5, "knapptext när man pekar på en knapp"),
         ("formulärkant", "bakgrund (paper)", 3.0, "kant runt formulärfält"),
+        ("grå text i ljus header", "ljus beige (tint)", 4.5, "ingress i heron, undertext i loggan"),
+        ("ljus beige (tint)", "grön (brand)", 4.5, "knapptext i heron när man pekar"),
+        ("mörk (dark)", "ockra", 4.5, "rubrik i kontaktbandet"),
+        ("text (ink)", "ockra", 4.5, "text i kontaktbandet"),
+        ("beige (light)", "mörk (dark)", 4.5, "knappar i kontaktbandet"),
+        ("grå text", "salvia utspädd", 4.5, "text i \"för dig som\""),
+        ("mörk (dark)", "salvia utspädd", 4.5, "rubrik i \"för dig som\""),
     ]
     fails = 0
     for fg, bg, need, where in checks:

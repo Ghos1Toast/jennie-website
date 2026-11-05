@@ -13,6 +13,11 @@
   font-weight: 700; font-style: normal; font-display: swap;
 }
 @font-face {
+  font-family: "Young Serif";
+  src: url("../fonts/young-serif-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
   font-family: "Barlow";
   src: url("../fonts/barlow-latin-400-normal.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
@@ -189,6 +194,18 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 .hero .btn--ghost { background: transparent; color: var(--color-cream); border-color: var(--color-cream); }
 .hero .btn--ghost:hover { background: var(--color-cream); color: var(--color-teal-deep); }
 
+/* Header och hero är ljusa (som i utkast F); footern är fortfarande mörk.
+   Delarna ovan färgas med "mörka" roller, så här byts rollerna i stället för att skriva om allt. */
+.site-header,
+.hero {
+  --color-teal-deep: var(--palette-tint);                                              /* bakgrund */
+  --color-cream: var(--palette-dark);                                                  /* text, linjer, knappar */
+  --color-on-dark-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-tint));
+  --color-hero-media: color-mix(in srgb, var(--palette-brand) 12%, var(--palette-paper));
+  --color-focus-on-dark: var(--palette-ink);
+  --color-white: var(--palette-brand);                                                 /* knappar när man pekar */
+}
+
 /* ---------- Header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
@@ -327,6 +344,12 @@ html:not(.js) .menu-toggle { display: none; }
 .hero .eyebrow { color: var(--color-on-dark-muted); }
 .hero-grid { display: grid; gap: var(--space-7); align-items: center; }
 .hero-lead { margin-top: var(--space-5); font-size: var(--text-lg); color: var(--color-on-dark-muted); }
+/* Mobil: texten centrerad ovanför filmen */
+@media (max-width: 899px) {
+  .hero-text { text-align: center; }
+  .hero-lead { max-width: 40ch; margin-inline: auto; }
+  .hero .btn-row { justify-content: center; }
+}
 
 .hero-media { position: relative; }
 .hero-video-wrap { position: relative; }
@@ -365,24 +388,30 @@ html:not(.js) .menu-toggle { display: none; }
 .img-ph--card { aspect-ratio: 4 / 5; }
 
 /* ---------- Tjänster ---------- */
-.services { display: grid; gap: var(--space-7); counter-reset: svc; }
-.service { counter-increment: svc; padding-top: var(--space-5); border-top: 3px solid var(--color-teal-deep); }
-/* .service h3::before {
-  content: "0" counter(svc);
-  display: block;
-  margin-bottom: var(--space-3);
-  font-size: clamp(3.5rem, 3rem + 3vw, 6rem);
-  line-height: 0.85;
-  color: var(--color-teal);
-} */
+/* Varje tjänst är ett färgprovskort: färgfält överst, vit etikett under */
+.services { display: grid; gap: var(--space-5); }
+.service {
+  padding-bottom: var(--space-6);
+  background: var(--color-white);
+  box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px color-mix(in srgb, var(--color-ink) 6%, transparent);
+}
+.service::before { content: ""; display: block; height: 6rem; margin-bottom: var(--space-5); background: var(--color-ochre); }
+.service:nth-child(4n+2)::before { background: var(--color-sage); }
+.service:nth-child(4n+3)::before { background: var(--color-clay); }
+.service:nth-child(4n+4)::before { background: var(--color-teal); }
+.service h3,
+.service p { padding-inline: var(--space-5); }
 .service h3 { margin-bottom: var(--space-3); }
 .service p { font-size: var(--text-lg); color: var(--color-ink); }
 .service p + p { margin-top: var(--space-3); }
 
-@media (min-width: 700px) {
-  .services { grid-template-columns: 1fr 1fr; gap: var(--space-7) var(--space-8); }
+@media (min-width: 600px) {
+  .services { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
 }
-
+@media (min-width: 1100px) {
+  .services--4 { grid-template-columns: repeat(4, 1fr); }
+  .service::before { height: 9rem; }
+}
 
 /* Tre tjänster: en kolumn tills alla tre får plats, så att inget kort blir ensamt på en rad */
 .services--3 { grid-template-columns: 1fr; }
@@ -412,6 +441,7 @@ html:not(.js) .menu-toggle { display: none; }
 .intro-follow::before { content: ""; flex: 0 0 2rem; height: 3px; background: currentColor; }
 
 /* ---------- För vem (startsida) ---------- */
+.section--sage { background: var(--color-sage-soft); }
 .audience { display: grid; gap: var(--space-6); }
 .audience p { font-size: var(--text-lg); color: var(--color-ink-muted); }
 .audience .audience-punch {
@@ -443,6 +473,7 @@ html:not(.js) .menu-toggle { display: none; }
   position: relative;
   break-inside: avoid;
   margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--space-2) 0;   /* vit ram runt bilden, som ett fotografi */
   background: var(--color-white);
   box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px color-mix(in srgb, var(--color-ink) 6%, transparent);
 }
@@ -540,15 +571,15 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 /* ---------- CTA-band ----------
-   Loggans teal: avslutar sidan mörkt och binder ihop med footern (som är ännu mörkare) */
-.cta-band { background: var(--color-teal); color: var(--color-cream); }
-.cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); color: var(--color-cream); }
-.cta-band p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--color-cream); } /* 4.97 mot teal */
-.cta-band .btn { background: var(--color-cream); border-color: var(--color-cream); color: var(--color-teal-deep); }
-.cta-band .btn:hover { background: var(--color-white); border-color: var(--color-white); color: var(--color-teal-deep); }
-.cta-band .btn--ghost { background: transparent; color: var(--color-cream); }
-.cta-band .btn--ghost:hover { background: var(--color-cream); color: var(--color-teal-deep); }
-.cta-band :focus-visible { outline-color: var(--color-focus-on-dark); }
+   Ockra: avslutar sidan varmt och ljust, mörkgröna knappar (rubrik 4.87, text 7.47 mot ockra) */
+.cta-band { background: var(--color-ochre); color: var(--color-ink); }
+.cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); color: var(--color-teal-deep); }
+.cta-band p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--color-ink); }
+.cta-band .btn { background: var(--color-teal-deep); border-color: var(--color-teal-deep); color: var(--color-cream); }
+.cta-band .btn:hover { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-white); }
+.cta-band .btn--ghost { background: transparent; color: var(--color-teal-deep); border-color: var(--color-teal-deep); }
+.cta-band .btn--ghost:hover { background: var(--color-teal-deep); color: var(--color-cream); }
+.cta-band :focus-visible { outline-color: var(--color-ink); }
 
 /* ---------- Kontakt ---------- */
 .form { display: grid; gap: var(--space-5); }
@@ -658,8 +689,10 @@ html:not(.js) .menu-toggle { display: none; }
 .specialty-list li::before {
   content: ""; grid-row: 1 / span 2;
   width: 0.875rem; height: 0.875rem; margin-top: 0.45em;
-  background: var(--color-teal);
+  background: var(--color-ochre);
 }
+.specialty-list li:nth-child(3n+2)::before { background: var(--color-sage); }
+.specialty-list li:nth-child(3n+3)::before { background: var(--color-clay); }
 .specialty-name {
   font: 600 1.375rem/var(--leading-snug) var(--font-display);
   letter-spacing: 0.01em;
@@ -732,3 +765,13 @@ html:not(.js) .menu-toggle { display: none; }
 /* ---------- Integritetspolicy ---------- */
 .policy-date { color: var(--color-ink-muted); font-size: var(--text-sm); }
 .prose h1 { font-size: var(--text-h2); overflow-wrap: anywhere; }
+
+/* ---------- Utkast: serifrubriker ----------
+   Slås på med väljaren nere till vänster (js/utkast.js). Tas bort när Jennie valt. */
+.rubriker-serif :is(h1, h2, h3, .audience-punch) {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.rubriker-serif :is(h1, h2) { line-height: 1.08; }
