@@ -1,7 +1,7 @@
 /* FÄRGVARIANTER – bara på utkastbrancherna, för att jämföra. Tas bort när Jennie valt.
    Väljaren nere till vänster (js/varianter.js) sätter data-variant på <html>.
-   1 = main-f som den är. 2–5: samma färger i annan ordning. 6–18: nya paletter.
-   19–24: galna ordningar.
+   1 = main-f som den är. 2–7: samma färger i annan ordning. 8–20: nya paletter.
+   21–26: galna ordningar.
 
    Teknik: main.css färgar alla delar med rollerna i tokens.css (--color-teal-deep = bakgrund
    i header/hero/footer, --color-cream = text där osv.). Här byts rollerna ut inom en viss del
@@ -93,7 +93,11 @@ html[data-variant="grona-band"] { --band-bg: var(--palette-brand); }
 /* ---------- 5. Grönt kontaktband: kontaktbandet i loggans grön som på main ---------- */
 html[data-variant="gron-cta"] .cta-band { --cta-bg: var(--palette-brand); }
 
-/* ---------- 6–18. Nya paletter, samma ordning som nu (alla klarar tools/kontrast.py).
+/* ---------- 6–7. Kontaktbandet i stark ockra eller salvia ---------- */
+html[data-variant="cta-ockra"] .cta-band { --cta-bg: var(--palette-ochre); }
+html[data-variant="cta-salvia"] .cta-band { --cta-bg: var(--palette-sage); }
+
+/* ---------- 8–20. Nya paletter, samma ordning som nu (alla klarar tools/kontrast.py).
               Ockra, salvia och terrakotta är desamma i alla. ---------- */
 html[data-variant="grafit"] {
   --palette-dark: #24292A; --palette-brand: #356865; --palette-light: #F4E4C7;
@@ -148,37 +152,37 @@ html[data-variant="granit"] {   /* nästan svart, varmgrått */
   --palette-tint: #EFEEEA; --palette-paper: #FAFAF8; --palette-ink: #151616;
 }
 
-/* ---------- 19–24. Galna ordningar: samma färger som nu, helt omkastade ---------- */
+/* ---------- 21–26. Galna ordningar: samma färger som nu, helt omkastade ---------- */
 
-/* 19. Omvänd: ljus header, hero och footer – mörkgröna sektioner däremellan */
+/* 21. Omvänd: ljus header, hero och footer – mörkgröna sektioner däremellan */
 html[data-variant="omvand"] { --band-bg: var(--palette-dark); }
 html[data-variant="omvand"] :is(.site-header, .site-footer) { --light-bg: var(--palette-paper); }
 html[data-variant="omvand"] main > .section--alt:not(.partners-section) { --band-bg: var(--palette-brand); }
 
-/* 20. Mörkt läge: hela sidan mörk, bara partnerna och kontaktbandet ljusa */
+/* 22. Mörkt läge: hela sidan mörk, bara partnerna och kontaktbandet ljusa */
 html[data-variant="morkt"] { --band-bg: var(--palette-dark); }
 html[data-variant="morkt"] main > .section--alt:not(.partners-section) {
   --band-bg: color-mix(in srgb, var(--palette-dark) 70%, var(--palette-brand));
 }
 
-/* 21. Bara beige: loggans beige som bakgrund överallt, mörkt kontaktband och footer */
+/* 23. Bara beige: loggans beige som bakgrund överallt, mörkt kontaktband och footer */
 html[data-variant="beige"] {
   --light-bg: var(--palette-light);
   --color-paper: var(--palette-light);
   --color-ink-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-light));
 }
 
-/* 22. Zebra: varannan sektion mörk, varannan ljus, hela vägen ner */
+/* 24. Zebra: varannan sektion mörk, varannan ljus, hela vägen ner */
 html[data-variant="zebra"] .site-header { --light-bg: var(--palette-paper); }
 html[data-variant="zebra"] section:is([aria-labelledby="tjanster-rubrik"], [aria-labelledby="om-rubrik"]) { --band-bg: var(--palette-brand); }
 html[data-variant="zebra"] section[aria-labelledby="insta-rubrik"] { --band-bg: var(--palette-dark); }
 
-/* 23. Grön botten: beige upptill, sidan blir mörkare ju längre ner man kommer */
+/* 25. Grön botten: beige upptill, sidan blir mörkare ju längre ner man kommer */
 html[data-variant="gron-botten"] { --light-bg: var(--palette-light); }
 html[data-variant="gron-botten"] section[aria-labelledby="for-vem-rubrik"] { --band-bg: var(--palette-brand); }
 html[data-variant="gron-botten"] section[aria-labelledby="om-rubrik"] { --band-bg: var(--palette-dark); }
 
-/* 24. Grön hero: beige header, heron i loggans grön, mörkt kontaktband, ljus footer */
+/* 26. Grön hero: beige header, heron i loggans grön, mörkt kontaktband, ljus footer */
 html[data-variant="gron-hero"] .site-header { --light-bg: var(--palette-light); }
 html[data-variant="gron-hero"] .hero {
   --color-teal-deep: var(--palette-brand);

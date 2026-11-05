@@ -53,7 +53,7 @@ def main():
         "ljusgrå text på mörkt": mix(p["paper"], p["brand"], 0.75),
         "formulärkant": mix(p["ink"], p["paper"], 0.55),
         "vit": white,
-        "ockra": p["ochre"], "salvia utspädd": mix(p["sage"], p["paper"], 0.35),
+        "ockra": p["ochre"], "sand": mix(p["ochre"], p["light"], 0.45), "salvia": p["sage"], "salvia utspädd": mix(p["sage"], p["paper"], 0.35),
         "grå text i ljus header": mix(p["ink"], p["tint"], 0.75),
     }
     # (förgrund, bakgrund, gräns, var på sajten)
@@ -74,8 +74,10 @@ def main():
         ("formulärkant", "bakgrund (paper)", 3.0, "kant runt formulärfält"),
         ("grå text i ljus header", "ljus beige (tint)", 4.5, "ingress i heron, undertext i loggan"),
         ("ljus beige (tint)", "grön (brand)", 4.5, "knapptext i heron när man pekar"),
-        ("mörk (dark)", "ockra", 4.5, "rubrik i kontaktbandet"),
-        ("text (ink)", "ockra", 4.5, "text i kontaktbandet"),
+        ("mörk (dark)", "sand", 4.5, "rubrik och knappar i kontaktbandet"),
+        ("text (ink)", "sand", 4.5, "text i kontaktbandet"),
+        ("mörk (dark)", "ockra", 4.5, "kontaktbandet i stark ockra (variant)"),
+        ("mörk (dark)", "salvia", 4.5, "kontaktbandet i salvia (variant)"),
         ("beige (light)", "mörk (dark)", 4.5, "knappar i kontaktbandet"),
         ("grå text", "salvia utspädd", 4.5, "text i \"för dig som\""),
         ("mörk (dark)", "salvia utspädd", 4.5, "rubrik i \"för dig som\""),

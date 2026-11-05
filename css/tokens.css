@@ -18,7 +18,7 @@
   --palette-ink:   #161A19;  /* brödtext */
 
   /* Varma accentfärger (från utkast F, som Jennie gillade): tjänstekorten och kontaktbandet */
-  --palette-ochre: #D4A04B;  /* ockra: kontaktbandet, första tjänstekortet */
+  --palette-ochre: #D4A04B;  /* ockra: första tjänstekortet, kontaktbandet (utspädd med beige) */
   --palette-sage:  #A9B8A3;  /* salvia: tjänstekort, "för dig som" (utspädd) */
   --palette-clay:  #C98468;  /* terrakotta: tjänstekort */
 }
@@ -52,6 +52,7 @@
   --color-ochre: var(--palette-ochre);
   --color-sage: var(--palette-sage);
   --color-clay: var(--palette-clay);
+  --color-sand: color-mix(in srgb, var(--palette-ochre) 45%, var(--palette-light));         /* kontaktbandet: mjukare än ren ockra */
   --color-sage-soft: color-mix(in srgb, var(--palette-sage) 35%, var(--palette-paper));      /* "för dig som"-sektionen */
 
   /* ---- Neutrala färger som inte följer paletten ---- */

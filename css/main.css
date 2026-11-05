@@ -580,9 +580,9 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 /* ---------- CTA-band ----------
-   Ockra: avslutar sidan varmt och ljust, mörkgröna knappar (rubrik 4.87, text 7.47 mot ockra) */
+   Sand (ockra + loggans beige): avslutar sidan varmt och ljust, mörkgröna knappar */
 .cta-band {
-  --cta-bg: var(--color-ochre);
+  --cta-bg: var(--color-sand);
   --cta-fg: var(--palette-dark);        /* rubrik och knappar */
   --cta-text: var(--palette-ink);
   --cta-on-btn: var(--palette-light);   /* text på knapparna */
