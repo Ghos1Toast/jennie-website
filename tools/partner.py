@@ -11,7 +11,7 @@ Vad skriptet gör:
    Kolumner: fil;namn;text;lank
      fil   = loggans filnamn i partner-original/ (kan lämnas tom – då visas bara namnet)
      namn  = partnerns namn
-     text  = en rad om vad ni gör ihop (valfri)
+     text  = en rad om vad ni gör ihop (tom = gul platshållare)
      lank  = partnerns hemsida, t.ex. https://exempel.se (valfri)
 2. Gör webbversioner av loggorna till images/partner/ (PNG och WebP, genomskinlig
    bakgrund behålls). SVG-loggor kopieras som de är – det är bästa formatet för loggor.
@@ -119,7 +119,8 @@ def item_html(row, logo):
     else:
         logo_div = f'  <div class="partner-logo partner-logo--text" aria-hidden="true">{name}</div>\n'
     name_html = f'<a href="{html.escape(link, quote=True)}" rel="noopener">{name}</a>' if link else name
-    text_p = f'  <p class="partner-what">{text}</p>\n' if text else ""
+    text = text or '<span class="ph">[SAKNAS: en rad om vad ni gör ihop]</span>'
+    text_p = f'  <p class="partner-what">{text}</p>\n'
     return (f'<li class="partner">\n'
             f'{logo_div}'
             f'  <p class="partner-name">{name_html}</p>\n'

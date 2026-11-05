@@ -778,6 +778,7 @@ html:not(.js) .menu-toggle { display: none; }
 /* ---------- Samarbetspartner (startsida) ---------- */
 /* Anpassar sig efter antalet partner: korten har en fast bredd och radbryts av sig själva,
    så två partner står tätt ihop i stället för att lämna tomma kolumner */
+.section-head + .partners { margin-top: 0; }
 .partners {
   display: flex; flex-wrap: wrap; gap: var(--space-6) var(--space-7);
   margin-top: var(--space-6);
