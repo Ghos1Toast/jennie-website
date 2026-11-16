@@ -1,4 +1,4 @@
-/* Jennies Färgsättning & Måleri – huvudstilmall, UTKAST B "Kulörkort"
+/* Jennies Färgsättning & Måleri – huvudstilmall
    Mobil först. Alla färger, typsnitt och avstånd kommer från tokens.css. */
 
 /* ---------- Typsnitt (självhostade, se fonts/) ---------- */
@@ -60,7 +60,7 @@ picture { display: block; max-width: 100%; height: auto; }
 /* hidden-attributet ska alltid vinna över display-regler */
 [hidden] { display: none !important; }
 
-/* Rubrikerna i serif (som utkast F); etiketter, knappar och menyn behåller Barlow Condensed */
+/* Rubrikerna i serif; etiketter, knappar och menyn i Barlow Condensed */
 h1, h2, h3 {
   font-family: var(--font-heading);
   font-weight: 400;
@@ -112,7 +112,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   display: block;
   max-width: var(--measure);
   padding: var(--space-5) var(--space-5) var(--space-5) var(--space-6);
-  border-left: 4px solid var(--palette-ink);
+  border-left: 4px solid var(--color-ink);
   font-weight: 400;
 }
 .ph-block-title {
@@ -121,7 +121,6 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   letter-spacing: 0.16em; text-transform: uppercase;
 }
 .ph-block ul { display: grid; gap: var(--space-2); padding-left: 1.1em; }
-.ph-block li::marker { color: var(--palette-ink); }
 .ph-block strong { font-weight: 600; }
 
 /* ---------- Layout ---------- */
@@ -171,7 +170,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.btn:hover { background: var(--color-teal); border-color: var(--color-teal); color: var(--color-white); text-decoration: none; }
+.btn:hover { background: var(--color-teal); border-color: var(--color-teal); color: var(--color-white); }
 
 .btn--ghost { background: transparent; color: var(--color-teal-deep); }
 .btn--ghost:hover { background: var(--color-teal-deep); border-color: var(--color-teal-deep); color: var(--color-cream); }
@@ -188,43 +187,19 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   border-bottom: 3px solid var(--color-teal);
 }
 .link-arrow::after { content: "→"; transition: transform 0.15s ease; }
-.link-arrow:hover { text-decoration: none; }
 .link-arrow:hover::after { transform: translateX(4px); }
 
-/* ---------- Mörka ytor (header, hero, footer) ---------- */
+/* ---------- Ytor ---------- */
+/* Header och hero är ljust beige, footern mörkgrön */
 .site-header,
-.hero,
-.site-footer {
-  background: var(--color-teal-deep);
-  color: var(--color-cream);
-}
-.site-header :focus-visible,
-.hero :focus-visible,
+.hero { background: var(--color-paper-deep); color: var(--color-teal-deep); }
+.site-footer { background: var(--color-teal-deep); color: var(--color-cream); }
 .site-footer :focus-visible { outline-color: var(--color-focus-on-dark); }
-
-.hero .btn,
-.site-header .btn { background: var(--color-cream); border-color: var(--color-cream); color: var(--color-teal-deep); }
-.hero .btn:hover,
-.site-header .btn:hover { background: var(--color-white); border-color: var(--color-white); color: var(--color-teal-deep); }
-.hero .btn--ghost { background: transparent; color: var(--color-cream); border-color: var(--color-cream); }
-.hero .btn--ghost:hover { background: var(--color-cream); color: var(--color-teal-deep); }
-
-/* Header och hero är ljusa (som i utkast F); footern är fortfarande mörk.
-   Delarna ovan färgas med "mörka" roller, så här byts rollerna i stället för att skriva om allt. */
-.site-header,
-.hero {
-  --color-teal-deep: var(--palette-tint);                                              /* bakgrund */
-  --color-cream: var(--palette-dark);                                                  /* text, linjer, knappar */
-  --color-on-dark-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-tint));
-  --color-hero-media: color-mix(in srgb, var(--palette-brand) 12%, var(--palette-paper));
-  --color-focus-on-dark: var(--palette-ink);
-  --color-white: var(--palette-brand);                                                 /* knappar när man pekar */
-}
 
 /* ---------- Header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-cream) 15%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-teal-deep) 15%, transparent);
 }
 .header-inner {
   display: flex; align-items: center; gap: var(--space-3);
@@ -235,9 +210,8 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   display: flex; align-items: center; gap: var(--space-3);
   margin-right: auto;
   text-decoration: none;
-  color: var(--color-cream);
+  color: var(--color-teal-deep);
 }
-.brand:hover { color: var(--color-cream); text-decoration: none; }
 .brand img { width: 72px; height: 64px; }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-name { font: 700 1.5rem/1 var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -246,7 +220,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   white-space: nowrap;
   font: 600 0.75rem/1 var(--font-display);
   letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--color-on-dark-muted);
+  color: var(--color-ink-muted);
 }
 /* Smala mobiler: undertexten får inte plats. Den finns i loggan och läses upp av skärmläsare. */
 @media (max-width: 439px) {
@@ -260,16 +234,12 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 .header-phone {
   display: inline-grid; place-items: center;
   width: var(--tap-target); height: var(--tap-target);
-  color: var(--color-cream);
-  border: 2px solid var(--color-cream);
+  color: var(--color-teal-deep);
+  border: 2px solid var(--color-teal-deep);
   border-radius: var(--radius);
   text-decoration: none;
 }
-.header-phone:hover { color: var(--color-teal-deep); background: var(--color-cream); }
-.header-phone .num {
-  position: absolute; width: 1px; height: 1px;
-  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
-}
+.header-phone:hover { color: var(--color-cream); background: var(--color-teal-deep); }
 
 .menu-toggle {
   display: inline-flex; align-items: center; gap: var(--space-2);
@@ -277,9 +247,9 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   padding: 0 var(--space-3);
   font: 700 1.125rem var(--font-display);
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--color-cream);
+  color: var(--color-teal-deep);
   background: transparent;
-  border: 2px solid var(--color-cream);
+  border: 2px solid var(--color-teal-deep);
   border-radius: var(--radius);
   cursor: pointer;
 }
@@ -309,42 +279,39 @@ html:not(.js) .menu-toggle { display: none; }
   font: 600 1.25rem var(--font-display);
   letter-spacing: 0.08em; text-transform: uppercase;
   text-decoration: none;
-  color: var(--color-cream);
+  color: var(--color-teal-deep);
 }
-.site-nav a:hover { color: var(--color-white); text-decoration: none; }
-.site-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--color-cream); }
-.site-nav .nav-cta a[aria-current="page"] { box-shadow: none; }
+.site-nav a:hover { color: var(--color-teal); }
+.site-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--color-teal-deep); }
+/* Kontakt är en knapp: behåller knappens färger och får ingen linje som aktiv sida */
+.site-nav .nav-cta .btn { color: var(--color-cream); box-shadow: none; }
+.site-nav .nav-cta .btn:hover { color: var(--color-white); }
 
-/* Telefonnumret i menyn är en tyst extrauppgift bredvid Kontakt-knappen, inte en menylänk */
-.site-nav .nav-phone a {
+/* Telefonnumret och Instagram är tysta extrauppgifter bredvid Kontakt-knappen, inte menylänkar */
+.site-nav .nav-phone a,
+.site-nav .nav-insta a {
   gap: var(--space-2);
   font: 500 1.0625rem var(--font-body);
   letter-spacing: 0.02em; text-transform: none;
-  color: var(--color-on-dark-muted);
+  color: var(--color-ink-muted);
 }
-.site-nav .nav-phone a:hover { color: var(--color-cream); }
-.nav-phone-icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-/* Instagram i menyn: bara ikonen på desktop, en egen rad med text i mobilmenyn */
-.site-nav .nav-insta a {
-  gap: var(--space-3);
-  font: 500 1.0625rem var(--font-body);
-  letter-spacing: 0.02em; text-transform: none;
-  color: var(--color-on-dark-muted);
-}
-.site-nav .nav-insta a:hover { color: var(--color-cream); }
+.site-nav .nav-insta a { gap: var(--space-3); }
+.site-nav .nav-phone a:hover,
+.site-nav .nav-insta a:hover { color: var(--color-teal-deep); }
 
-/* Hamburgermeny upp till 959px – under det får logga, två länkar, telefon och knapp inte plats på en rad */
+/* Hamburgermeny upp till 959px – under det får logga, länkar, telefon och knapp inte plats på en rad */
 @media (max-width: 959px) {
   .header-inner { flex-wrap: wrap; }
   .site-nav { flex-basis: 100%; padding-bottom: var(--space-5); }
   .js .site-nav { display: none; }
   .js .site-nav.is-open { display: block; }
-  .site-nav li + li { border-top: 1px solid color-mix(in srgb, var(--color-cream) 20%, transparent); }
+  .site-nav li + li { border-top: 1px solid color-mix(in srgb, var(--color-teal-deep) 20%, transparent); }
   .site-nav a { font-size: 1.75rem; min-height: 56px; }
-  .site-nav a[aria-current="page"] { box-shadow: none; color: var(--color-white); }
-  .site-nav a[aria-current="page"]::before { content: ""; width: 0.75rem; height: 0.75rem; margin-right: var(--space-3); background: var(--color-cream); }
+  /* Aktiv sida: en liten ruta före namnet i stället för linjen under */
+  .site-nav a[aria-current="page"] { box-shadow: none; color: var(--color-teal); }
+  .site-nav a[aria-current="page"]::before { content: ""; width: 0.75rem; height: 0.75rem; margin-right: var(--space-3); background: var(--color-teal-deep); }
   .site-nav .nav-cta { margin-top: var(--space-4); border-top: 0; }
-  .site-nav .nav-cta a { justify-content: center; font-size: 1.25rem; color: var(--color-teal-deep); }
+  .site-nav .nav-cta a { justify-content: center; font-size: 1.25rem; }
   .site-nav .nav-cta a::before { content: none; }
   .site-nav .nav-phone { display: none; } /* "Ring" ligger redan i listen */
   .site-nav .nav-insta a { font-size: 1.25rem; }
@@ -353,7 +320,8 @@ html:not(.js) .menu-toggle { display: none; }
 @media (min-width: 960px) {
   .header-inner { min-height: 104px; gap: var(--space-6); }
   .brand img { width: 99px; height: 88px; }
-  .menu-toggle { display: none; }
+  .menu-toggle,
+  .header-phone { display: none; }
   .site-nav { order: 2; }
   /* Två grupper: sidorna till vänster, kontaktdelen (Instagram, telefon, Kontakt) till höger
      med en tunn linje emellan – så att menyn inte blir en enda lång rad som flyter ihop */
@@ -362,34 +330,32 @@ html:not(.js) .menu-toggle { display: none; }
   .site-nav .nav-insta {
     margin-left: var(--space-5);
     padding-left: var(--space-6);
-    border-left: 1px solid color-mix(in srgb, var(--color-cream) 25%, transparent);
+    border-left: 1px solid color-mix(in srgb, var(--color-teal-deep) 25%, transparent);
   }
   .site-nav .nav-phone,
   .site-nav .nav-cta { margin-left: var(--space-2); }
-  .site-nav .nav-cta a { padding-inline: var(--space-5); color: var(--color-teal-deep); box-shadow: none; }
-  /* Instagram som en rund knapp med mjuk fyllning – Kontakt är den enda mörka knappen */
+  .site-nav .nav-cta a { padding-inline: var(--space-5); }
+  /* Instagram: bara ikonen, i en rund knapp med mjuk fyllning – Kontakt är den enda mörka knappen */
   .site-nav .nav-insta a {
     justify-content: center;
     width: var(--tap-target); height: var(--tap-target);
     border-radius: 50%;
-    color: var(--color-cream);
-    background: color-mix(in srgb, var(--color-cream) 10%, transparent);
+    color: var(--color-teal-deep);
+    background: color-mix(in srgb, var(--color-teal-deep) 10%, transparent);
   }
-  .site-nav .nav-insta a:hover { color: var(--color-teal-deep); background: var(--color-cream); }
+  .site-nav .nav-insta a:hover { color: var(--color-cream); background: var(--color-teal-deep); }
   .nav-insta-text {
     position: absolute; width: 1px; height: 1px;
     overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
   }
-  .header-phone { display: none; }
 }
 
 /* ---------- Hero ----------
    Text till vänster, stående film (eller bild) till höger på desktop. Under varandra på mobil. */
 .hero { padding-block: var(--space-7) var(--section-y); }
-.hero h1 { color: var(--color-cream); font-size: clamp(3rem, 1.6rem + 4.2vw, 6rem); }
-.hero .eyebrow { color: var(--color-on-dark-muted); }
+.hero h1 { font-size: clamp(3rem, 1.6rem + 4.2vw, 6rem); }
 .hero-grid { display: grid; gap: var(--space-7); align-items: center; }
-.hero-lead { margin-top: var(--space-5); font-size: var(--text-lg); color: var(--color-on-dark-muted); }
+.hero-lead { margin-top: var(--space-5); font-size: var(--text-lg); color: var(--color-ink-muted); }
 /* Mobil: texten centrerad ovanför filmen */
 @media (max-width: 899px) {
   .hero-text { text-align: center; }
@@ -397,7 +363,6 @@ html:not(.js) .menu-toggle { display: none; }
   .hero .btn-row { justify-content: center; }
 }
 
-.hero-media { position: relative; }
 .hero-video-wrap { position: relative; }
 .hero-video,
 .hero-media .img-ph {
@@ -405,7 +370,7 @@ html:not(.js) .menu-toggle { display: none; }
   aspect-ratio: 4 / 5;
   max-height: min(80vh, 720px);
   object-fit: cover;
-  background: var(--color-hero-media);
+  background: var(--color-img-ph);
 }
 
 @media (min-width: 900px) {
@@ -424,15 +389,6 @@ html:not(.js) .menu-toggle { display: none; }
     repeating-linear-gradient(90deg, transparent 0 20px, color-mix(in srgb, var(--color-teal) 8%, transparent) 20px 40px),
     var(--color-img-ph);
 }
-.hero .img-ph {
-  color: var(--color-on-dark-muted);
-  background:
-    repeating-linear-gradient(90deg, transparent 0 20px, color-mix(in srgb, var(--color-cream) 6%, transparent) 20px 40px),
-    var(--color-hero-media);
-}
-.img-ph--hero,
-.img-ph--card { aspect-ratio: 4 / 5; }
-
 /* ---------- Tjänster ---------- */
 /* Varje tjänst är ett färgprovskort: färgfält överst, vit etikett under */
 .services { display: grid; gap: var(--space-5); }
@@ -449,24 +405,15 @@ html:not(.js) .menu-toggle { display: none; }
 .service p { padding-inline: var(--space-5); }
 .service h3 { margin-bottom: var(--space-3); overflow-wrap: break-word; hyphens: manual; }
 .service p { font-size: var(--text-lg); color: var(--color-ink); }
-.service p + p { margin-top: var(--space-3); }
 
 @media (min-width: 600px) {
   /* minmax(0, 1fr): alla kort lika breda, även när ett ord i rubriken är långt */
   .services { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 }
 @media (min-width: 1100px) {
-  .services--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .services { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .service::before { height: 9rem; }
 }
-
-/* Tre tjänster: en kolumn tills alla tre får plats, så att inget kort blir ensamt på en rad */
-.services--3 { grid-template-columns: 1fr; }
-@media (min-width: 900px) {
-  .services--3 { grid-template-columns: repeat(3, 1fr); gap: var(--space-7); }
-}
-/* Färg & måleri är de två andra ihop – siffran säger det, ingen "rekommenderad"-etikett */
-/* .service--combo h3::before { content: "01+02"; } */
 
 /* ---------- Intro (startsida) ---------- */
 /* En kolumn: rubrik, text och avslutande rad i linje under varandra */
@@ -520,7 +467,6 @@ html:not(.js) .menu-toggle { display: none; }
 .gallery-item {
   position: relative;
   display: flex; flex-direction: column;
-  margin: 0;
   padding: var(--space-2) var(--space-2) 0;   /* vit ram runt bilden, som ett fotografi */
   background: var(--color-white);
   box-shadow: 0 1px 0 var(--color-rule), 0 6px 20px color-mix(in srgb, var(--color-ink) 6%, transparent);
@@ -548,7 +494,6 @@ html:not(.js) .menu-toggle { display: none; }
   font: 400 var(--text-sm)/1.35 var(--font-body);
   color: var(--color-ink-muted);
 }
-.gallery-color:empty { display: none; }
 .swatch {
   flex: none; width: 0.875rem; height: 0.875rem;
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-ink) 20%, transparent);
@@ -610,23 +555,10 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 /* ---------- CTA-band ----------
-   Sand (ockra + loggans beige): avslutar sidan varmt och ljust, mörkgröna knappar */
-.cta-band {
-  --cta-bg: var(--color-sand);
-  --cta-fg: var(--palette-dark);        /* rubrik och knappar */
-  --cta-text: var(--palette-ink);
-  --cta-on-btn: var(--palette-light);   /* text på knapparna */
-  --cta-hover: var(--palette-ink);
-  --cta-on-hover: var(--palette-paper);
-  background: var(--cta-bg); color: var(--cta-text);
-}
-.cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); color: var(--cta-fg); }
-.cta-band p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--cta-text); }
-.cta-band .btn { background: var(--cta-fg); border-color: var(--cta-fg); color: var(--cta-on-btn); }
-.cta-band .btn:hover { background: var(--cta-hover); border-color: var(--cta-hover); color: var(--cta-on-hover); }
-.cta-band .btn--ghost { background: transparent; color: var(--cta-fg); border-color: var(--cta-fg); }
-.cta-band .btn--ghost:hover { background: var(--cta-fg); color: var(--cta-on-btn); }
-.cta-band :focus-visible { outline-color: var(--cta-text); }
+   Sand (ockra + loggans beige): avslutar sidan varmt och ljust, med de vanliga mörkgröna knapparna */
+.cta-band { background: var(--color-sand); }
+.cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); }
+.cta-band p { margin-top: var(--space-4); font-size: var(--text-lg); }
 
 /* ---------- Instagram (startsida) ----------
    Utvalda bilder som ligger på sajten och länkar till inläggen – ingen kod från Instagram */
@@ -639,11 +571,11 @@ html:not(.js) .menu-toggle { display: none; }
   list-style: none; padding: 0;
 }
 .insta-tile { position: relative; display: block; overflow: hidden; background: var(--color-img-ph); }
-.insta-tile img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 0.4s ease, opacity 0.2s ease; }
+.insta-tile img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 0.4s ease; }
 /* Instagram-ikonen tonas fram när man pekar */
 .insta-tile::after {
   content: ""; position: absolute; inset: 0;
-  background: color-mix(in srgb, var(--palette-dark) 45%, transparent)
+  background: color-mix(in srgb, var(--color-teal-deep) 45%, transparent)
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.6'%3E%3Crect x='2.5' y='2.5' width='19' height='19' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4.25'/%3E%3C/svg%3E")
     center / 2.5rem no-repeat;
   opacity: 0; transition: opacity 0.2s ease;
@@ -668,10 +600,10 @@ html:not(.js) .menu-toggle { display: none; }
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3);
   flex: 1; min-height: 16rem; padding: var(--space-6) var(--space-4);
   text-align: center; text-decoration: none;
-  color: var(--palette-light);
-  background: var(--palette-dark);
+  color: var(--color-cream);
+  background: var(--color-teal-deep);
 }
-.insta-card:hover { color: var(--palette-paper); background: var(--palette-brand); text-decoration: none; }
+.insta-card:hover { color: var(--color-white); background: var(--color-teal); }
 .insta-card .icon { width: 2.5rem; height: 2.5rem; }
 .insta-card-title { font: 400 var(--text-h3)/1.15 var(--font-heading); }
 .insta-card-handle { font-size: var(--text-sm); overflow-wrap: anywhere; }
@@ -759,7 +691,6 @@ html:not(.js) .menu-toggle { display: none; }
   overflow-wrap: anywhere;
 }
 .site-footer .footer-social:hover { color: var(--color-teal-deep); background: var(--color-cream); text-decoration: none; }
-.footer-social .icon { flex: none; }
 .footer-heading {
   margin-bottom: var(--space-2);
   font: 700 0.9375rem var(--font-display);
@@ -780,10 +711,12 @@ html:not(.js) .menu-toggle { display: none; }
 
 /* ---------- Löptext-sidor ---------- */
 .prose > * + * { margin-top: var(--space-4); }
+.prose h1 { font-size: var(--text-h2); overflow-wrap: anywhere; }
 .prose h2 { margin-top: var(--space-7); font-size: var(--text-h3); }
 .prose ul { padding-left: 1.25rem; max-width: var(--measure); }
+.policy-date { color: var(--color-ink-muted); font-size: var(--text-sm); }
 
-/* ---------- Specialiteter (startsida, i tjänstesektionen) ---------- */
+/* ---------- Specialiteter (startsidan och Om oss) ---------- */
 .specialties { margin-top: var(--space-9); }
 .specialties h3 { margin-bottom: var(--space-5); }
 .specialty-list { list-style: none; padding: 0; display: grid; gap: var(--space-4); }
@@ -808,13 +741,11 @@ html:not(.js) .menu-toggle { display: none; }
   .specialty-list { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
 }
 
-/* ---------- Samarbetspartner (startsida) ---------- */
+/* ---------- Samarbetspartner (startsidan och Om oss) ---------- */
 /* Anpassar sig efter antalet partner: korten har en fast bredd och radbryts av sig själva,
    så två partner står tätt ihop i stället för att lämna tomma kolumner */
-.section-head + .partners { margin-top: 0; }
 .partners {
   display: flex; flex-wrap: wrap; gap: var(--space-6) var(--space-7);
-  margin-top: var(--space-6);
   list-style: none; padding: 0;
 }
 .partner { flex: 0 1 calc(50% - var(--space-7) / 2); }
@@ -868,11 +799,6 @@ html:not(.js) .menu-toggle { display: none; }
 /* I galleriet: uppe till höger på bilden, så att den inte hamnar på bildtexten */
 .gallery-item--video .video-toggle { top: var(--space-2); right: var(--space-2); bottom: auto; }
 
-/* ---------- Integritetspolicy ---------- */
-.policy-date { color: var(--color-ink-muted); font-size: var(--text-sm); }
-.prose h1 { font-size: var(--text-h2); overflow-wrap: anywhere; }
-
-
 /* ---------- Om oss (om-oss.html) ---------- */
 .om-lead { font-size: var(--text-h3); line-height: 1.35; color: var(--color-ink); text-wrap: pretty; }
 .om-facts { display: grid; gap: var(--space-7); }
@@ -880,5 +806,4 @@ html:not(.js) .menu-toggle { display: none; }
 .specialty-list--stack { grid-template-columns: 1fr; gap: var(--space-3); }
 @media (min-width: 900px) {
   .om-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); }
-  .specialty-list--stack { grid-template-columns: 1fr; gap: var(--space-3); }
 }

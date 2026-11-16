@@ -39,7 +39,7 @@ OUT = ROOT / "images" / "partner"
 CSV_PATH = ROOT / "partner.csv"
 MAX_BOX = (480, 320)  # dubbla visningsstorleken, skarpt på mobil
 BG_TOLERANCE = 40  # hur mycket bakgrundsfärgen får variera (JPG-brus, skuggor)
-LOGO_EXT ={".png", ".jpg", ".jpeg", ".webp", ".svg"}
+LOGO_EXT = {".png", ".jpg", ".jpeg", ".webp", ".svg"}
 PAGES = ("index.html", "om-oss.html")
 START = "<!-- PARTNER:START – genereras av tools/partner.py, ändra inte för hand -->"
 END = "<!-- PARTNER:SLUT -->"
@@ -51,12 +51,6 @@ PLACEHOLDER = ('<li class="partner">\n'
                '</li>\n') * 3
 
 warnings = []
-
-
-def slug(name):
-    table = str.maketrans("åäöÅÄÖéÉ ", "aaoAAOeE-")
-    s = "".join(c for c in name.translate(table).lower() if c.isalnum() or c in "-_")
-    return re.sub(r"-+", "-", s).strip("-") or "logga"
 
 
 def clear_background(im):
@@ -146,7 +140,7 @@ def main():
             if not src.exists():
                 warnings.append(f"rad {row['rad']}: hittar inte partner-original/{row['fil']} – visar bara namnet")
             else:
-                name = slug(src.stem)
+                name = galleri_lib.slug(src.stem, "logga")
                 try:
                     logo = make_logo(src, name)
                     used.add(name)

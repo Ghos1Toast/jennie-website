@@ -1,4 +1,4 @@
-"""Gemensamt för bilder.py och filmer.py: läser och skriver galleriet i HTML-sidorna.
+"""Gemensamt för skripten i tools/: läser CSV-filerna och skriver in genererad HTML i sidorna.
 
 Galleriet ligger mellan GALLERI:START och GALLERI:SLUT. Bilder (från bilder.py)
 och filmer (från filmer.py) blandas jämnt, så att varje skript kan köras för sig
@@ -18,22 +18,22 @@ _BLOCK = re.compile(r"( *)<!-- GALLERI:START[^\n]*-->\n(.*?)( *)" + re.escape(EN
 _ITEM = re.compile(r"<li class=\"gallery-item.*?</li>\n", re.S)
 
 
+def slug(name, fallback="bild"):
+    """Filnamn för webben: "Kök Nacka" -> "kok-nacka"."""
+    table = str.maketrans("åäöÅÄÖéÉ ", "aaoAAOeE-")
+    s = "".join(c for c in name.translate(table).lower() if c.isalnum() or c in "-_")
+    return re.sub(r"-+", "-", s).strip("-") or fallback
+
+
 def is_video(item):
     return "gallery-item--video" in item
 
 
-def _find(page):
-    path = ROOT / page
-    s = path.read_text(encoding="utf-8")
-    m = _BLOCK.search(s)
-    if not m:
-        sys.exit(f"Hittar inte GALLERI:START/SLUT i {page}")
-    return path, s, m
-
-
 def read_items(page):
     """Alla <li> i galleriet, utan indrag."""
-    _, _, m = _find(page)
+    m = _BLOCK.search((ROOT / page).read_text(encoding="utf-8"))
+    if not m:
+        sys.exit(f"Hittar inte GALLERI:START/SLUT i {page}")
     indent = m.group(1)
     body = "".join(line[len(indent):] if line.startswith(indent) else line
                    for line in m.group(2).splitlines(keepends=True))
@@ -57,6 +57,11 @@ def mix(photos, videos):
             vi += 1
     out.extend(videos[vi:])
     return out
+
+
+def full_caption(room, color):
+    """Bildtexten i stor visning: "Kök. Linoljefärg Ockra"."""
+    return f"{room}. {color}" if room and color else (room or color)
 
 
 def caption_html(room, color, hexcode=""):
@@ -110,9 +115,4 @@ def write_block(page, start, end, body):
 
 
 def write_items(page, items):
-    path, s, m = _find(page)
-    indent = m.group(1)
-    body = "".join(items)
-    lines = "".join((indent + line + "\n") if line else "\n" for line in body.rstrip("\n").split("\n")) if body else ""
-    path.write_text(s[:m.start()] + f"{indent}{START}\n{lines}{indent}{END}" + s[m.end():],
-                    encoding="utf-8", newline="\n")
+    write_block(page, START, END, "".join(items))

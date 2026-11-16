@@ -25,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import galleri_lib  # noqa: E402
+import uppgifter  # noqa: E402
 
 try:
     from PIL import Image, ImageOps
@@ -50,21 +51,12 @@ END = "<!-- INSTAGRAM:SLUT -->"
 warnings = []
 
 
-def slug(name):
-    table = str.maketrans("åäöÅÄÖéÉ ", "aaoAAOeE-")
-    s = "".join(c for c in name.translate(table).lower() if c.isalnum() or c in "-_")
-    return re.sub(r"-+", "-", s).strip("-") or "bild"
-
-
 def profile_url():
-    """Profillänken från uppgifter.txt (samma regel som tools/uppgifter.py)."""
-    for line in (ROOT / "uppgifter.txt").read_text(encoding="utf-8-sig").splitlines():
-        key, _, value = line.partition("=")
-        if key.strip() == "instagram" and value.strip():
-            handle = value.strip().rstrip("/").split("/")[-1].lstrip("@")
-            return f"https://www.instagram.com/{handle}/"
-    warnings.append("instagram är tomt i uppgifter.txt – bilderna länkar ingenstans")
-    return "#"
+    """Profillänken från uppgifter.txt."""
+    handle = uppgifter.read_values().get("instagram", "")
+    if not handle:
+        warnings.append("instagram är tomt i uppgifter.txt – bilderna länkar ingenstans")
+    return uppgifter.href_for("instagram", handle)
 
 
 def make_versions(src, name):
@@ -119,7 +111,7 @@ def main():
         elif "instagram.com" not in link:
             warnings.append(f"rad {row['rad']} ({row['fil']}): '{link}' ser inte ut som en Instagram-länk")
         alt = row.get("alt") or gallery_alt.get(row["fil"].lower(), "")
-        name = slug(src.stem)
+        name = galleri_lib.slug(src.stem)
         try:
             make_versions(src, name)
         except Exception as e:  # t.ex. HEIC utan pillow-heif

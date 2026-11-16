@@ -190,7 +190,7 @@
       autoVideos.forEach(tryPlay);
     }
 
-    // Pausa alla små filmer medan ljusboxen är öppen
+    // När ljusboxen stängs: starta de små filmerna som syns igen (de pausades när den öppnades)
     if (box) {
       box.addEventListener('close', function () {
         autoVideos.forEach(function (video) {

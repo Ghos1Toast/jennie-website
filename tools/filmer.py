@@ -42,11 +42,9 @@ VIDEO_EXT = {".mp4", ".mov", ".m4v", ".avi", ".mkv", ".webm", ".3gp"}
 MAX_SIDE = 1280
 WARN_MB = 15
 
-BLOCKS = {
-    "index.html": ("<!-- HERO:START – genereras av tools/filmer.py, ändra inte för hand -->",
-                   "<!-- HERO:SLUT -->",
-                   '<div class="img-ph img-ph--hero">[PLATSHÅLLARE: film eller projektbild]</div>\n'),
-}
+HERO_START = "<!-- HERO:START – genereras av tools/filmer.py, ändra inte för hand -->"
+HERO_END = "<!-- HERO:SLUT -->"
+HERO_PLACEHOLDER = '<div class="img-ph">[PLATSHÅLLARE: film eller projektbild]</div>\n'
 
 TOGGLE = ('<button class="video-toggle" type="button" aria-label="Pausa filmen" hidden>'
           '<span class="video-toggle-icon" aria-hidden="true"></span></button>')
@@ -66,9 +64,7 @@ def find_ffmpeg():
 
 def slug(name):
     name = re.sub(r"[\s_-]*\d{3,4}x\d{3,4}", "", name)  # "_1080x1920" bort ur filnamnet
-    table = str.maketrans("åäöÅÄÖéÉ ", "aaoAAOeE-")
-    s = "".join(c for c in name.translate(table).lower() if c.isalnum() or c in "-_")
-    return re.sub(r"[-_]+", "-", s).strip("-") or "film"
+    return galleri_lib.slug(name.replace("_", "-"), "film")
 
 
 def caption_from(stem):
@@ -163,8 +159,7 @@ def read_colors(sources):
 
 
 def gallery_item(name, caption, w, h, color="", hexcode=""):
-    full = f"{caption}. {color}" if caption and color else (caption or color)
-    cap = html.escape(full, quote=True)
+    cap = html.escape(galleri_lib.full_caption(caption, color), quote=True)
     video = "\n".join("    " + line for line in video_tag(name, w, h, "autoplay-video", "none").split("\n"))
     return (f'<li class="gallery-item gallery-item--video">\n'
             f'  <a class="gallery-link" href="videos/{name}.mp4" data-video="videos/{name}.mp4" data-caption="{cap}">\n'
@@ -182,26 +177,11 @@ def hero_item(name, w, h):
             + f'\n  {TOGGLE}\n</div>\n')
 
 
-def write_block(page, body):
-    start, end, placeholder = BLOCKS[page]
-    path = ROOT / page
-    s = path.read_text(encoding="utf-8")
-    m = re.search(r"( *)" + re.escape(start) + r"\n.*?( *)" + re.escape(end), s, re.S)
-    if not m:
-        sys.exit(f"Hittar inte markeringarna i {page}")
-    indent = m.group(1)
-    body = body or placeholder
-    lines = "".join(indent + line + "\n" for line in body.rstrip("\n").split("\n")) if body else ""
-    path.write_text(s[:m.start()] + f"{indent}{start}\n{lines}{indent}{end}" + s[m.end():],
-                    encoding="utf-8", newline="\n")
-
-
 def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     ffmpeg = find_ffmpeg()
     OUT.mkdir(exist_ok=True)
-    script_time = Path(__file__).stat().st_mtime
     sources = sorted((p for p in SRC.iterdir() if p.suffix.lower() in VIDEO_EXT), key=lambda p: p.name.lower())
     print(f"{len(sources)} filmer i filmer-original/")
 
@@ -212,8 +192,8 @@ def main():
         if name in used:
             name = f"{name}-{len(used)}"
         mp4, poster = OUT / f"{name}.mp4", OUT / f"{name}.jpg"
-        # Gör om filmen om den saknas, om originalet ändrats eller om skriptet ändrats sedan sist
-        if not mp4.exists() or mp4.stat().st_mtime < max(src.stat().st_mtime, script_time):
+        # Gör om filmen om den saknas eller om originalet ändrats sedan sist
+        if not mp4.exists() or mp4.stat().st_mtime < src.stat().st_mtime:
             print(f"  komprimerar {src.name} … (kan ta en stund)")
             try:
                 encode(ffmpeg, src, mp4, poster)
@@ -231,7 +211,8 @@ def main():
     # Filmerna blandas in jämnt mellan bilderna som bilder.py lagt i galleriet
     photos = [i for i in galleri_lib.read_items("inspiration.html") if not galleri_lib.is_video(i)]
     galleri_lib.write_items("inspiration.html", galleri_lib.mix(photos, [gallery_item(*b) for b in built]))
-    write_block("index.html", hero_item(built[0][0], built[0][2], built[0][3]) if built else "")
+    hero = hero_item(built[0][0], built[0][2], built[0][3]) if built else HERO_PLACEHOLDER
+    galleri_lib.write_block("index.html", HERO_START, HERO_END, hero)
     print(f"inspiration.html: {len(built)} filmer inblandade bland bilderna")
     print(f"index.html: {'filmen ' + built[0][0] if built else 'platshållare'} överst")
 

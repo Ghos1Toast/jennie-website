@@ -100,7 +100,7 @@ def main():
             value = tel_text(value)
         if key == "instagram" and value:
             value = "@" + insta_handle(value)
-        body =html.escape(value) if value else f'<span class="ph">{html.escape(PLACEHOLDER[key])}</span>'
+        body = html.escape(value) if value else f'<span class="ph">{html.escape(PLACEHOLDER[key])}</span>'
         return f"<!--uppgift:{key}-->{body}<!--/uppgift-->"
 
     def href(m):

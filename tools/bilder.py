@@ -55,20 +55,14 @@ MAX_START = 6
 
 
 PLACEHOLDER = {
-    "index.html": '<li class="gallery-item"><div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div></li>\n' * 6,
+    "index.html": '<li class="gallery-item"><div class="img-ph">[PLATSHÅLLARE: projektbild]</div></li>\n' * 6,
     "inspiration.html": ('<li class="gallery-item">\n'
-                         '  <div class="img-ph img-ph--card">[PLATSHÅLLARE: projektbild]</div>\n'
+                         '  <div class="img-ph">[PLATSHÅLLARE: projektbild]</div>\n'
                          '  <p class="gallery-caption"><span class="ph">[PLATSHÅLLARE: rum, ort]</span></p>\n'
                          '</li>\n') * 12,
 }
 
 warnings = []
-
-
-def slug(name):
-    table = str.maketrans("åäöÅÄÖéÉ ", "aaoAAOeE-")
-    s = "".join(c for c in name.translate(table).lower() if c.isalnum() or c in "-_")
-    return re.sub(r"-+", "-", s).strip("-") or "bild"
 
 
 def read_csv():
@@ -93,10 +87,8 @@ def make_versions(src, name):
         return m.size
 
 
-def caption(row):
-    text = row.get("bildtext", "")
-    color = row.get("farg", "") or row.get("färg", "")
-    return f"{text}. {color}" if text and color else (text or color)
+def color_of(row):
+    return row.get("farg", "") or row.get("färg", "")
 
 
 def focus_style(row):
@@ -121,13 +113,12 @@ def caption_html(row):
     if hexcode is None:
         warnings.append(f"rad {row['rad']} ({row['fil']}): hex '{row['hex']}' ska vara sex tecken, t.ex. C9A227")
         hexcode = ""
-    color = row.get("farg", "") or row.get("färg", "")
-    return "\n  " + galleri_lib.caption_html(row.get("bildtext", ""), color, hexcode)
+    return "\n  " + galleri_lib.caption_html(row.get("bildtext", ""), color_of(row), hexcode)
 
 
 def item_html(row, name, size, eager):
     w, h = size
-    cap = html.escape(caption(row), quote=True)
+    cap = html.escape(galleri_lib.full_caption(row.get("bildtext", ""), color_of(row)), quote=True)
     alt = html.escape(row.get("alt", ""), quote=True)
     srcset = lambda ext: f"images/projekt/{name}-480.{ext} 480w, images/projekt/{name}-960.{ext} 960w"
     loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
@@ -163,7 +154,7 @@ def main():
         if not src.exists():
             warnings.append(f"rad {row['rad']}: hittar inte bilder-original/{row['fil']} – hoppar över")
             continue
-        name = slug(src.stem)
+        name = galleri_lib.slug(src.stem)
         if name in seen_names and seen_names[name] != row["fil"]:
             name = f"{name}-{row['rad']}"
         seen_names[name] = row["fil"]
