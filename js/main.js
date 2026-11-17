@@ -1,6 +1,6 @@
 // Jennies Färgsättning & Måleri – meny, galleri-ljusbox och kontaktformulär.
 // Sidan fungerar utan JS: menyn syns, bilder öppnas som vanliga länkar och
-// formuläret skickas som ett vanligt POST.
+// formuläret öppnar e-postprogrammet via sin mailto-adress.
 
 (function () {
   'use strict';
@@ -202,38 +202,28 @@
   }
 
   // ---------- Kontaktformulär ----------
+  // Bygger ett färdigt mejl av fälten och öppnar besökarens e-postprogram (mailto).
+  // Inget skickas från sidan – besökaren trycker själv på Skicka i sitt e-postprogram.
   var form = document.getElementById('contact-form');
 
-  if (form && window.fetch) {
+  if (form && form.action.indexOf('mailto:') === 0) {
     var status = document.getElementById('form-status');
-    var button = form.querySelector('button[type="submit"]');
-
-    var setStatus = function (text, ok) {
-      status.textContent = text;
-      status.className = 'form-status ' + (ok ? 'is-ok' : 'is-error');
-    };
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      button.disabled = true;
-      setStatus('Skickar …', true);
-
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' }
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error(res.status);
-          form.reset();
-          setStatus('Tack! Din förfrågan är skickad.', true);
-        })
-        .catch(function () {
-          setStatus('Något gick fel och förfrågan skickades inte. Försök igen, eller ring eller mejla direkt.', false);
-        })
-        .then(function () {
-          button.disabled = false;
-        });
+      var lines = Array.prototype.map.call(form.querySelectorAll('input, textarea'), function (field) {
+        var label = form.querySelector('label[for="' + field.id + '"]');
+        var name = label ? label.firstChild.textContent.trim() : field.name;
+        return name + ': ' + (field.value.trim() || '–');
+      });
+      var address = form.action.split('?')[0];
+      var subject = new URLSearchParams(form.action.split('?')[1] || '').get('subject') || '';
+      window.location.href = address +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(lines.join('\n\n'));
+      status.textContent = 'Ditt e-postprogram öppnas med ett färdigt mejl – tryck på Skicka där. ' +
+        'Händer inget? Mejla eller ring oss direkt.';
+      status.className = 'form-status is-ok';
     });
   }
 })();

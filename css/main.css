@@ -656,8 +656,6 @@ html:not(.js) .menu-toggle { display: none; }
 .field textarea:user-invalid { border-color: var(--color-error); }
 .field .hint { margin-top: var(--space-1); font-size: var(--text-sm); color: var(--color-ink-muted); }
 
-.hp { display: none; }
-
 /* Formuläret till vänster, direktkontakt och Jennie till höger */
 .contact-layout { display: grid; gap: var(--space-8); }
 @media (min-width: 960px) {
