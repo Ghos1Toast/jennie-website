@@ -6,7 +6,7 @@ Statisk sajt (HTML, CSS, vanilla JS). Inget byggsteg. Öppna `index.html` i webb
 
 | Sökväg | Innehåll |
 |---|---|
-| `index.html`, `inspiration.html`, `om-oss.html`, `kontakt.html`, `integritetspolicy.html` | Sidorna. Header och footer är kopierade i varje fil – ändra på alla ställen (utom kontaktuppgifterna, se nedan). |
+| `index.html`, `inspiration.html`, `kontakt.html`, `integritetspolicy.html` | Sidorna. Header och footer är kopierade i varje fil – ändra på alla ställen (utom kontaktuppgifterna, se nedan). |
 | `css/tokens.css` | Färger, typsnitt, avstånd. **Paletten** står överst. Ändrar du en färg: kör `python tools/kontrast.py` för att se att texten går att läsa. |
 | `css/main.css` | All övrig stil, mobil först |
 | `js/main.js` | Mobilmeny, galleri-ljusbox, filmer, formulärsändning |
@@ -22,7 +22,7 @@ Delarna mellan `<!-- …:START -->` och `<!-- …:SLUT -->` i HTML-filerna skriv
 | `galleri.csv` + bilder i `bilder-original/` | `python tools/bilder.py` | Galleriet på Inspiration och urvalet på startsidan |
 | filmer i `filmer-original/`, kulörer i `filmer.csv` | `python tools/filmer.py` | Filmerna i galleriet och filmen överst på startsidan |
 | `instagram.csv` (bilder ur `bilder-original/`) | `python tools/instagram.py` | Instagram-rutan på startsidan |
-| `partner.csv` + loggor i `partner-original/` | `python tools/partner.py` | Samarbetspartner på startsidan och Om oss |
+| `partner.csv` + loggor i `partner-original/` | `python tools/partner.py` | Samarbetspartner på startsidan |
 | `uppgifter.txt` | `python tools/uppgifter.py` | Telefon, e-post, Instagram, företagsnamn och org.nr på alla sidor |
 
 Mer om varje del står i `LÄSMIG.txt` i mapparna `bilder-original/`, `filmer-original/` och `partner-original/`. Originalen i de mapparna laddas inte upp (GPS-position i bilderna) – bara webbversionerna i `images/` och `videos/`.

@@ -8,7 +8,7 @@ webbversionerna i images/partner/ läggs upp.
    JPG går också: en enfärgad bakgrund runt loggan tas bort automatiskt.
 
 2. Skriv en rad per partner i partner.csv (i projektmappen), i den ordning de
-   ska visas (på startsidan och Om oss). Öppna i Excel eller Anteckningar:
+   ska visas på startsidan. Öppna i Excel eller Anteckningar:
 
        fil;namn;text;lank
        bygg-ab.svg;Bygg AB;Snickeri inför målning;https://byggab.se

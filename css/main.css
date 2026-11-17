@@ -117,6 +117,9 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 }
 
 .section { padding-block: var(--section-y); }
+/* Länkar till en sektion (t.ex. Om oss i menyn) ska inte hamna under den fasta headern */
+.section[id] { scroll-margin-top: 77px; }
+@media (min-width: 960px) { .section[id] { scroll-margin-top: 105px; } }
 .section--alt { background: var(--color-paper-deep); }
 
 .section-head { margin-bottom: var(--space-7); }
@@ -544,7 +547,6 @@ html:not(.js) .menu-toggle { display: none; }
 .portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; background: var(--color-paper-deep); }
 @media (min-width: 800px) {
   .split { grid-template-columns: 5fr 7fr; gap: var(--space-9); align-items: center; }
-  .split--top { align-items: start; }
 }
 
 /* ---------- CTA-band ----------
@@ -712,7 +714,7 @@ html:not(.js) .menu-toggle { display: none; }
 .prose ul { padding-left: 1.25rem; max-width: var(--measure); }
 .policy-date { color: var(--color-ink-muted); font-size: var(--text-sm); }
 
-/* ---------- Specialiteter (startsidan och Om oss) ---------- */
+/* ---------- Specialiteter (startsida) ---------- */
 .specialties { margin-top: var(--space-9); }
 .specialties h3 { margin-bottom: var(--space-5); }
 .specialty-list { list-style: none; padding: 0; display: grid; gap: var(--space-4); }
@@ -737,7 +739,7 @@ html:not(.js) .menu-toggle { display: none; }
   .specialty-list { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
 }
 
-/* ---------- Samarbetspartner (startsidan och Om oss) ---------- */
+/* ---------- Samarbetspartner (startsida) ---------- */
 /* Anpassar sig efter antalet partner: korten har en fast bredd och radbryts av sig själva,
    så två partner står tätt ihop i stället för att lämna tomma kolumner */
 .partners {
@@ -794,12 +796,3 @@ html:not(.js) .menu-toggle { display: none; }
 }
 /* I galleriet: uppe till höger på bilden, så att den inte hamnar på bildtexten */
 .gallery-item--video .video-toggle { top: var(--space-2); right: var(--space-2); bottom: auto; }
-
-/* ---------- Om oss (om-oss.html) ---------- */
-.om-lead { font-size: var(--text-h3); line-height: 1.35; color: var(--color-ink); text-wrap: pretty; }
-.om-facts { display: grid; gap: var(--space-7); }
-.om-facts h3 { margin-bottom: var(--space-4); }
-.specialty-list--stack { grid-template-columns: 1fr; gap: var(--space-3); }
-@media (min-width: 900px) {
-  .om-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); }
-}
