@@ -7,15 +7,15 @@
    så ser du om texten fortfarande går att läsa (WCAG-kontrast).
    ===================================================================== */
 :root {
-  --palette-dark:  #1F3F3C;  /* mörkgrön: rubriker, knappar, footer */
-  --palette-brand: #366865;  /* loggans grön: länkar, detaljer, knappar när man pekar */
-  --palette-light: #F8E0C4;  /* loggans beige: text på mörkgrönt */
-  --palette-tint:  #F7EADA;  /* ljus beige: header, hero, varannan sektion */
+  --palette-dark:  #1F3F3C;  /* mörkgrön: header, hero, footer, rubriker, knappar */
+  --palette-brand: #366865;  /* loggans grön: länkar, detaljer, kontaktbandet längst ner */
+  --palette-light: #F8E0C4;  /* loggans beige: text och knappar på mörkgrönt */
+  --palette-tint:  #F7EADA;  /* ljus beige: varannan sektion */
   --palette-paper: #FAFAF7;  /* sidans bakgrund */
   --palette-ink:   #161A19;  /* brödtext */
 
-  /* Varma accentfärger: tjänstekorten, specialiteterna och kontaktbandet */
-  --palette-ochre: #D4A04B;  /* ockra: första tjänstekortet, kontaktbandet (utspädd med beige) */
+  /* Varma accentfärger: tjänstekorten och specialiteterna */
+  --palette-ochre: #D4A04B;  /* ockra: tjänstekort */
   --palette-sage:  #A9B8A3;  /* salvia: tjänstekort, "för dig som" (utspädd) */
   --palette-clay:  #C98468;  /* terrakotta: tjänstekort */
 }
@@ -29,9 +29,10 @@
   --color-paper: var(--palette-paper);
   --color-ink: var(--palette-ink);
   --color-ink-muted: color-mix(in srgb, var(--palette-ink) 75%, var(--palette-paper));        /* sekundär text */
-  --color-on-dark-muted: color-mix(in srgb, var(--palette-paper) 75%, var(--palette-brand)); /* sekundär text i footern */
+  --color-on-dark-muted: color-mix(in srgb, var(--palette-paper) 75%, var(--palette-brand)); /* sekundär text på mörkgrönt */
   --color-border: color-mix(in srgb, var(--palette-ink) 55%, var(--palette-paper));           /* formulärfält */
   --color-rule: color-mix(in srgb, var(--palette-ink) 14%, transparent);                      /* tunna linjer */
+  --color-hero-media: color-mix(in srgb, var(--palette-dark) 55%, var(--palette-brand));      /* bakom filmen i heron innan den laddat */
   --color-img-ph: color-mix(in srgb, var(--palette-brand) 10%, var(--palette-paper));         /* bakom bilder och film innan de laddat */
   --color-overlay: color-mix(in srgb, color-mix(in srgb, var(--palette-dark) 50%, #000) 97%, transparent); /* bakom stor bild */
   --color-focus: var(--palette-ink);
@@ -39,7 +40,6 @@
   --color-ochre: var(--palette-ochre);
   --color-sage: var(--palette-sage);
   --color-clay: var(--palette-clay);
-  --color-sand: color-mix(in srgb, var(--palette-ochre) 45%, var(--palette-light));         /* kontaktbandet: mjukare än ren ockra */
   --color-sage-soft: color-mix(in srgb, var(--palette-sage) 35%, var(--palette-paper));      /* "för dig som"-sektionen */
 
   /* ---- Neutrala färger som inte följer paletten ---- */

@@ -189,17 +189,26 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 .link-arrow::after { content: "→"; transition: transform 0.15s ease; }
 .link-arrow:hover::after { transform: translateX(4px); }
 
-/* ---------- Ytor ---------- */
-/* Header och hero är ljust beige, footern mörkgrön */
+/* ---------- Mörka ytor (header, hero, footer) ---------- */
 .site-header,
-.hero { background: var(--color-paper-deep); color: var(--color-teal-deep); }
+.hero,
 .site-footer { background: var(--color-teal-deep); color: var(--color-cream); }
+.site-header :focus-visible,
+.hero :focus-visible,
 .site-footer :focus-visible { outline-color: var(--color-focus-on-dark); }
+
+/* Knappar på mörkgrönt: beige i stället för mörkgröna */
+.hero .btn,
+.site-header .btn { background: var(--color-cream); border-color: var(--color-cream); color: var(--color-teal-deep); }
+.hero .btn:hover,
+.site-header .btn:hover { background: var(--color-white); border-color: var(--color-white); color: var(--color-teal-deep); }
+.hero .btn--ghost { background: transparent; color: var(--color-cream); border-color: var(--color-cream); }
+.hero .btn--ghost:hover { background: var(--color-cream); color: var(--color-teal-deep); }
 
 /* ---------- Header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-teal-deep) 15%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-cream) 15%, transparent);
 }
 .header-inner {
   display: flex; align-items: center; gap: var(--space-3);
@@ -210,7 +219,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   display: flex; align-items: center; gap: var(--space-3);
   margin-right: auto;
   text-decoration: none;
-  color: var(--color-teal-deep);
+  color: var(--color-cream);
 }
 .brand img { width: 72px; height: 64px; }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
@@ -220,7 +229,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   white-space: nowrap;
   font: 600 0.75rem/1 var(--font-display);
   letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--color-on-dark-muted);
 }
 /* Smala mobiler: undertexten får inte plats. Den finns i loggan och läses upp av skärmläsare. */
 @media (max-width: 439px) {
@@ -234,12 +243,12 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 .header-phone {
   display: inline-grid; place-items: center;
   width: var(--tap-target); height: var(--tap-target);
-  color: var(--color-teal-deep);
-  border: 2px solid var(--color-teal-deep);
+  color: var(--color-cream);
+  border: 2px solid var(--color-cream);
   border-radius: var(--radius);
   text-decoration: none;
 }
-.header-phone:hover { color: var(--color-cream); background: var(--color-teal-deep); }
+.header-phone:hover { color: var(--color-teal-deep); background: var(--color-cream); }
 
 .menu-toggle {
   display: inline-flex; align-items: center; gap: var(--space-2);
@@ -247,9 +256,9 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   padding: 0 var(--space-3);
   font: 700 1.125rem var(--font-display);
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--color-teal-deep);
+  color: var(--color-cream);
   background: transparent;
-  border: 2px solid var(--color-teal-deep);
+  border: 2px solid var(--color-cream);
   border-radius: var(--radius);
   cursor: pointer;
 }
@@ -279,13 +288,12 @@ html:not(.js) .menu-toggle { display: none; }
   font: 600 1.25rem var(--font-display);
   letter-spacing: 0.08em; text-transform: uppercase;
   text-decoration: none;
-  color: var(--color-teal-deep);
+  color: var(--color-cream);
 }
-.site-nav a:hover { color: var(--color-teal); }
-.site-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--color-teal-deep); }
+.site-nav a:hover { color: var(--color-white); }
+.site-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--color-cream); }
 /* Kontakt är en knapp: behåller knappens färger och får ingen linje som aktiv sida */
-.site-nav .nav-cta .btn { color: var(--color-cream); box-shadow: none; }
-.site-nav .nav-cta .btn:hover { color: var(--color-white); }
+.site-nav .nav-cta .btn { color: var(--color-teal-deep); box-shadow: none; }
 
 /* Telefonnumret och Instagram är tysta extrauppgifter bredvid Kontakt-knappen, inte menylänkar */
 .site-nav .nav-phone a,
@@ -293,11 +301,11 @@ html:not(.js) .menu-toggle { display: none; }
   gap: var(--space-2);
   font: 500 1.0625rem var(--font-body);
   letter-spacing: 0.02em; text-transform: none;
-  color: var(--color-ink-muted);
+  color: var(--color-on-dark-muted);
 }
 .site-nav .nav-insta a { gap: var(--space-3); }
 .site-nav .nav-phone a:hover,
-.site-nav .nav-insta a:hover { color: var(--color-teal-deep); }
+.site-nav .nav-insta a:hover { color: var(--color-cream); }
 
 /* Hamburgermeny upp till 959px – under det får logga, länkar, telefon och knapp inte plats på en rad */
 @media (max-width: 959px) {
@@ -305,11 +313,11 @@ html:not(.js) .menu-toggle { display: none; }
   .site-nav { flex-basis: 100%; padding-bottom: var(--space-5); }
   .js .site-nav { display: none; }
   .js .site-nav.is-open { display: block; }
-  .site-nav li + li { border-top: 1px solid color-mix(in srgb, var(--color-teal-deep) 20%, transparent); }
+  .site-nav li + li { border-top: 1px solid color-mix(in srgb, var(--color-cream) 20%, transparent); }
   .site-nav a { font-size: 1.75rem; min-height: 56px; }
   /* Aktiv sida: en liten ruta före namnet i stället för linjen under */
-  .site-nav a[aria-current="page"] { box-shadow: none; color: var(--color-teal); }
-  .site-nav a[aria-current="page"]::before { content: ""; width: 0.75rem; height: 0.75rem; margin-right: var(--space-3); background: var(--color-teal-deep); }
+  .site-nav a[aria-current="page"] { box-shadow: none; color: var(--color-white); }
+  .site-nav a[aria-current="page"]::before { content: ""; width: 0.75rem; height: 0.75rem; margin-right: var(--space-3); background: var(--color-cream); }
   .site-nav .nav-cta { margin-top: var(--space-4); border-top: 0; }
   .site-nav .nav-cta a { justify-content: center; font-size: 1.25rem; }
   .site-nav .nav-cta a::before { content: none; }
@@ -330,7 +338,7 @@ html:not(.js) .menu-toggle { display: none; }
   .site-nav .nav-insta {
     margin-left: var(--space-5);
     padding-left: var(--space-6);
-    border-left: 1px solid color-mix(in srgb, var(--color-teal-deep) 25%, transparent);
+    border-left: 1px solid color-mix(in srgb, var(--color-cream) 25%, transparent);
   }
   .site-nav .nav-phone,
   .site-nav .nav-cta { margin-left: var(--space-2); }
@@ -340,10 +348,10 @@ html:not(.js) .menu-toggle { display: none; }
     justify-content: center;
     width: var(--tap-target); height: var(--tap-target);
     border-radius: 50%;
-    color: var(--color-teal-deep);
-    background: color-mix(in srgb, var(--color-teal-deep) 10%, transparent);
+    color: var(--color-cream);
+    background: color-mix(in srgb, var(--color-cream) 12%, transparent);
   }
-  .site-nav .nav-insta a:hover { color: var(--color-cream); background: var(--color-teal-deep); }
+  .site-nav .nav-insta a:hover { color: var(--color-teal-deep); background: var(--color-cream); }
   .nav-insta-text {
     position: absolute; width: 1px; height: 1px;
     overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
@@ -353,9 +361,9 @@ html:not(.js) .menu-toggle { display: none; }
 /* ---------- Hero ----------
    Text till vänster, stående film (eller bild) till höger på desktop. Under varandra på mobil. */
 .hero { padding-block: var(--space-7) var(--section-y); }
-.hero h1 { font-size: clamp(3rem, 1.6rem + 4.2vw, 6rem); }
+.hero h1 { color: var(--color-cream); font-size: clamp(3rem, 1.6rem + 4.2vw, 6rem); }
 .hero-grid { display: grid; gap: var(--space-7); align-items: center; }
-.hero-lead { margin-top: var(--space-5); font-size: var(--text-lg); color: var(--color-ink-muted); }
+.hero-lead { margin-top: var(--space-5); font-size: var(--text-lg); color: var(--color-on-dark-muted); }
 /* Mobil: texten centrerad ovanför filmen */
 @media (max-width: 899px) {
   .hero-text { text-align: center; }
@@ -370,7 +378,7 @@ html:not(.js) .menu-toggle { display: none; }
   aspect-ratio: 4 / 5;
   max-height: min(80vh, 720px);
   object-fit: cover;
-  background: var(--color-img-ph);
+  background: var(--color-hero-media);
 }
 
 @media (min-width: 900px) {
@@ -555,10 +563,15 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 /* ---------- CTA-band ----------
-   Sand (ockra + loggans beige): avslutar sidan varmt och ljust, med de vanliga mörkgröna knapparna */
-.cta-band { background: var(--color-sand); }
-.cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); }
+   Loggans grön: avslutar sidan och binder ihop med footern (som är ännu mörkare) */
+.cta-band { background: var(--color-teal); color: var(--color-cream); }
+.cta-band h2 { font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); color: var(--color-cream); }
 .cta-band p { margin-top: var(--space-4); font-size: var(--text-lg); }
+.cta-band .btn { background: var(--color-cream); border-color: var(--color-cream); color: var(--color-teal-deep); }
+.cta-band .btn:hover { background: var(--color-white); border-color: var(--color-white); color: var(--color-teal-deep); }
+.cta-band .btn--ghost { background: transparent; color: var(--color-cream); }
+.cta-band .btn--ghost:hover { background: var(--color-cream); color: var(--color-teal-deep); }
+.cta-band :focus-visible { outline-color: var(--color-focus-on-dark); }
 
 /* ---------- Instagram (startsida) ----------
    Utvalda bilder som ligger på sajten och länkar till inläggen – ingen kod från Instagram */
