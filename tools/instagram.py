@@ -72,10 +72,12 @@ def make_versions(src, name):
     print(f"  skapade  {name}")
 
 
-def tile_html(name, link, alt):
+def tile_html(name, link, alt, is_post):
     small, big = SIZES_PX
     srcset = lambda ext: f"images/instagram/{name}-{small}.{ext} {small}w, images/instagram/{name}-{big}.{ext} {big}w"
-    label = html.escape(f"Se inlägget på Instagram: {alt}" if alt else "Se inlägget på Instagram", quote=True)
+    # Skärmläsare hör vart länken går: till inlägget, eller till profilen när länken saknas
+    where = "Se inlägget på Instagram" if is_post else "Se fler bilder på Instagram"
+    label = html.escape(f"{where}: {alt}" if alt else where, quote=True)
     return (f'<li>\n'
             f'  <a class="insta-tile" href="{html.escape(link, quote=True)}" aria-label="{label}">\n'
             f'    <picture>\n'
@@ -118,7 +120,7 @@ def main():
             warnings.append(f"rad {row['rad']} ({row['fil']}): kunde inte läsas ({e})")
             continue
         used.add(name)
-        tiles.append(tile_html(name, link, alt))
+        tiles.append(tile_html(name, link, alt, link != profile))
 
     galleri_lib.write_block("index.html", START, END, "\n".join(tiles))
     print(f"index.html: {len(tiles)} Instagram-bilder")

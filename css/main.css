@@ -42,6 +42,13 @@
 
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
+/* Det som webbläsaren scrollar fram – en länk till #om-oss eller det man tabbar till –
+   ska hamna under den fasta headern, inte bakom den (WCAG 2.4.11). Lite luft extra. */
+html { scroll-padding-top: calc(77px + var(--space-3)); }
+@media (min-width: 960px) {
+  html { scroll-padding-top: calc(105px + var(--space-3)); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
@@ -117,9 +124,6 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
 }
 
 .section { padding-block: var(--section-y); }
-/* Länkar till en sektion (t.ex. Om oss i menyn) ska inte hamna under den fasta headern */
-.section[id] { scroll-margin-top: 77px; }
-@media (min-width: 960px) { .section[id] { scroll-margin-top: 105px; } }
 .section--alt { background: var(--color-paper-deep); }
 
 .section-head { margin-bottom: var(--space-7); }
@@ -448,7 +452,7 @@ html:not(.js) .menu-toggle { display: none; }
    Kolumnen fokus i galleri.csv väljer vilken del av bilden som syns. */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));   /* minmax: långa ord i bildtexten får inte göra kolumnen bredare */
   gap: var(--space-3);
   list-style: none;
   padding: 0;
@@ -457,7 +461,7 @@ html:not(.js) .menu-toggle { display: none; }
   .gallery { gap: var(--space-5); }
 }
 @media (min-width: 900px) {
-  .gallery { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
 }
 
 /* Varje bild är ett "kulörkort": bild + vit etikett under */
@@ -485,6 +489,7 @@ html:not(.js) .menu-toggle { display: none; }
   font: 600 1.125rem/1.25 var(--font-display);
   letter-spacing: 0.01em;
   color: var(--color-ink);
+  overflow-wrap: anywhere;
 }
 .gallery-color {
   display: flex; align-items: center; gap: var(--space-2);
