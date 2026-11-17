@@ -562,13 +562,33 @@ html:not(.js) .menu-toggle { display: none; }
 .cta-band :focus-visible { outline-color: var(--color-focus-on-dark); }
 
 /* ---------- Instagram (startsida) ----------
-   Utvalda bilder som ligger på sajten och länkar till inläggen – ingen kod från Instagram */
-.insta-head { display: grid; gap: var(--space-5); align-items: end; margin-bottom: var(--space-5); }
-.insta-head p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--color-ink-muted); }
-.insta-btn { justify-self: start; gap: var(--space-2); }
-.insta-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2);
+   Utvalda bilder som ligger på sajten och länkar till inläggen – ingen kod från Instagram.
+   Mobil: text, sedan bilderna. Desktop: texten som ett litet profilkort till vänster, bilderna till höger. */
+.insta { display: grid; gap: var(--space-6); }
+.insta-intro p { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--color-ink-muted); }
+/* Profilraden: loggan i en rund ram + kontonamnet, som överst på en Instagram-profil */
+.insta-profile {
+  display: flex; align-items: center; gap: var(--space-3);
   margin-top: var(--space-5);
+  font: 600 1.125rem/1.2 var(--font-display);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--color-teal-deep);
+  overflow-wrap: anywhere;
+}
+.insta-profile picture {
+  flex: none;
+  display: grid; place-items: center;
+  width: 3.5rem; height: 3.5rem;
+  border-radius: 50%;
+  background: var(--color-teal-deep);
+  box-shadow: 0 0 0 2px var(--color-paper-deep), 0 0 0 4px var(--color-teal);
+}
+.insta-profile img { width: 2.75rem; height: auto; }
+.insta-profile:hover .insta-profile-handle { text-decoration: underline; text-underline-offset: 0.2em; }
+.insta-btn { gap: var(--space-2); margin-top: var(--space-5); }
+.insta-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2);
   list-style: none; padding: 0;
 }
 .insta-tile { position: relative; display: block; overflow: hidden; background: var(--color-img-ph); }
@@ -586,14 +606,12 @@ html:not(.js) .menu-toggle { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .insta-tile:hover img { transform: scale(1.04); }
 }
-.insta-handle { margin-top: var(--space-5); font-weight: 600; overflow-wrap: anywhere; }
-.insta-handle a { color: var(--color-teal-deep); }
-@media (min-width: 700px) {
-  .insta-head { grid-template-columns: 1fr auto; }
-  .insta-btn { justify-self: end; }
+.insta-note { margin-top: var(--space-3); font-size: var(--text-sm); }
+@media (min-width: 600px) {
+  .insta-grid { gap: var(--space-3); }
 }
 @media (min-width: 900px) {
-  .insta-grid { grid-template-columns: repeat(6, 1fr); gap: var(--space-3); }
+  .insta { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: var(--space-8); align-items: center; }
 }
 
 /* Galleriets sista kort: vidare till Instagram */
