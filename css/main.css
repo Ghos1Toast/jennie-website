@@ -213,6 +213,7 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   text-decoration: none;
   color: var(--color-cream);
 }
+.brand img { width: 72px; height: 64px; }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-name { font: 700 1.5rem/1 var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; }
 .brand-sub {
@@ -222,9 +223,8 @@ a:hover { color: var(--color-teal-deep); text-decoration-thickness: 2px; }
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--color-on-dark-muted);
 }
-/* De smalaste mobilerna: undertexten får inte plats bredvid Ring- och Meny-knapparna.
-   Den döljs bara visuellt – skärmläsare läser den fortfarande. */
-@media (max-width: 359px) {
+/* Smala mobiler: undertexten får inte plats. Den finns i loggan och läses upp av skärmläsare. */
+@media (max-width: 439px) {
   .brand-sub {
     position: absolute; width: 1px; height: 1px;
     overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
@@ -319,8 +319,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 @media (min-width: 960px) {
   .header-inner { min-height: 104px; gap: var(--space-6); }
-  .brand-name { font-size: 2rem; }
-  .brand-sub { margin-top: 5px; font-size: 0.875rem; }
+  .brand img { width: 99px; height: 88px; }
   .menu-toggle,
   .header-phone { display: none; }
   .site-nav { order: 2; }
