@@ -6,6 +6,7 @@
 
 telefon = 0735019247
 epost = info@jenniesfargsattning.se
-foretagsnamn =
-orgnr =
+foretagsnamn = Jennies Färgsättning AB
+orgnr = 559581-8617
+momsnr = SE559581861701
 instagram = jenniesfargsattningomaleri

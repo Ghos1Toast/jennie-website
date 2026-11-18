@@ -23,7 +23,7 @@ Delarna mellan `<!-- …:START -->` och `<!-- …:SLUT -->` i HTML-filerna skriv
 | filmer i `filmer-original/`, kulörer i `filmer.csv` | `python tools/filmer.py` | Filmerna i galleriet och filmen överst på startsidan |
 | `instagram.csv` (bilder ur `bilder-original/`) | `python tools/instagram.py` | Instagram-rutan på startsidan |
 | `partner.csv` + loggor i `partner-original/` | `python tools/partner.py` | Samarbetspartner på startsidan |
-| `uppgifter.txt` | `python tools/uppgifter.py` | Telefon, e-post, Instagram, företagsnamn och org.nr på alla sidor |
+| `uppgifter.txt` | `python tools/uppgifter.py` | Telefon, e-post, Instagram, företagsnamn, org.nr och momsreg.nr på alla sidor |
 
 Mer om varje del står i `LÄSMIG.txt` i mapparna `bilder-original/`, `filmer-original/` och `partner-original/`. Originalen i de mapparna laddas inte upp (GPS-position i bilderna) – bara webbversionerna i `images/` och `videos/`.
 

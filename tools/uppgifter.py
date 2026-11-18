@@ -23,6 +23,7 @@ PLACEHOLDER = {
     "epost": "[SAKNAS: e-post]",
     "foretagsnamn": "[SAKNAS: registrerat företagsnamn]",
     "orgnr": "[SAKNAS: org.nr]",
+    "momsnr": "[SAKNAS: momsreg.nr]",
     "instagram": "[SAKNAS: Instagram-konto]",
 }
 
