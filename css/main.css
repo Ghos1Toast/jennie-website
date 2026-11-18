@@ -685,6 +685,8 @@ html:not(.js) .menu-toggle { display: none; }
 .contact-list dt { font-size: var(--text-sm); color: var(--color-ink-muted); }
 .contact-list dd { margin: 0; font-size: var(--text-lg); font-weight: 500; overflow-wrap: anywhere; }
 .contact-list a { color: var(--color-teal-deep); }
+/* F-skatt: en tyst bekräftelse med bock, där man bestämmer sig för att höra av sig */
+.contact-fskatt { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-5); font-weight: 600; color: var(--color-teal-deep); }
 .contact-reply { margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--color-rule); }
 
 .form-note { font-size: var(--text-sm); color: var(--color-ink-muted); }
