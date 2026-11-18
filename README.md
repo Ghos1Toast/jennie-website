@@ -33,7 +33,7 @@ Skripten kräver Python med Pillow (`python -m pip install pillow pillow-heif`) 
 
 - Gul markering med `[SAKNAS: …]`, `[FRÅGA: …]` eller `[PLATSHÅLLARE: …]` = text som Jennie måste leverera eller bekräfta. Inget av det får finnas kvar.
 - Sidorna har `noindex` – ta bort raden i varje sidas `<head>`.
-- Integritetspolicyn är ett utkast och inte juridiskt granskad. Kontaktformuläret är just nu ett test med mailto (öppnar besökarens e-postprogram); hur det ska skickas är inte bestämt.
+- Integritetspolicyn är ett utkast och inte juridiskt granskad. Kontaktformuläret använder mailto: det öppnar besökarens e-postprogram med ett färdigt mejl till Jennie, så ingen formulärtjänst behövs.
 
 Texterna kommer från Jennies textdokument (2026-10-26).
 Inga cookies och ingen kod från andra tjänster: typsnitt, bilder och filmer ligger på sajten själv.
