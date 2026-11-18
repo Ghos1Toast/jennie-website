@@ -17,7 +17,7 @@ videos/ läggs upp.
 3. Kulören under bildtexten fyller du i i filmer.csv (i projektmappen).
    Nya filmer läggs till där automatiskt – skriv kulören i kolumnen farg och,
    om du vill ha en färgruta, färgkoden i kolumnen hex (t.ex. C9A227). Kör
-   sedan skriptet igen. Tom kulör = gul platshållare på sidan.
+   sedan skriptet igen. Tom kulör = bara bildtexten visas.
 
 Var filmerna hamnar:
 - Filmerna blandas in jämnt mellan bilderna i galleriet på inspiration.html

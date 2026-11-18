@@ -10,7 +10,7 @@ iPhone-bilder (.heic) kräver dessutom:   python -m pip install pillow-heif
 Vad skriptet gör:
 1. Läser galleri.csv (en rad per bild, i den ordning de ska visas).
    Kolumner: fil;bildtext;farg;hex;alt;startsida;fokus
-     farg  = kulören, t.ex. "Linoljefärg Ockra, Engwall o. Claesson" (tom = gul platshållare)
+     farg  = kulören, t.ex. "Linoljefärg Ockra, Engwall o. Claesson" (valfri, tom = bara rummet visas)
      hex   = färgrutan på kortet, t.ex. C9A227 (valfri)
      fokus = vilken del av bilden som syns när kortet beskär den: vänster, höger,
              uppe, nere eller t.ex. "30% 70%" (valfri, tom = mitten)
