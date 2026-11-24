@@ -17,7 +17,7 @@ webbversionerna i images/partner/ läggs upp.
    fil   = loggans filnamn här i mappen. Lämna tom om loggan saknas –
            då visas namnet i stället.
    namn  = partnerns namn (syns under loggan)
-   text  = en rad om vad ni gör ihop. Tom = gul platshållare på sidan.
+   text  = en rad om vad ni gör ihop (valfri)
    lank  = partnerns hemsida (valfri). Namnet blir då en länk.
 
 3. Kör i projektmappen:   python tools/partner.py
