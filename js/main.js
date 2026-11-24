@@ -201,6 +201,47 @@
     }
   }
 
+  // ---------- Före och efter ----------
+  // Knapparna väljer projekt. Reglaget (input range) styr hur mycket av efterbilden som syns;
+  // man kan också dra direkt i bilden, som då flyttar reglaget.
+  var baTabs = Array.prototype.slice.call(document.querySelectorAll('.ba-tab'));
+
+  baTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      baTabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-pressed', String(on));
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.ba-item'), function (item) {
+    var frame = item.querySelector('.ba-frame');
+    var range = item.querySelector('.ba-range');
+    var set = function (value) {
+      value = Math.max(0, Math.min(100, Math.round(value)));
+      range.value = value;
+      range.setAttribute('aria-valuetext', value + ' % efter');
+      frame.style.setProperty('--pos', value + '%');
+    };
+    range.addEventListener('input', function () { set(Number(range.value)); });
+
+    var dragging = false;
+    var fromPointer = function (e) {
+      var r = frame.getBoundingClientRect();
+      set((e.clientX - r.left) / r.width * 100);
+    };
+    frame.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      frame.setPointerCapture(e.pointerId);
+      fromPointer(e);
+    });
+    frame.addEventListener('pointermove', function (e) { if (dragging) fromPointer(e); });
+    frame.addEventListener('pointerup', function () { dragging = false; });
+    frame.addEventListener('pointercancel', function () { dragging = false; });
+  });
+
   // ---------- Kontaktformulär ----------
   // Bygger ett färdigt mejl av fälten och öppnar besökarens e-postprogram (mailto).
   // Inget skickas från sidan – besökaren trycker själv på Skicka i sitt e-postprogram.

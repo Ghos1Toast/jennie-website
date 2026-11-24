@@ -9,11 +9,12 @@ iPhone-bilder (.heic) kräver dessutom:   python -m pip install pillow-heif
 
 Vad skriptet gör:
 1. Läser galleri.csv (en rad per bild, i den ordning de ska visas).
-   Kolumner: fil;bildtext;farg;hex;alt;startsida;fokus
+   Kolumner: fil;bildtext;farg;hex;alt;startsida;fokus;fraga
      farg  = kulören, t.ex. "Linoljefärg Ockra, Engwall o. Claesson" (valfri, tom = bara rummet visas)
      hex   = färgrutan på kortet, t.ex. C9A227 (valfri)
      fokus = vilken del av bilden som syns när kortet beskär den: vänster, höger,
              uppe, nere eller t.ex. "30% 70%" (valfri, tom = mitten)
+     fraga = en fråga till Jennie om bilden, visas i gult på kortet (valfri, ta bort när hon svarat)
 2. Gör webbversioner av varje bild i bilder-original/ till images/projekt/
    (480/960/1600 px bred i AVIF, WebP och JPEG). Platsdata (GPS) och annan
    EXIF tas bort. Bilder som redan är gjorda och inte ändrats hoppas över.
@@ -113,7 +114,7 @@ def caption_html(row):
     if hexcode is None:
         warnings.append(f"rad {row['rad']} ({row['fil']}): hex '{row['hex']}' ska vara sex tecken, t.ex. C9A227")
         hexcode = ""
-    return "\n  " + galleri_lib.caption_html(row.get("bildtext", ""), color_of(row), hexcode)
+    return "\n  " + galleri_lib.caption_html(row.get("bildtext", ""), color_of(row), hexcode, row.get("fraga", ""))
 
 
 def item_html(row, name, size, eager):

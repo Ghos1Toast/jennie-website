@@ -567,6 +567,77 @@ html:not(.js) .menu-toggle { display: none; }
 .cta-band .btn--ghost:hover { background: var(--color-cream); color: var(--color-teal-deep); }
 .cta-band :focus-visible { outline-color: var(--color-focus-on-dark); }
 
+/* ---------- Före och efter (startsida) ----------
+   Efterbilden ligger ovanpå förebilden och klipps vid --pos. Reglaget under bilden styr --pos
+   (tangentbord och skärmläsare); man kan också dra direkt i bilden. */
+.ba-tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
+.ba-tab {
+  min-height: var(--tap-target);
+  padding: 0 var(--space-5);
+  font: 700 1rem var(--font-display);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-teal-deep);
+  background: var(--color-paper);
+  border: 2px solid var(--color-teal-deep);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.ba-tab[aria-pressed="false"]:hover { background: var(--color-white); }   /* inte den valda: då blir texten osynlig */
+.ba-tab[aria-pressed="true"] { color: var(--color-cream); background: var(--color-teal-deep); }
+.ba-item { margin: 0; }
+.ba-frame {
+  --pos: 50%;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-img-ph);
+  touch-action: pan-y;   /* vågrätt drag flyttar reglaget, lodrätt scrollar sidan */
+  user-select: none;
+}
+.ba-before,
+.ba-after { position: absolute; inset: 0; }
+.ba-after { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.ba-frame img,
+.ba-frame .img-ph { width: 100%; height: 100%; object-fit: cover; }
+.ba-before .img-ph { justify-content: flex-end; padding-left: 55%; background-color: color-mix(in srgb, var(--color-clay) 25%, var(--color-paper)); }
+.ba-after .img-ph { justify-content: flex-start; padding-right: 55%; background-color: color-mix(in srgb, var(--color-sage) 55%, var(--color-paper)); }
+.ba-tag {
+  position: absolute; top: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  font: 700 0.8125rem/1.2 var(--font-display);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.ba-tag--after { left: var(--space-3); color: var(--color-teal-deep); background: var(--color-white); }
+.ba-tag--before { right: var(--space-3); color: var(--color-cream); background: var(--color-teal-deep); }
+/* Linjen och det runda handtaget följer --pos */
+.ba-handle {
+  position: absolute; top: 0; bottom: 0; left: var(--pos);
+  width: 2px; margin-left: -1px;
+  background: var(--color-white);
+  pointer-events: none;
+}
+.ba-handle::after {
+  content: "‹ ›";
+  position: absolute; top: 50%; left: 50%;
+  display: grid; place-items: center;
+  width: 2.75rem; height: 2.75rem;
+  transform: translate(-50%, -50%);
+  font: 700 1.125rem/1 var(--font-body);
+  color: var(--color-teal-deep);
+  background: var(--color-white);
+  border-radius: 50%;
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--color-ink) 20%, transparent);
+}
+.ba-control { margin-top: var(--space-4); }
+.ba-control label { display: block; margin-bottom: var(--space-2); font-size: var(--text-sm); font-weight: 600; }
+.ba-range { width: 100%; accent-color: var(--color-teal-deep); cursor: pointer; }
+html:not(.js) .ba-control { display: none; }   /* utan JS står bilderna stilla på mitten */
+.ba-caption { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); margin-top: var(--space-4); color: var(--color-ink-muted); }
+.ba-caption strong { color: var(--color-ink); }
+@media (min-width: 700px) {
+  .ba-frame { aspect-ratio: 16 / 9; }
+}
+
 /* ---------- Instagram (startsida) ----------
    Utvalda bilder som ligger på sajten och länkar till inläggen – ingen kod från Instagram.
    Mobil: text, sedan bilderna. Desktop: texten som ett litet profilkort till vänster, bilderna till höger. */
@@ -588,7 +659,7 @@ html:not(.js) .menu-toggle { display: none; }
   width: 3.5rem; height: 3.5rem;
   border-radius: 50%;
   background: var(--color-teal-deep);
-  box-shadow: 0 0 0 2px var(--color-paper-deep), 0 0 0 4px var(--color-teal);
+  box-shadow: 0 0 0 2px var(--color-paper), 0 0 0 4px var(--color-teal);
 }
 .insta-profile img { width: 2.75rem; height: auto; }
 .insta-profile:hover .insta-profile-handle { text-decoration: underline; text-underline-offset: 0.2em; }

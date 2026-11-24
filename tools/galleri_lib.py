@@ -64,14 +64,16 @@ def full_caption(room, color):
     return f"{room}. {color}" if room and color else (room or color)
 
 
-def caption_html(room, color, hexcode=""):
+def caption_html(room, color, hexcode="", question=""):
     """Kulörkortets etikett: rummet, och under det kulören (med färgruta om hex finns).
-    Tom kulör = bara rummet visas. hexcode ska redan vara kontrollerad (sex tecken) eller tom."""
+    Tom kulör = bara rummet visas. hexcode ska redan vara kontrollerad (sex tecken) eller tom.
+    question = en fråga till Jennie om just den här bilden, visas som gul platshållare."""
     room = html.escape(room)
     swatch = f'<span class="swatch" style="background: #{hexcode}" aria-hidden="true"></span>' if hexcode else ""
     room_html = f'<span class="gallery-room">{room}</span>' if room else ""
     color_html = f'<span class="gallery-color">{swatch}{html.escape(color)}</span>' if color else ""
-    return f'<p class="gallery-caption">{room_html}{color_html}</p>'
+    question_html = f'<span class="gallery-color"><span class="ph">[FRÅGA: {html.escape(question)}]</span></span>' if question else ""
+    return f'<p class="gallery-caption">{room_html}{color_html}{question_html}</p>'
 
 
 def valid_hex(value):

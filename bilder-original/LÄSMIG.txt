@@ -21,10 +21,12 @@ adress. Bara de komprimerade webbversionerna i images/projekt/ läggs upp.
    fokus      valfritt: vilken del av bilden som syns när kortet beskär den
               (korten är stående). vänster, höger, uppe, nere eller t.ex. 30% 70%.
               Bra för liggande bilder där det viktiga inte är i mitten.
+   fraga      valfritt: en fråga till Jennie om just den bilden. Visas i gult på kortet
+              tills du tar bort den.
 
    Exempel:
-   fil;bildtext;farg;hex;alt;startsida;fokus
-   kok-nacka.jpg;Kök, Nacka;Linoljefärg Ockra, Engwall o. Claesson;C9A227;Kök med ockragula skåpluckor;ja;
+   fil;bildtext;farg;hex;alt;startsida;fokus;fraga
+   kok-nacka.jpg;Kök, Nacka;Linoljefärg Ockra, Engwall o. Claesson;C9A227;Kök med ockragula skåpluckor;ja;;
 
    Filen går att öppna i Excel. Spara som CSV (semikolon- eller kommaavgränsad går båda).
 
