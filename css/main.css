@@ -612,7 +612,6 @@ html:not(.js) .menu-toggle { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .insta-tile:hover img { transform: scale(1.04); }
 }
-.insta-note { margin-top: var(--space-3); font-size: var(--text-sm); }
 @media (min-width: 600px) {
   .insta-grid { gap: var(--space-3); }
 }
