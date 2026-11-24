@@ -294,6 +294,74 @@
       </div>
     </section>
 
+    <!-- ========== Före och efter ==========
+         Samma avsnitt finns på startsidan (index.html) – ändra på båda ställena. -->
+    <section class="section section--alt" aria-labelledby="fore-efter-rubrik">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Före &amp; efter</span>
+          <h2 id="fore-efter-rubrik">Se skillnaden</h2>
+          <p>Dra i reglaget för att jämföra samma rum före och efter jobbet.</p>
+          <p><span class="ph">[FRÅGA: har Jennie före- och efterbilder från samma vinkel? Skicka 2–3 par, med en rad om vad som gjordes.]</span></p>
+        </div>
+        <div class="ba-tabs" role="group" aria-label="Välj projekt">
+          <button type="button" class="ba-tab" aria-controls="ba-vardagsrum" aria-pressed="true">Vardagsrum</button>
+          <button type="button" class="ba-tab" aria-controls="ba-fasad" aria-pressed="false">Fasad</button>
+          <button type="button" class="ba-tab" aria-controls="ba-koksluckor" aria-pressed="false">Köksluckor</button>
+        </div>
+        <div class="ba">
+          <figure class="ba-item" id="ba-vardagsrum">
+            <!-- Byt platshållarna mot <img src="images/fore-efter/vardagsrum-efter.jpg" alt="…"> och
+                 <img src="images/fore-efter/vardagsrum-fore.jpg" alt="…">. Bilderna ska vara tagna från samma vinkel. -->
+            <div class="ba-frame">
+              <div class="ba-before"><div class="img-ph">[PLATSHÅLLARE: bild före]</div></div>
+              <div class="ba-after"><div class="img-ph">[PLATSHÅLLARE: bild efter]</div></div>
+              <span class="ba-tag ba-tag--after" aria-hidden="true">Efter</span>
+              <span class="ba-tag ba-tag--before" aria-hidden="true">Före</span>
+              <span class="ba-handle" aria-hidden="true"></span>
+            </div>
+            <div class="ba-control">
+              <label for="ba-range-vardagsrum">Jämför före och efter</label>
+              <input type="range" id="ba-range-vardagsrum" class="ba-range" min="0" max="100" value="50" aria-valuetext="50 % efter">
+            </div>
+            <figcaption class="ba-caption"><strong>Projekt:</strong> Vardagsrum <strong>Utfört:</strong> <span class="ph">[SAKNAS: kort beskrivning av arbetet]</span></figcaption>
+          </figure>
+          <figure class="ba-item" id="ba-fasad" hidden>
+            <!-- Byt platshållarna mot <img src="images/fore-efter/fasad-efter.jpg" alt="…"> och
+                 <img src="images/fore-efter/fasad-fore.jpg" alt="…">. Bilderna ska vara tagna från samma vinkel. -->
+            <div class="ba-frame">
+              <div class="ba-before"><div class="img-ph">[PLATSHÅLLARE: bild före]</div></div>
+              <div class="ba-after"><div class="img-ph">[PLATSHÅLLARE: bild efter]</div></div>
+              <span class="ba-tag ba-tag--after" aria-hidden="true">Efter</span>
+              <span class="ba-tag ba-tag--before" aria-hidden="true">Före</span>
+              <span class="ba-handle" aria-hidden="true"></span>
+            </div>
+            <div class="ba-control">
+              <label for="ba-range-fasad">Jämför före och efter</label>
+              <input type="range" id="ba-range-fasad" class="ba-range" min="0" max="100" value="50" aria-valuetext="50 % efter">
+            </div>
+            <figcaption class="ba-caption"><strong>Projekt:</strong> Fasad <strong>Utfört:</strong> <span class="ph">[SAKNAS: kort beskrivning av arbetet]</span></figcaption>
+          </figure>
+          <figure class="ba-item" id="ba-koksluckor" hidden>
+            <!-- Byt platshållarna mot <img src="images/fore-efter/koksluckor-efter.jpg" alt="…"> och
+                 <img src="images/fore-efter/koksluckor-fore.jpg" alt="…">. Bilderna ska vara tagna från samma vinkel. -->
+            <div class="ba-frame">
+              <div class="ba-before"><div class="img-ph">[PLATSHÅLLARE: bild före]</div></div>
+              <div class="ba-after"><div class="img-ph">[PLATSHÅLLARE: bild efter]</div></div>
+              <span class="ba-tag ba-tag--after" aria-hidden="true">Efter</span>
+              <span class="ba-tag ba-tag--before" aria-hidden="true">Före</span>
+              <span class="ba-handle" aria-hidden="true"></span>
+            </div>
+            <div class="ba-control">
+              <label for="ba-range-koksluckor">Jämför före och efter</label>
+              <input type="range" id="ba-range-koksluckor" class="ba-range" min="0" max="100" value="50" aria-valuetext="50 % efter">
+            </div>
+            <figcaption class="ba-caption"><strong>Projekt:</strong> Köksluckor <strong>Utfört:</strong> <span class="ph">[SAKNAS: kort beskrivning av arbetet]</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section class="section cta-band" aria-labelledby="cta-rubrik">
       <div class="container">
         <h2 id="cta-rubrik">Gillar du det du ser?</h2>
