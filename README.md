@@ -33,6 +33,8 @@ Skripten kräver Python med Pillow (`python -m pip install pillow pillow-heif`) 
 
 - Gul markering med `[SAKNAS: …]`, `[FRÅGA: …]` eller `[PLATSHÅLLARE: …]` = text som Jennie måste leverera eller bekräfta. Inget av det får finnas kvar.
 - Sidorna har `noindex` – ta bort raden i varje sidas `<head>`.
+- Sökmotorer: `robots.txt` och `sitemap.xml` ligger i roten, och startsidan har strukturerad data (JSON-LD) om företaget. Ändras telefon, e-post eller Instagram i `uppgifter.txt` måste JSON-LD-blocket i `index.html` ändras för hand. Lägg till nya sidor i `sitemap.xml`.
+- Efter lansering: lägg till sajten i Google Search Console (verifiera domänen med en TXT-post hos Internet.se) och skicka in `sitemap.xml`.
 - Integritetspolicyn är ett utkast och inte juridiskt granskad. Kontaktformuläret använder mailto: det öppnar besökarens e-postprogram med ett färdigt mejl till Jennie, så ingen formulärtjänst behövs.
 
 Texterna kommer från Jennies textdokument (2026-10-26).

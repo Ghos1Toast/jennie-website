@@ -1,0 +1,6 @@
+# Alla sökmotorer får läsa hela sajten.
+# OBS: sidorna har fortfarande noindex i <head> tills sajten lanseras.
+User-agent: *
+Allow: /
+
+Sitemap: https://jenniesfargsattning.se/sitemap.xml
